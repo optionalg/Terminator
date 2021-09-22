@@ -1,0 +1,193 @@
+import time
+import os
+import time 
+import sys
+import colorama
+import subprocess
+import future
+import datetime
+import getpass
+from colorama import Fore
+colorama.init()
+time.sleep(2)
+user=getpass.getuser()
+timerun=datetime.datetime.now()
+date=datetime.datetime.date()
+try:
+    if os.path.exists("/usr/share/Terminator/core/logs"):
+        pass
+    else:
+        os.mkdir("/usr/share/Terminator/core/logs")
+        os.system('touch /usr/share/Terminator/core/logs.log')
+except:
+    pass
+try:
+    if os.path.exists("/usr/share/Terminator"):
+        ter = True
+    else:
+        pass
+except:
+    pass
+done = 'false'
+def animate():
+    while done == 'false':
+        sys.stdout.write('\r[*] Starting terminator...|')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] sTarting terminator.../')
+        time.sleep(0.2)
+        sys.stdout.write('\r[*] stArting terminator...-')
+        try:
+            if os.path.exists("/usr/share/Terminator/core/logs/logs.log"):
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as v:
+                    v.write(f"[{date} - {timerun}] NOTE: Loading Terminator Framework Started")
+                    v.close()
+            else:
+                os.mkdir("/usr/share/Terminator/core/logs")
+                os.system('touch /usr/share/Terminator/core/logs/logs.log')
+        except:
+            pass
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] staRting terminator...\\')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starTing terminator...|')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] startIng terminator.../')
+        dir="/usr/share/Terminator"
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] startiNg terminator...-')
+        time.sleep(0.2)
+        sys.stdout.write('\r[*] startinG terminator...\\')
+        try:
+            import colorama
+            import sys
+            import scapy
+            import future
+            import subprocess
+            import flask
+        except ImportError:
+            try:
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as u:
+                    u.write(f"[{date} - {timerun}] FATAL: Some Imports Maybe Not Imported!")
+                    u.close()
+            except:
+                pass
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting Terminator...|')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting tErminator.../')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting teRminator...-')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting terMinator...\\')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting termInator...|')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting termiNator.../')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting terminAtor...-')
+        time.sleep(0.1)
+        try:
+            if os.path.exists("/usr/share/Terminator"):
+                md = True
+            else:
+                pass
+        except:
+            pass
+        sys.stdout.write('\r[*] starting terminaTor...\\')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting terminatOr...|')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting TerminatoR.../')
+        try:
+            with open("/usr/share/Terminator/core/common/usr.yaml", "w") as f:
+                f.write("User="+user)
+                f.close()
+        except:
+            pass
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] Starting terminator...-')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] sTarting terminator...\\')
+        try:
+            if md == True:
+                pass
+            else:
+                print(Fore.RED+'[-]'+Fore.RESET+' FATAL: Unable To Load Terminator Framework!')
+                sys.exit()
+        except:
+            pass
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] stArting terminator...|')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] staRting terminator.../')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starTing terminator...-')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] startIng terminator...\\')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] startiNg terminator...|')
+        time.sleep(0.2)
+        sys.stdout.write('\r[*] startinG terminator.../')
+        try:
+            if os.path.exists("/usr/share/Terminator/modules"):
+                mod = True
+            else:
+                pass
+        except:
+            pass
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting Terminator...-')
+        try:
+            if os.path.exists("/usr/share/Terminator/core/logs"):
+                pass
+            else:
+                os.mkdir("/usr/share/Terminator/core/logs")
+                os.system('touch /usr/share/Terminator/core/logs/logs.log')
+        except:
+            pass
+        time.sleep(0.6)
+        try:
+            if mod == True:
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as r:
+                    r.write(f"[{date} - {timerun}] NOTE: Modules Loaded Successfully")
+                    r.close()
+            else:
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as y:
+                    y.write(f"[{date} - {timerun}] FATAL: Unable To Load Modules")
+                    y.close()
+        except:
+            pass
+        sys.stdout.write('\r[*] starting tErminator...\\')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting teRminator...|')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting terMinator.../')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting termInator...-')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting termiNator...\\')
+        try:
+            if os.path.exists("/usr/share/Terminator/modules"):
+                walk = os.walk("/usr/share/Terminator/modules")
+                for ld in walk:
+                    load = open("/usr/share/Terminator/core/logs/logs.log", "a")
+                    load.write(f"[{date} - {timerun}] WARNING: Loading ADDITIONAL Module: {ld}")
+            else:
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as er:
+                    er.write(f"[{date} - {timerun}] FATAL: Unable To Load ADDITIONAL Modules")
+                    er.close()
+        except:
+            pass
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting terminAtor...|')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting terminaTor.../')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting terminatOr...-')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting TerminatoR...\\')
+        time.sleep(0.3)
+        os.system('python3 /usr/share/Terminator/core/base/tm.py')
+        sys.exit()
+animate()
+done = 'false'
