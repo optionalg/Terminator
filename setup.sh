@@ -6,6 +6,7 @@ clear
 echo "\033[1;34m[*] \033[0mInstalling Requirements..."
 apt install ruby perl metasploit-framework xterm zenity python python3-pip gem git -y > /dev/null 2>&1
 pip3 install colorama scapy pysocks imports future paramiko flask > /dev/null 2>&1
+pip3 install bs4 > /dev/null 2>&1
 echo "\033[1;34m[*] \033[0mCopying Additional Files > /usr/share..."
 python3 cp/cp.py
 echo "\033[1;34m[*] \033[0mCopying tmconsole > /usr/bin..."

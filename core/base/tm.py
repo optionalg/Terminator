@@ -21,7 +21,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "V.0.1.1"
+version = "V.0.1.4"
 commands = '''
 Core Commands For "update"
 ==========================
@@ -76,6 +76,7 @@ mdls = '''
 Name                                                                  Description
 -------                                                               --------------
 module/online_food_delivery/rce/webshell                              Uploads WebShell To Vulnerable FOOD Delivery Websites And Executes Remote Code
+module/evolution_cms/rce/login_web                                    Logins On Specified WebSite And Executes Remote Malicious Code
 '''
 try:
     if os.path.exists("/usr/share/Terminator/lib/db/dbrun.py"):
@@ -190,9 +191,14 @@ def main():
                         if tmf[1] == 'module/online_food_delivery/rce/webshell':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/exploits/foodrce.py')
+                        elif tmf[1] == 'module/evolution_cms/rce/login_web':
+                            time.sleep(0.5)
+                            os.system('python3 /usr/share/Terminator/lib/data/exploits/evo.py')
+                        else:
+                            print(Fore.RED+'[-]'+Fore.RESET+' Invalid Module: "'+tmf[1]+'"')
                     else:
                         time.sleep(0.5)
-                        print(Fore.RED+'[-]'+Fore.RESET+' Unable To Load Module: "module/online_food_delivery/rce/webshell"')
+                        print(Fore.RED+'[-]'+Fore.RESET+' Unable To Load Modules!')
                 except:
                     pass
         else:
