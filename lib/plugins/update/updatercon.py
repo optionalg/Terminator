@@ -20,6 +20,7 @@ try:
         os.system('chmod +x /usr/share/Terminator_cache/bin/tmconsole/tmconsole > /dev/null 2>&1')
         os.system('rm -rf /usr/bin/tmconsole > /dev/null 2>&1')
         os.system('cp -r /usr/share/Terminator_cache/bin/tmconsole/tmconsole /usr/bin > /dev/null 2>&1')
+        os.system('rm -rf /usr/share/Terminator_cache > /dev/null 2>&1')
         print(Fore.YELLOW+'[+]'+Fore.RESET+' Terminator Console Updated Successfully!')
         sys.exit()
     else:
