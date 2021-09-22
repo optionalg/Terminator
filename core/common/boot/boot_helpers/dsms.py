@@ -4,6 +4,7 @@ import time
 import sys
 import colorama
 import subprocess
+from sys import stdout
 import future
 import datetime
 import getpass
@@ -12,7 +13,6 @@ colorama.init()
 time.sleep(2)
 user=getpass.getuser()
 timerun=datetime.datetime.now()
-date=datetime.datetime.date()
 try:
     if os.path.exists("/usr/share/Terminator/core/logs"):
         pass
@@ -39,7 +39,7 @@ def animate():
         try:
             if os.path.exists("/usr/share/Terminator/core/logs/logs.log"):
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as v:
-                    v.write(f"[{date} - {timerun}] NOTE: Loading Terminator Framework Started")
+                    v.write(f"[{timerun} - {timerun}] NOTE: Loading Terminator Framework Started")
                     v.close()
             else:
                 os.mkdir("/usr/share/Terminator/core/logs")
@@ -52,7 +52,6 @@ def animate():
         sys.stdout.write('\r[*] starTing terminator...|')
         time.sleep(0.1)
         sys.stdout.write('\r[*] startIng terminator.../')
-        dir="/usr/share/Terminator"
         time.sleep(0.1)
         sys.stdout.write('\r[*] startiNg terminator...-')
         time.sleep(0.2)
@@ -66,7 +65,7 @@ def animate():
         except ImportError:
             try:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as u:
-                    u.write(f"[{date} - {timerun}] FATAL: Some Imports Maybe Not Imported!")
+                    u.write(f"[{timerun} - {timerun}] FATAL: Some Imports Maybe Not Imported!")
                     u.close()
             except:
                 pass
@@ -148,11 +147,11 @@ def animate():
         try:
             if mod == True:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as r:
-                    r.write(f"[{date} - {timerun}] NOTE: Modules Loaded Successfully")
+                    r.write(f"[{timerun} - {timerun}] NOTE: Modules Loaded Successfully")
                     r.close()
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as y:
-                    y.write(f"[{date} - {timerun}] FATAL: Unable To Load Modules")
+                    y.write(f"[{timerun} - {timerun}] FATAL: Unable To Load Modules")
                     y.close()
         except:
             pass
@@ -170,10 +169,10 @@ def animate():
                 walk = os.walk("/usr/share/Terminator/modules")
                 for ld in walk:
                     load = open("/usr/share/Terminator/core/logs/logs.log", "a")
-                    load.write(f"[{date} - {timerun}] WARNING: Loading ADDITIONAL Module: {ld}")
+                    load.write(f"[{timerun} - {timerun}] WARNING: Loading ADDITIONAL Module: {ld}")
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as er:
-                    er.write(f"[{date} - {timerun}] FATAL: Unable To Load ADDITIONAL Modules")
+                    er.write(f"[{timerun} - {timerun}] FATAL: Unable To Load ADDITIONAL Modules")
                     er.close()
         except:
             pass
@@ -188,5 +187,6 @@ def animate():
         time.sleep(0.3)
         os.system('python3 /usr/share/Terminator/core/base/tm.py')
         sys.exit()
+
+done = "false"
 animate()
-done = 'false'
