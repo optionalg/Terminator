@@ -3,6 +3,8 @@
 - Welcome To Terminator Framework Repo!
 # About:
 * Terminator Framework Is a Explotation Framework For Pentesters, Security Researchers!
+* Author: G00Dway
+* Organization: FUD-Sec
 # Installaton:
 - Please Make Sure You Have The `ROOT` Permissions!
 - Terminator Require `SUDO` Privilieges To Work Correctly!
