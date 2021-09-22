@@ -59,7 +59,6 @@ def animate():
         sys.stdout.write('\r[*] startinG terminator...\\')
         try:
             import colorama
-            import sys
             import scapy
             import future
             import subprocess
