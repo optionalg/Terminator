@@ -95,7 +95,7 @@ def animate():
         time.sleep(0.1)
         sys.stdout.write('\r[*] starting terminatOr...|')
         time.sleep(0.1)
-        sys.stdout.write('\r[*] starting TerminatoR.../')
+        sys.stdout.write('\r[*] starting terminatoR.../')
         try:
             with open("/usr/share/Terminator/core/common/usr.yaml", "w") as f:
                 f.write("User="+user)
