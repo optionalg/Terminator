@@ -18,7 +18,7 @@ try:
         pass
     else:
         os.mkdir("/usr/share/Terminator/core/logs")
-        os.system('touch /usr/share/Terminator/core/logs.log')
+        os.system('touch /usr/share/Terminator/core/logs/logs.log')
 except:
     pass
 try:
@@ -39,7 +39,7 @@ def animate():
         try:
             if os.path.exists("/usr/share/Terminator/core/logs/logs.log"):
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as v:
-                    v.write(f"\n[{timerun} - {timerun}] NOTE: Loading Terminator Framework Started")
+                    v.write(f"\n[{timerun}] NOTE: Loading Terminator Framework Started")
                     v.close()
             else:
                 os.mkdir("/usr/share/Terminator/core/logs")
@@ -65,7 +65,7 @@ def animate():
         except ImportError:
             try:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as u:
-                    u.write(f"\n[{timerun} - {timerun}] FATAL: Some Imports Maybe Not Imported!")
+                    u.write(f"\n[{timerun}] FATAL: Some Imports Maybe Not Imported!")
                     u.close()
             except:
                 pass
@@ -147,11 +147,11 @@ def animate():
         try:
             if mod == True:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as r:
-                    r.write(f"\n[{timerun} - {timerun}] NOTE: Modules Loaded Successfully")
+                    r.write(f"\n[{timerun}] NOTE: Modules Loaded Successfully")
                     r.close()
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as y:
-                    y.write(f"\n[{timerun} - {timerun}] FATAL: Unable To Load Modules")
+                    y.write(f"\n[{timerun}] FATAL: Unable To Load Modules")
                     y.close()
         except:
             pass
@@ -169,10 +169,10 @@ def animate():
                 walk = os.listdir("/usr/share/Terminator/modules")
                 for ld in walk:
                     load = open("/usr/share/Terminator/core/logs/logs.log", "a")
-                    load.write(f"\n[{timerun} - {timerun}] WARNING: Loading ADDITIONAL Module: {ld}")
+                    load.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module: {ld}")
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as er:
-                    er.write(f"\n[{timerun} - {timerun}] FATAL: Unable To Load ADDITIONAL Modules")
+                    er.write(f"\n[{timerun}] FATAL: Unable To Load ADDITIONAL Modules")
                     er.close()
         except:
             pass
