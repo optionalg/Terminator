@@ -31,7 +31,7 @@ while True:
         result = client[0].recv(1024).decode()
         print(result)
     client[0].close()
-    cmd = input(+Fore.CYAN+'[?]'+Fore.RESET+' Stop Connection? (Y/n): ') or 'n'
+    cmd = input(Fore.CYAN+'[?]'+Fore.RESET+' Stop Connection? (Y/n): ') or 'n'
     if cmd.lower() in ['y', 'yes']:
         break
 s.close()
