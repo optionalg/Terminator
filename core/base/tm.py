@@ -21,7 +21,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "V.0.1.5"+Fore.LIGHTBLACK_EX+"#stable"
+version = "V.0.1.6"+Fore.LIGHTBLACK_EX+"#stable"
 commands = '''
 Core Commands For "update"
 ==========================
@@ -144,6 +144,7 @@ def main():
     try:
         tmf = input('\033[4mtmf\033[0m > ').strip(" ")
     except KeyboardInterrupt:
+        print('')
         print(Fore.RED+'[-]'+Fore.RESET+' Terminator Stopped...')
         time.sleep(0.5)
         exit()
@@ -222,6 +223,7 @@ def main():
         try:
             tmf = input('\033[4mtmf\033[0m > ').strip(" ")
         except KeyboardInterrupt:
+            print('')
             print(Fore.RED+'[-]'+Fore.RESET+' Terminator Stopped...')
             time.sleep(0.5)
             exit()
