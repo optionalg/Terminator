@@ -185,6 +185,8 @@ def main():
                         os.system('vim /usr/share/Terminator/core/logs/logs.log')
                     elif tmf[1] == 'modules':
                         print(mdls)
+                    elif tmf[1] == 'payloads':
+                        print(pylds)
                     else:
                         print(showcommands)
                         print(Fore.RED+'[-]'+Fore.RESET+' Invalid Command For "show": "'+tmf[1]+'"')
