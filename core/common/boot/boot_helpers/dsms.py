@@ -14,6 +14,14 @@ time.sleep(2)
 user=getpass.getuser()
 timerun=datetime.datetime.now()
 try:
+    if os.path.exists("/root/.tmf"):
+        os.system('rm -rf /root/.tmf > /dev/null 2>&1')
+        os.mkdir("/root/.tmf")
+    else:
+        os.mkdir("/root/.tmf")
+except:
+    pass
+try:
     if os.path.exists("/usr/share/Terminator/core/logs"):
         pass
     else:

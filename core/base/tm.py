@@ -21,7 +21,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "V.0.1.4"
+version = "V.0.1.5"+Fore.LIGHTBLACK_EX+"#stable"
 commands = '''
 Core Commands For "update"
 ==========================
@@ -38,6 +38,7 @@ Core Commands For "show"
     Command                       Description
     -------                       -----------
     show modules                  Show all available Modules
+    show payloads                 Show all available Payloads
     show logs                     Show database activity (Logs)
 
 Global Commands
@@ -70,13 +71,22 @@ Core Commands For "show"
     Command                       Description
     -------                       -----------
     show modules                  Show all available Modules
+    show payloads                 Show all available Payloads
     show logs                     Show database activity (Logs)
 '''
 mdls = '''
 Name                                                                  Description
 -------                                                               --------------
+module/multi/handler                                                  Handler For Payloads
 module/online_food_delivery/rce/webshell                              Uploads WebShell To Vulnerable FOOD Delivery Websites And Executes Remote Code
 module/evolution_cms/rce/login_web                                    Logins On Specified WebSite And Executes Remote Malicious Code
+'''
+pylds = '''
+Name                                                                  Description
+-------                                                               --------------
+payload/poc/redragon_mouse/wr                                         Redragon_Mouse Payload (REDRAGON_MOUSE.sys)
+payload/win/win_reverse_shell                                         Windows reverse shell Payload (win32, win64)
+payload/apk/android_reverse_shell                                     Android reverse shell Payload (V.3,4,5,6,7,8,9)
 '''
 try:
     if os.path.exists("/usr/share/Terminator/lib/db/dbrun.py"):
@@ -127,7 +137,7 @@ Database --[ {database} ]
 Updater  --[ {updater} ]
 
 Welcome To Terminator Framework! '''+Fore.YELLOW+f'''{version}'''+Fore.RESET+'''
-=========================================
+===============================================
 ''')
 banner()
 def main():
@@ -188,7 +198,11 @@ def main():
             else:
                 try:
                     if modules == Fore.GREEN+"OK"+Fore.RESET:
-                        if tmf[1] == 'module/online_food_delivery/rce/webshell':
+                        if tmf[1] == 'multi/handler' or tmf[1] == 'module/multi/handler':
+                            time.sleep(0.7)
+                            print(Fore.BLUE+'[*]'+Fore.RESET+' Set Default Payload: "payload/win/win_reverse_shell"')
+                            os.system('python3 /usr/share/Terminator/lib/data/handlers/handler.py')
+                        elif tmf[1] == 'module/online_food_delivery/rce/webshell':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/exploits/foodrce.py')
                         elif tmf[1] == 'module/evolution_cms/rce/login_web':
