@@ -39,10 +39,28 @@ except:
 done = 'false'
 def animate():
     while done == 'false':
+        try:
+            if os.path.exists("/usr/share/Terminator/core/logs/logs.log"):
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as t:
+                    t.write(f"\n[{timerun}] ----------------- START CORE -----------------")
+                    t.close()
+            else:
+                pass
+        except:
+            pass
         sys.stdout.write('\r[*] Starting terminator...|')
+        try:
+            if os.path.exists("/usr/share/Terminator/modules/handlers"):
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as i:
+                    i.write(f"\n[{timerun}] NOTE: Loading Handler Version: 1.2554")
+                    i.close()
+            else:
+                pass
+        except:
+            pass
         time.sleep(0.1)
         sys.stdout.write('\r[*] sTarting terminator.../')
-        time.sleep(0.2)
+        time.sleep(0.1)
         sys.stdout.write('\r[*] stArting terminator...-')
         try:
             if os.path.exists("/usr/share/Terminator/core/logs/logs.log"):
@@ -62,7 +80,7 @@ def animate():
         sys.stdout.write('\r[*] startIng terminator.../')
         time.sleep(0.1)
         sys.stdout.write('\r[*] startiNg terminator...-')
-        time.sleep(0.2)
+        time.sleep(0.3)
         sys.stdout.write('\r[*] startinG terminator...\\')
         try:
             import colorama
@@ -85,7 +103,7 @@ def animate():
         sys.stdout.write('\r[*] starting teRminator...-')
         time.sleep(0.1)
         sys.stdout.write('\r[*] starting terMinator...\\')
-        time.sleep(0.1)
+        time.sleep(0.2)
         sys.stdout.write('\r[*] starting termInator...|')
         time.sleep(0.1)
         sys.stdout.write('\r[*] starting termiNator.../')
@@ -175,9 +193,24 @@ def animate():
         try:
             if os.path.exists("/usr/share/Terminator/modules"):
                 walk = os.listdir("/usr/share/Terminator/modules")
+                walk2 = os.listdir("/usr/share/Terminator/modules/exploits")
+                walk3 = os.listdir("/usr/share/Terminator/modules/handlers")
+                walk4 = os.listdir("/usr/share/Terminator/modules/payloads")
                 for ld in walk:
                     load = open("/usr/share/Terminator/core/logs/logs.log", "a")
                     load.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module: {ld}")
+
+                for ld2 in walk2:
+                    lo = open("/usr/share/Terminator/core/logs/logs.log", "a")
+                    lo.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module: exploits/{ld2}")
+
+                for ld3 in walk3:
+                    lu = open("/usr/share/Terminator/core/logs/logs.log", "a")
+                    lu.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module: handlers/{ld3}")
+
+                for ld4 in walk4:
+                    lt = open("/usr/share/Terminator/core/logs/logs.log", "a")
+                    lt.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module: payloads/{ld4}")
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as er:
                     er.write(f"\n[{timerun}] FATAL: Unable To Load ADDITIONAL Modules")

@@ -12,7 +12,6 @@ class Info:
     setup = "setup.sh"
     remove = "uninstall.sh", "bin.sh"
     desktop_location = "/usr/share/applications"
-    desktop = "terminator.desktop"
 
 class Dir:
     home = "/home/"
