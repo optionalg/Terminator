@@ -78,7 +78,7 @@ mdls = '''
 Name                                                                  Description
 -------                                                               --------------
 module/multi/handler                                                  Handler For Payloads
-module/online_food_delivery/rce/webshell                              Uploads WebShell To Vulnerable FOOD Delivery Websites And Executes Remote Code
+module/online_food_delivery/rce/webshell                              Uploads WebShell To Vulnerable Delivery Websites And Executes Remote Code
 module/evolution_cms/rce/login_web                                    Logins On Specified WebSite And Executes Remote Malicious Code
 '''
 pylds = '''
