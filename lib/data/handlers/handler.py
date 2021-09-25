@@ -267,7 +267,7 @@ else:
 ''')
                         c.close()
                     os.system('cp -r /usr/share/Terminator/modules/payloads/redragon_mouse.log /root/.tmf > /dev/null 2>&1')
-                    os.system('mv /root/.tmf/redragon_mouse.log /root/.tmf/redragon_mouse.exe > /dev/null 2>&1')
+                    os.system('mv /root/.tmf/redragon_mouse.log /root/.tmf/redragon_mouse.py > /dev/null 2>&1')
                     print(Fore.YELLOW+'[+]'+Fore.RESET+' Payload Saved At: "/root/.tmf"')
             except:
                 pass
