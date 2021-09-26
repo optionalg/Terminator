@@ -1,1 +1,1 @@
-tmconsole
+python3 /usr/share/Terminator/core/common/boot/boot_helpers/dsms.py
