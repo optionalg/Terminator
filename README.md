@@ -15,9 +15,9 @@
 >
 `sudo chmod +x setup.sh`
 >
-`sudo ./setup.sh`
+`sudo bash setup.sh`
 ### Uninstallation:
-`sudo ./uninstall.sh`
+`sudo bash uninstall.sh`
 # Disclaimer!
 * We Are NOT Responsible For You Actions With This Program! Please Use Terminator At Your OWN Risk!
 # Bugs?
