@@ -171,7 +171,7 @@ def main():
                 try:
                     if tmf[1] == 'console':
                         os.system('python3 /usr/share/Terminator/lib/plugins/update/updatercon.py')
-                        os.system('python3 /usr/share/Terminator/bin/version/ver.py')
+                        print(Fore.YELLOW+'[+]'+Fore.RESET+' Console Updated Successfully!')
                     elif tmf[1] == 'database':
                         os.system('python3 /usr/share/Terminator/lib/plugins/update/updatedb.py')
                         os.system('python3 /usr/share/Terminator/bin/version/ver.py')
