@@ -15,13 +15,19 @@ colorama.init()
 os.system('clear')
 user = getpass.getuser()
 try:
+    with open("/usr/share/Terminator/bin/version/ver.yaml", "r") as yr:
+        ver = yr.read()
+        yr.close()
+except:
+    pass
+try:
     if os.path.exists("/usr/share/Terminator/lib/plugins/update"):
         updater = Fore.GREEN+"OK"+Fore.RESET
     else:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "V.0.1.6.8"+Fore.LIGHTBLACK_EX+"#stable"
+version = f"{ver}"+Fore.LIGHTBLACK_EX+"#stable"
 commands = '''
 Core Commands For "update"
 ==========================
@@ -81,6 +87,7 @@ module/multi/handler                                                  Handler Fo
 module/online_food_delivery/rce/webshell                              RCE, WebShell Upload & Connect
 module/evolution_cms/rce/login_web                                    RCE Cms, Login & Execute Code
 module/citadel_web_kit/cred/log                                       Citadel Web kit, Credential Harvester
+module/packet_sniff/http/sniff                                        HTTP Packet Sniffer, Pass/Email/Login...
 '''
 pylds = '''
 Name                                                                  Description
@@ -90,7 +97,7 @@ payload/win/win_reverse_shell                                         Windows re
 payload/apk/android_reverse_shell                                     Android reverse shell Payload (V.3,4,5,6,7,8,9)
 '''
 try:
-    if os.path.exists("/usr/share/Terminator/lib/db/dbrun.py"):
+    if os.path.exists("/usr/share/Terminator/lib/db/dbrun.py") and os.path.exists("/usr/share/Terminator/lib/data"):
         database = Fore.GREEN+"OK"+Fore.RESET
     else:
         database = Fore.RED+"FATAL"+Fore.RESET
@@ -204,7 +211,7 @@ def main():
                 print(Fore.RED+'[-]'+Fore.RESET+' Please Specify The Module Name')
             else:
                 try:
-                    if modules == Fore.GREEN+"OK"+Fore.RESET:
+                    if modules == Fore.GREEN+"OK"+Fore.RESET and database == Fore.GREEN+"OK"+Fore.RESET:
                         if tmf[1] == 'multi/handler' or tmf[1] == 'module/multi/handler':
                             time.sleep(0.7)
                             print(Fore.BLUE+'[*]'+Fore.RESET+' Set Default Payload: "payload/win/win_reverse_shell"')
@@ -218,6 +225,9 @@ def main():
                         elif tmf[1] == 'module/citadel_web_kit/cred/log':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/exploits/citadel_web.py')
+                        elif tmf[1] == 'module/packet_sniff/http/sniff':
+                            time.sleep(0.5)
+                            os.system('python3 /usr/share/Terminator/lib/data/other/http.py')
                         else:
                             print(Fore.RED+'[-]'+Fore.RESET+' Invalid Module: "'+tmf[1]+'"')
                     else:
