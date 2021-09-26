@@ -10,8 +10,8 @@ pip3 install bs4 > /dev/null 2>&1
 echo "\033[1;34m[*] \033[0mCopying Additional Files > /usr/share..."
 python3 cp/cp.py
 echo "\033[1;34m[*] \033[0mCopying tmconsole > /usr/bin..."
-chmod +x bin/tmconsole/tmconsole
 cp -r bin/tmconsole/tmconsole /usr/bin > /dev/null 2>&1
+chmod +x /usr/bin/tmconsole > /dev/null 2>&1
 echo "\033[1;34m[*] \033[0mCleaning Up..."
 echo "\033[1;34m[*] \033[0mSetup Finished!"
 echo
