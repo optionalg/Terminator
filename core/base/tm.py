@@ -21,7 +21,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "V.0.1.6.5"+Fore.LIGHTBLACK_EX+"#stable"
+version = "V.0.1.6.8"+Fore.LIGHTBLACK_EX+"#stable"
 commands = '''
 Core Commands For "update"
 ==========================
@@ -78,8 +78,9 @@ mdls = '''
 Name                                                                  Description
 -------                                                               --------------
 module/multi/handler                                                  Handler For Payloads
-module/online_food_delivery/rce/webshell                              Uploads WebShell To Vulnerable Delivery Websites And Executes Remote Code
-module/evolution_cms/rce/login_web                                    Logins On Specified WebSite And Executes Remote Malicious Code
+module/online_food_delivery/rce/webshell                              RCE, WebShell Upload & Connect
+module/evolution_cms/rce/login_web                                    RCE Cms, Login & Execute Code
+module/citadel_web_kit/cred/log                                       Citadel Web kit, Credential Harvester
 '''
 pylds = '''
 Name                                                                  Description
@@ -165,12 +166,15 @@ def main():
         elif tmf[0] == 'update':
             if len(tmf) < 2:
                 os.system('python3 /usr/share/Terminator/lib/plugins/update/updater.py')
+                os.system('python3 /usr/share/Terminator/bin/version/ver.py')
             else:
                 try:
                     if tmf[1] == 'console':
                         os.system('python3 /usr/share/Terminator/lib/plugins/update/updatercon.py')
+                        os.system('python3 /usr/share/Terminator/bin/version/ver.py')
                     elif tmf[1] == 'database':
                         os.system('python3 /usr/share/Terminator/lib/plugins/update/updatedb.py')
+                        os.system('python3 /usr/share/Terminator/bin/version/ver.py')
                     else:
                         print(Fore.RED+'[-]'+Fore.RESET+' Invalid Command For "update": "'+tmf[1]+'"')
                 except:
@@ -211,6 +215,9 @@ def main():
                         elif tmf[1] == 'module/evolution_cms/rce/login_web':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/exploits/evo.py')
+                        elif tmf[1] == 'module/citadel_web_kit/cred/log':
+                            time.sleep(0.5)
+                            os.system('python3 /usr/share/Terminator/lib/data/exploits/citadel_web.py')
                         else:
                             print(Fore.RED+'[-]'+Fore.RESET+' Invalid Module: "'+tmf[1]+'"')
                     else:

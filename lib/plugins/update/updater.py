@@ -21,7 +21,6 @@ try:
         os.system("rm -rf /usr/bin/tmconsole > /dev/null 2>&1")
         os.system("chmod +x /usr/share/Terminator/bin/tmconsole/tmconsole > /dev/null 2>&1")
         os.system("cp -r /usr/share/Terminator/bin/tmconsole/tmconsole /usr/bin > /dev/null 2>&1")
-        print(Fore.YELLOW+'[+]'+Fore.RESET+' Terminator Updated Successfully!')
         sys.exit()
     else:
         print(Fore.RED+'[-]'+Fore.RESET+' Unable To Update Terminator Framework!')

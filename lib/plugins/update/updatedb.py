@@ -18,7 +18,6 @@ try:
     if os.path.exists("/usr/share/Terminator"):
         os.system("rm -rf /usr/share/Terminator > /dev/null 2>&1")
         os.system("git clone "+url+" /usr/share/Terminator > /dev/null 2>&1")
-        print(Fore.YELLOW+'[+]'+Fore.RESET+' Terminator Database Updated Successfully!')
         sys.exit()
     else:
         print(Fore.RED+'[-]'+Fore.RESET+' Unable To Update Terminator Framework Database!')
