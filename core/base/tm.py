@@ -247,10 +247,10 @@ Max Jobs. 1
     ------
 
     Client IP Address
-    ----------
+    -----------------
 
     Client HostName
-    --------
+    ---------------
 
     Server IP Address
     -----------------
