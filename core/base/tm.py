@@ -27,7 +27,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = f"{ver}"
+version = ver
 commands = '''
 Core Commands For "update"
 ==========================
