@@ -53,7 +53,7 @@ while True:
                 if os.path.exists("/usr/share/Terminator/core/session/session.yaml"):
                     print(Fore.RED+'[-]'+Fore.RESET+' Max. 1 Sessions!')
                 else:
-                    os.system('python3 /usr/share/Terminator/core/helpers/ssns.py '.format(ip)+' '.format(hostName)+' '+HOST+' '+PORT)
+                    os.system('python3 /usr/share/Terminator/core/helpers/ssns.py {}'.format(ip)+' {}'.format(hostName)+' '+HOST+' '+PORT)
                     print(Fore.YELLOW+'[+]'+Fore.RESET+' Running At Background')
                     break
             except:
