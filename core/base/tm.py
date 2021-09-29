@@ -149,7 +149,7 @@ Database --[ {database} ]
 Updater  --[ {updater} ]
 
 Welcome To Terminator Framework! '''+Fore.YELLOW+f'''{version}'''+Fore.RESET+'''
-=================================================
+====================================================
 ''')
 banner()
 def main():
