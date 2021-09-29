@@ -6,13 +6,19 @@ import os
 import datetime
 from colorama import Fore
 colorama.init()
-if len(sys.argv) < 3:
+if len(sys.argv) < 2:
     sys.exit()
 
 timerun = datetime.datetime.now()
 HOST = sys.argv[1]
-PORT = int(sys.argv[2])
+with open("/usr/share/Terminator/core/session/session.yaml", "r") as f:
+    f.readline()
+    f.readline()
+    f.readline()
+    PORT = f.readline()
+    f.close()
 
+PORT = int(PORT)
 cmds = '''
 Shell Commands
 ==============

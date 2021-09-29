@@ -270,7 +270,7 @@ Max Jobs. 1
                         try:
                             if os.path.exists("/usr/share/Terminator/core/session/session.yaml"):
                                 print(Fore.BLUE+'[*]'+Fore.RESET+' Interacting With Session 1...')
-                                os.system(f'python3 /usr/share/Terminator/core/helpers/int.py {SLHOST} {SLPORT}')
+                                os.system(f'python3 /usr/share/Terminator/core/helpers/int.py {SLHOST}')
                             else:
                                 print(Fore.RED+'[-]'+Fore.RESET+' Error Unable To Interact!')
                         except:
