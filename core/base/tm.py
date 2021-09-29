@@ -209,8 +209,8 @@ def main():
                     with open("/usr/share/Terminator/core/session/session.yaml", "r") as host:
                         ip = host.readline()
                         hostname = host.readline()
-                        server = host.readline()
-                        portserver = host.readline()
+                        SLHOST = host.readline()
+                        SLPORT = host.readline()
                         host.close()
                     job = f'''
 Running Jobs
@@ -231,11 +231,11 @@ Max Jobs. 1
 
     Server IP Address
     -----------------
-    {server}
+    {SLHOST}
 
     Server Port
     -----------
-    {portserver}
+    {SLPORT}
 '''
                 else:
                     job = '''
@@ -270,7 +270,7 @@ Max Jobs. 1
                         try:
                             if os.path.exists("/usr/share/Terminator/core/session/session.yaml"):
                                 print(Fore.BLUE+'[*]'+Fore.RESET+' Interacting With Session 1...')
-                                os.system('python3 /usr/share/Terminator/core/helpers/int.py '+server+' '+portserver)
+                                os.system(f'python3 /usr/share/Terminator/core/helpers/int.py {SLHOST} {SLPORT}')
                             else:
                                 print(Fore.RED+'[-]'+Fore.RESET+' Error Unable To Interact!')
                         except:
