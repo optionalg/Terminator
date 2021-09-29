@@ -12,6 +12,7 @@ if len(sys.argv) < 3:
 timerun = datetime.datetime.now()
 HOST = sys.argv[1]
 PORT = int(sys.argv[2])
+PORT2 = sys.argv[2]
 
 cmds = '''
 Shell Commands
@@ -57,13 +58,13 @@ while True:
                 else:
                     ipc = "{}".format(ip)
                     host = "{}".format(hostName)
-                    os.system('touch /usr/share/Terminator/session/session.yaml')
+                    os.system('touch /usr/share/Terminator/session/session.yaml > /dev/null 2>&1')
                     try:
                         with open("/usr/share/Terminator/core/session/session.yaml", "w") as f:
                             f.write(ipc)
                             f.write("\n"+host)
                             f.write("\n"+HOST)
-                            f.write("\n"+PORT)
+                            f.write("\n"+PORT2)
                             f.close()
                     except:
                         pass
