@@ -81,24 +81,24 @@ Core Commands For "show"
     show logs                     Show database activity (Logs)
 '''
 mdls = '''
-----------------------------------------------------------------------------------------------------------------------------
-| Name                                               |                   Description                                       |
-----------------------------------------------------------------------------------------------------------------------------
-| module/multi/handler                               |                   Handler For Payloads                              |
-| module/online_food_delivery/rce/webshell           |                   RCE, WebShell Upload & Connect                    |
-| module/evolution_cms/rce/login_web                 |                   RCE Cms, Login & Execute Code                     |
-| module/citadel_web_kit/cred/log                    |                   Citadel Web kit, Credential Harvester             |
-| module/packet_sniff/http/sniff                     |                   HTTP Packet Sniffer, Pass/Email/Login/Other       |
-----------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
+| Name                                               | Description                                      |
+---------------------------------------------------------------------------------------------------------
+| module/multi/handler                               | Handler For Payloads                             |
+| module/online_food_delivery/rce/webshell           | RCE, WebShell Upload & Connect                   |
+| module/evolution_cms/rce/login_web                 | RCE Cms, Login & Execute Code                    |
+| module/citadel_web_kit/cred/log                    | Citadel Web kit, Credential Harvester            |
+| module/packet_sniff/http/sniff                     | HTTP Packet Sniffer, Pass/Email/Login/Other      |
+---------------------------------------------------------------------------------------------------------
 '''
 pylds = '''
-----------------------------------------------------------------------------------------------------------------------------
-| Name                                               |                   Description                                       |
-----------------------------------------------------------------------------------------------------------------------------
-| payload/poc/redragon_mouse/wr                      |                   Redragon_Mouse Payload (REDRAGON_MOUSE.sys)       |
-| payload/win/win_reverse_shell                      |                   Windows reverse shell Payload (win32, win64)      |
-| payload/apk/android_reverse_shell                  |                   Android reverse shell Payload (V.3,4,5,6,7,8,9)   |
-----------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
+| Name                                               | Description                                      |
+---------------------------------------------------------------------------------------------------------
+| payload/poc/redragon_mouse/wr                      | Redragon_Mouse Payload (REDRAGON_MOUSE.sys)      |
+| payload/win/win_reverse_shell                      | Windows reverse shell Payload (win32, win64)     |
+| payload/apk/android_reverse_shell                  | Android reverse shell Payload (V.3,4,5,6,7,8,9)  |
+---------------------------------------------------------------------------------------------------------
 '''
 try:
     if os.path.exists("/usr/share/Terminator/lib/db/dbrun.py") and os.path.exists("/usr/share/Terminator/lib/data"):
