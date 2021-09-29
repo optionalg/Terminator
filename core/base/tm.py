@@ -243,13 +243,13 @@ Running Jobs
 ============
 Max Jobs. 1
 
-    Job 
-    ---
+    Job ID 
+    ------
 
-    IP Address
+    Client IP Address
     ----------
 
-    HostName
+    Client HostName
     --------
 
     Server IP Address
