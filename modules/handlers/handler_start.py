@@ -57,7 +57,16 @@ while True:
                 else:
                     ipc = "{}".format(ip)
                     host = "{}".format(hostName)
-                    os.system('python3 /usr/share/Terminator/core/helpers/ssns.py '+ipc+' '+host+' '+HOST+' '+PORT)
+                    os.system('touch /usr/share/Terminator/session/session.yaml')
+                    try:
+                        with open("/usr/share/Terminator/core/session/session.yaml", "w") as f:
+                            f.write(ipc)
+                            f.write("\n"+host)
+                            f.write("\n"+HOST)
+                            f.write("\n"+PORT)
+                            f.close()
+                    except:
+                        pass
                     print(Fore.YELLOW+'[+]'+Fore.RESET+' Running At Background')
                     break
             except:
