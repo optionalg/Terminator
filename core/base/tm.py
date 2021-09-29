@@ -14,6 +14,14 @@ from socket import AF_INET, SOCK_STREAM
 colorama.init()
 os.system('clear')
 user = getpass.getuser()
+def removeses():
+    try:
+        if os.path.exists("/usr/share/Terminator/core/session"):
+            os.system('rm -rf /usr/share/Terminator/core/session > /dev/null 2>&1')
+        else:
+            pass
+    except:
+        pass
 try:
     with open("/usr/share/Terminator/bin/version/ver.yaml", "r") as yr:
         ver = yr.read()
@@ -27,7 +35,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.7.0"+Fore.LIGHTBLACK_EX+"#stable"
+version = "1.7.6"+Fore.LIGHTBLACK_EX+"#stable"
 commands = '''
 Core Commands For "update"
 ==========================
@@ -65,6 +73,9 @@ Core Commands
     clear                         Clear terminal window
     update                        Update Terminator framework (Dont checks for updates)
     show <>                       Show specified command
+    jobs                          Show available running Jobs
+    int <Job ID>                  Interact with Job
+    jkill <Job ID>                Kill Job
     use <module>                  Use specified Module
     set <option> <value>          Set specified option to specified value (Module use only)
     run                           Run the Module (Module use only)
@@ -158,6 +169,7 @@ def main():
     except KeyboardInterrupt:
         print('')
         print(Fore.RED+'[-]'+Fore.RESET+' Terminator Stopped...')
+        removeses()
         time.sleep(0.5)
         exit()
     tmf = tmf.split()
@@ -172,6 +184,7 @@ def main():
             os.system('clear')
         elif tmf[0] == 'exit':
             print(Fore.RED+'[-]'+Fore.RESET+' Terminator Stopped...')
+            removeses()
             time.sleep(0.5)
             sys.exit()
         elif tmf[0] == 'update':
@@ -188,6 +201,100 @@ def main():
                         os.system('python3 /usr/share/Terminator/bin/version/ver.py')
                     else:
                         print(Fore.RED+'[-]'+Fore.RESET+' Invalid Command For "update": "'+tmf[1]+'"')
+                except:
+                    pass
+        elif tmf[0] == 'jobs':
+            try:
+                if os.path.exists("/usr/share/Terminator/core/session") and os.path.exists("/usr/share/Terminator/core/session/session.yaml"):
+                    with open("/usr/share/Terminator/core/session/session.yaml", "r") as host:
+                        ip = host.readline()
+                        hostname = host.readline()
+                        server = host.readline()
+                        portserver = host.readline()
+                        host.close()
+                    job = f'''
+Running Jobs
+============
+Max Jobs. 1
+
+    Job ID
+    ------
+    1
+
+    Client IP Address        
+    -----------------
+    {ip}
+
+    Client HostName
+    ---------------
+    {hostname}
+
+    Server IP Address
+    -----------------
+    {server}
+
+    Server Port
+    -----------
+    {portserver}
+'''
+                else:
+                    job = '''
+Running Jobs
+============
+Max Jobs. 1
+
+    Job 
+    ---
+
+    IP Address
+    ----------
+
+    HostName
+    --------
+
+    Server IP Address
+    -----------------
+
+    Server Port
+    -----------
+'''
+            except:
+                pass
+            print(job)
+        elif tmf[0] == 'int':
+            if len(tmf) < 2:
+                print(Fore.RED+'[-]'+Fore.RESET+' Interact With Session Usage: int <Job ID>')
+            else:
+                try:
+                    if tmf[1] == '1':
+                        try:
+                            if os.path.exists("/usr/share/Terminator/core/session/session.yaml"):
+                                print(Fore.BLUE+'[*]'+Fore.RESET+' Interacting With Session 1...')
+                                os.system('python3 /usr/share/Terminator/core/helpers/int.py '+server+' '+portserver)
+                            else:
+                                print(Fore.RED+'[-]'+Fore.RESET+' Error Unable To Interact!')
+                        except:
+                            pass
+                    else:
+                        print(Fore.RED+'[-]'+Fore.RESET+' Invalid Number: "'+tmf[1]+'"')
+                except:
+                    pass
+        elif tmf[0] == 'jkill':
+            if len(tmf) < 2:
+                print(Fore.RED+'[-]'+Fore.RESET+' Please Specify Job To Kill')
+            else:
+                try:
+                    if tmf[1] == '1':
+                        try:
+                            if os.path.exists("/usr/share/Terminator/core/session/session.yaml"):
+                                print(Fore.RED+'[-]'+Fore.RESET+' Killed Job: 1')
+                                os.system('rm -rf /usr/share/Terminator/core/session > /dev/null 2>&1')
+                            else:
+                                print(Fore.RED+'[-]'+Fore.RESET+' Unable To Kill Session 1, Session Not Exists')
+                        except:
+                            pass
+                    else:
+                        print(Fore.RED+'[-]'+Fore.RESET+' Invalid Number: "'+tmf[1]+'"')
                 except:
                     pass
         elif tmf[0] == 'show':
@@ -246,6 +353,7 @@ def main():
         except KeyboardInterrupt:
             print('')
             print(Fore.RED+'[-]'+Fore.RESET+' Terminator Stopped...')
+            removeses()
             time.sleep(0.5)
             exit()
         tmf = tmf.split()

