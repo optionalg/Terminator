@@ -32,7 +32,7 @@ while True:
     conf = ','
     hostName = socket.gethostname()
     ip = socket.gethostbyname(hostName)
-    print(Fore.YELLOW+'[*]'+Fore.RESET+f' Started Shell, Client Connected '.format(ip)+f' At ({timerun})')
+    print(Fore.YELLOW+'[*]'+Fore.RESET+' Started Shell, Client Connected {}'.format(ip)+f' At ({timerun})')
     time.sleep(1)
     while True:
         try:
@@ -55,7 +55,7 @@ while True:
                 if os.path.exists("/usr/share/Terminator/core/session/session.yaml"):
                     print(Fore.RED+'[-]'+Fore.RESET+' Max. 1 Sessions!')
                 else:
-                    os.system('python3 /usr/share/Terminator/core/helpers/ssns.py '.format(ip)+' '.format(hostName)+' '+HOST+' '+PORT)
+                    os.system('python3 /usr/share/Terminator/core/helpers/ssns.py {}'.format(ip)+' {}'.format(hostName)+' '+HOST+' '+PORT)
                     print(Fore.YELLOW+'[+]'+Fore.RESET+' Running At Background')
                     break
             except:
