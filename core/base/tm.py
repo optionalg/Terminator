@@ -27,7 +27,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.7"
+version = "1.7"+Fore.LIGHTBLACK_EX+"#stable"
 commands = '''
 Core Commands For "update"
 ==========================
@@ -149,7 +149,7 @@ Database --[ {database} ]
 Updater  --[ {updater} ]
 
 Welcome To Terminator Framework! '''+Fore.YELLOW+f'''{version}'''+Fore.RESET+'''
-====================================================
+===========================================
 ''')
 banner()
 def main():
