@@ -12,7 +12,8 @@ from colorama import Fore
 colorama.init()
 time.sleep(2)
 user=getpass.getuser()
-timerun=datetime.datetime.now()
+nowdate=datetime.datetime.now()
+timerun = nowdate.strftime("%H:%M:%S")
 try:
     if os.path.exists("/root/.tmf"):
         os.system('rm -rf /root/.tmf > /dev/null 2>&1')
@@ -196,6 +197,7 @@ def animate():
                 walk2 = os.listdir("/usr/share/Terminator/modules/exploits")
                 walk3 = os.listdir("/usr/share/Terminator/modules/handlers")
                 walk4 = os.listdir("/usr/share/Terminator/modules/payloads")
+                walk5 = os.listdir("/usr/share/Terminator/modules/other")
                 for ld in walk:
                     load = open("/usr/share/Terminator/core/logs/logs.log", "a")
                     load.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module: {ld}")
@@ -211,6 +213,10 @@ def animate():
                 for ld4 in walk4:
                     lt = open("/usr/share/Terminator/core/logs/logs.log", "a")
                     lt.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module: payloads/{ld4}")
+
+                for ld5 in walk5:
+                    l5 = open("/usr/share/Terminator/core/logs/logs.log", "a")
+                    l5.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module: other/{ld5}")
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as er:
                     er.write(f"\n[{timerun}] FATAL: Unable To Load ADDITIONAL Modules")
