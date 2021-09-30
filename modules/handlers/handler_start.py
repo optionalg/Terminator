@@ -9,7 +9,8 @@ colorama.init()
 if len(sys.argv) < 3:
     sys.exit()
 
-timerun = datetime.datetime.now()
+nowdate = datetime.datetime.now()
+timerun = nowdate.strftime("%H:%M:%S")
 HOST = sys.argv[1]
 PORT = int(sys.argv[2])
 PORT2 = sys.argv[2]
@@ -33,7 +34,7 @@ while True:
     conf = ','
     hostName = socket.gethostname()
     ip = socket.gethostbyname(hostName)
-    print(Fore.YELLOW+'[*]'+Fore.RESET+' Started Shell, Client Connected {}'.format(ip)+' HostName {}'.format(hostName)+f' At ({timerun})')
+    print(Fore.YELLOW+'[*]'+Fore.RESET+' Started Shell, Client Connected: {}'.format(ip)+' Client HostName: {}'.format(hostName)+f' At ({timerun})')
     time.sleep(1)
     while True:
         try:
