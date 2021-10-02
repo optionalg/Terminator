@@ -35,7 +35,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.7.6"+Fore.LIGHTBLACK_EX+"#stable"
+version = "1.7.7"+Fore.LIGHTBLACK_EX+"#stable"
 commands = '''
 Core Commands For "update"
 ==========================
@@ -100,6 +100,7 @@ mdls = '''
 | module/evolution_cms/rce/login_web                 | RCE Cms, Login & Execute Code                    |
 | module/citadel_web_kit/cred/log                    | Citadel Web kit, Credential Harvester            |
 | module/packet_sniff/http/sniff                     | HTTP Packet Sniffer, Pass/Email/Login/Other      |
+| module/patient_appointment/sys/web                 | RCE, Patient Appointment System                  |
 ---------------------------------------------------------------------------------------------------------
 '''
 pylds = '''
@@ -339,6 +340,9 @@ Max Jobs. 1
                         elif tmf[1] == 'module/packet_sniff/http/sniff':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/other/http.py')
+                        elif tmf[1] == 'module/patient_appointment/sys/web':
+                            time.sleep(0.5)
+                            os.system('python3 /usr/share/Terminator/lib/data/exploits/arey.py')
                         else:
                             print(Fore.RED+'[-]'+Fore.RESET+' Invalid Module: "'+tmf[1]+'"')
                     else:
