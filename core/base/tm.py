@@ -87,14 +87,24 @@ Core Commands
     exit                          Exit from Terminator
 '''
 showcommands = '''
-Core Commands For "show"
-========================
+Show Commands
+=============
 
     Command                       Description
     -------                       -----------
     show modules                  Show all available Modules
     show payloads                 Show all available Payloads
     show logs                     Show database activity (Logs)
+'''
+update_info = '''
+Update Commands
+===============
+
+    Command                       Description
+    -------                       -----------
+    update                        Update everything
+    update console                Update console only
+    update database               Update database only
 '''
 mdls = '''
 ---------------------------------------------------------------------------------------------------------
@@ -206,7 +216,8 @@ def main():
                         os.system('python3 /usr/share/Terminator/lib/plugins/update/updatedb.py')
                         os.system('python3 /usr/share/Terminator/bin/version/ver.py')
                     else:
-                        print(Fore.RED+'[-]'+Fore.RESET+' Invalid Command For "update": "'+tmf[1]+'"')
+                        print(update_info)
+                        print(Fore.RED+'[-]'+Fore.RESET+' Invalid Command For Update: "'+tmf[1]+'"')
                 except:
                     pass
         elif tmf[0] == 'jobs':
@@ -318,7 +329,7 @@ Max Jobs. 1
                         print(pylds)
                     else:
                         print(showcommands)
-                        print(Fore.RED+'[-]'+Fore.RESET+' Invalid Command For "show": "'+tmf[1]+'"')
+                        print(Fore.RED+'[-]'+Fore.RESET+' Invalid Command For Show: "'+tmf[1]+'"')
                 except:
                     pass
         elif tmf[0] == 'set':
