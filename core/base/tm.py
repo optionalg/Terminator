@@ -5,7 +5,6 @@ import random
 import sys
 import colorama
 from colorama import Fore
-import paramiko
 import getpass
 import future
 from sys import platform
@@ -37,24 +36,6 @@ except:
     pass
 version = "1.7.8"+Fore.LIGHTBLACK_EX+"#stable"
 commands = '''
-Core Commands For "update"
-==========================
-
-    Command                       Description
-    -------                       -----------
-    update                        Update everything
-    update console                Update console only
-    update database               Update database only
-
-Core Commands For "show"
-========================
-
-    Command                       Description
-    -------                       -----------
-    show modules                  Show all available Modules
-    show payloads                 Show all available Payloads
-    show logs                     Show database activity (Logs)
-
 Global Commands
 ===============
 
@@ -63,6 +44,33 @@ Global Commands
     help                          Show available commands
     clear                         Clear terminal window
     back                          Go back to main
+
+Update Commands
+===============
+
+    Command                       Description
+    -------                       -----------
+    update                        Update everything
+    update console                Update console only
+    update database               Update database only
+
+Show Commands
+=============
+
+    Command                       Description
+    -------                       -----------
+    show modules                  Show all available Modules
+    show payloads                 Show all available Payloads
+    show logs                     Show database activity (Logs)
+
+Job Commands
+============
+
+    Command                       Description
+    -------                       -----------
+    jobs                          Show available running Jobs (Max. Jobs 1)
+    int <Job ID>                  Interact with Job
+    jkill <Job ID>                Kill Job
 
 Core Commands
 =============
@@ -73,9 +81,6 @@ Core Commands
     clear                         Clear terminal window
     update                        Update Terminator framework (Dont checks for updates)
     show <>                       Show specified command
-    jobs                          Show available running Jobs
-    int <Job ID>                  Interact with Job
-    jkill <Job ID>                Kill Job
     use <module>                  Use specified Module
     set <option> <value>          Set specified option to specified value (Module use only)
     run                           Run the Module (Module use only)
