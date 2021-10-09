@@ -10,13 +10,44 @@ if len(sys.argv) < 3:
 
 def module(dir):
     try:
-        dr = os.listdir(dir)
+        types = 'exploits'
+        types1 = 'handlers'
+        types2 = 'other'
+        types3 = 'payloads'
+        dr = os.listdir(dir+'/'+types)
+        dr1 = os.listdir(dir+'/'+types1)
+        dr2 = os.listdir(dir+'/'+types2)
+        dr3 = os.listdir(dir+'/'+types3)
         for mod in dr:
             try:
                 if os.path.exists('/usr/var/tmf-meta-inf/extr/'+mod):
                     pass
                 else:
-                    os.system('cp -r '+dir+'/'+mod+' /usr/var/tmf-meta-inf/extr > /dev/null 2>&1')
+                    os.system('cp -r '+dir+'/'+types+'/'+mod+' /usr/var/tmf-meta-inf/extr > /dev/null 2>&1')
+            except:
+                pass
+        for mod2 in dr1:
+            try:
+                if os.path.exists('/usr/var/tmf-meta-inf/extr/'+mod2):
+                    pass
+                else:
+                    os.system('cp -r '+dir+'/'+types1+'/'+mod2+' /usr/var/tmf-meta-inf/extr > /dev/null 2>&1')
+            except:
+                pass
+        for mod3 in dr2:
+            try:
+                if os.path.exists('/usr/var/tmf-meta-inf/extr/'+mod3):
+                    pass
+                else:
+                    os.system('cp -r '+dir+'/'+types2+'/'+mod3+' /usr/var/tmf-meta-inf/extr > /dev/null 2>&1')
+            except:
+                pass
+        for mod4 in dr3:
+            try:
+                if os.path.exists('/usr/var/tmf-meta-inf/extr/'+mod4):
+                    pass
+                else:
+                    os.system('cp -r '+dir+'/'+types3+'/'+mod4+' /usr/var/tmf-meta-inf/extr > /dev/null 2>&1')
             except:
                 pass
     except:
