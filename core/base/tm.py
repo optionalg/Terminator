@@ -35,7 +35,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.7.7"+Fore.LIGHTBLACK_EX+"#stable"
+version = "1.7.8"+Fore.LIGHTBLACK_EX+"#stable"
 commands = '''
 Core Commands For "update"
 ==========================
@@ -196,7 +196,7 @@ def main():
                 try:
                     if tmf[1] == 'console':
                         os.system('python3 /usr/share/Terminator/lib/plugins/update/updatercon.py')
-                        print(Fore.YELLOW+'[+]'+Fore.RESET+' Console Updated Successfully!')
+                        print(Fore.YELLOW+'[+]'+Fore.RESET+' Console Update Successfull!')
                     elif tmf[1] == 'database':
                         os.system('python3 /usr/share/Terminator/lib/plugins/update/updatedb.py')
                         os.system('python3 /usr/share/Terminator/bin/version/ver.py')

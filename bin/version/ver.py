@@ -4,11 +4,13 @@ from colorama import Fore
 import sys
 import time
 colorama.init()
+modules = "/usr/share/Terminator/modules"
 try:
-    with open('/usr/share/Terminator/bin/version/ver.yaml', 'r') as f:
-        version = f.read()
-        f.close()
+    if os.path.exists("/usr/share/Terminator/lib/plugins/meta/extractor.py"):
+        os.system('python3 /usr/share/Terminator/lib/plugins/meta/extractor.py '+modules+' modules')
+        print(Fore.YELLOW+'[+]'+Fore.RESET+' Extracting Updated Files...')
+    else:
+        print(Fore.RED+'[-]'+Fore.RESET+' Extractor Not Found!')
+        sys.exit()
 except:
     pass
-print(Fore.MAGENTA+'[!]'+Fore.RESET+f' Updated To Version: {version}')
-sys.exit()
