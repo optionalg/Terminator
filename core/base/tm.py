@@ -107,25 +107,21 @@ Update Commands
     update database               Update database only
 '''
 mdls = '''
----------------------------------------------------------------------------------------------------------
-| Name                                               | Description                                      |
----------------------------------------------------------------------------------------------------------
-| module/multi/handler                               | Handler For Payloads                             |
-| module/online_food_delivery/rce/webshell           | RCE, WebShell Upload & Connect                   |
-| module/evolution_cms/rce/login_web                 | RCE Cms, Login & Execute Code                    |
-| module/citadel_web_kit/cred/log                    | Citadel Web kit, Credential Harvester            |
-| module/packet_sniff/http/sniff                     | HTTP Packet Sniffer, Pass/Email/Login/Other      |
-| module/patient_appointment/sys/web                 | RCE, Patient Appointment System                  |
----------------------------------------------------------------------------------------------------------
+Module Name                                     Type             Verify          Description
+------------                                    -----            -------         ------------
+module/multi/handler                            Handler          yes             Handler For Payloads
+module/packet_sniff/http/sniff                  Local Module     yes             HTTP Packet Sniffer, Pass/Email/Login/Other
+module/online_food_delivery/rce/webshell        Web Module       yes             RCE, WebShell Upload & Connect
+module/evolution_cms/rce/login_web              Web Module       no              RCE Cms, Login & Execute Code
+module/citadel_web_kit/cred/log                 Web Module       no              Citadel Web kit, Credential Harvester
+module/patient_appointment/sys/web              Web Module       yes             RCE, Patient Appointment System
 '''
 pylds = '''
----------------------------------------------------------------------------------------------------------
-| Name                                               | Description                                      |
----------------------------------------------------------------------------------------------------------
-| payload/poc/redragon_mouse/wr                      | Redragon_Mouse Payload (REDRAGON_MOUSE.sys)      |
-| payload/win/win_reverse_shell                      | Windows reverse shell Payload (win32, win64)     |
-| payload/apk/android_reverse_shell                  | Android reverse shell Payload (V.3,4,5,6,7,8,9)  |
----------------------------------------------------------------------------------------------------------
+Payload Name                                    Type             Verify          Description
+-------------                                   -----            -------         ------------
+payload/poc/redragon_mouse/wr                   Windows          no              Redragon_Mouse Payload (REDRAGON_MOUSE.sys)
+payload/win/win_reverse_shell                   Windows          yes             reverse shell Payload (win32, win64)
+payload/apk/android_reverse_shell               Android          yes             reverse shell Payload (V.3 - 9)
 '''
 try:
     if os.path.exists("/usr/share/Terminator/lib/db/dbrun.py") and os.path.exists("/usr/share/Terminator/lib/data"):
