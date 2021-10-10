@@ -39,13 +39,11 @@ Module Commands
       run                              Run the Module
 '''
 pylds = '''
----------------------------------------------------------------------------------------------------------
-| Name                                               | Description                                      |
----------------------------------------------------------------------------------------------------------
-| payload/poc/redragon_mouse/wr                      | Redragon_Mouse Payload (REDRAGON_MOUSE.sys)      |
-| payload/win/win_reverse_shell                      | Windows reverse shell Payload (win32, win64)     |
-| payload/apk/android_reverse_shell                  | Android reverse shell Payload (V.3,4,5,6,7,8,9)  |
----------------------------------------------------------------------------------------------------------
+Payload Name                                    Type             Verify          Description
+-------------                                   -----            -------         ------------
+payload/poc/redragon_mouse/wr                   Windows          no              Redragon_Mouse Payload (REDRAGON_MOUSE.sys)
+payload/win/win_reverse_shell                   Windows          yes             reverse shell Payload (win32, win64)
+payload/apk/android_reverse_shell               Android          yes             reverse shell Payload (V.3 - 9)
 '''
 try:
     tmf = input('\033[4mtmf\033[0m-('+Fore.RED+'multi/handler'+Fore.RESET+') > ').strip(" ")
