@@ -4,6 +4,7 @@
 # About:
 * Terminator Framework Is a Explotation Framework For Pentesters, Security Researchers!
 * With Terminator Framework You Can Test Your Devices For Any RCE Vulnerabilities!
+- - - - - - - - - - - - -  - - - - - - --  - -- - - - - - - - - - - - - -- - -   - - - -
 * Author: G00Dway
 * Organization: FUD-Sec
 # Installaton:
