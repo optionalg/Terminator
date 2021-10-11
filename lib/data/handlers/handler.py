@@ -76,8 +76,8 @@ Payload ('''+Fore.RED+''''''+PAYLOAD+''''''+Fore.RESET+''') Options:
 
       Option          Rank              Description                        Current Value
       --------        ------            -------------                      ---------------
-      LHOST           Required          Host Address To Connect            '''+LHOST+'''
-      LPORT           Required          Port To Connect                    '''+LPORT+'''
+      LHOST           Required          IP Address To Connect Back         '''+LHOST+'''
+      LPORT           Required          Port Address                       '''+LPORT+'''
 
 Handler About:
 
@@ -100,8 +100,8 @@ Payload ('''+Fore.RED+''''''+PAYLOAD+''''''+Fore.RESET+''') Options:
 
       Option          Rank              Description                        Current Value
       --------        ------            -------------                      ---------------
-      LHOST           Required          Host Address To Connect            '''+LHOST+'''
-      LPORT           Required          Port To Connect                    '''+LPORT+'''
+      LHOST           Required          IP Address To Connect Back         '''+LHOST+'''
+      LPORT           Required          Port Address                       '''+LPORT+'''
 
 Handler About:
 

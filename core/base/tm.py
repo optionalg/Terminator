@@ -34,7 +34,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.7.8"+Fore.LIGHTBLACK_EX+"#stable"
+version = "1.7.9"+Fore.LIGHTBLACK_EX+"#stable"
 commands = '''
 Global Commands
 ===============
@@ -115,6 +115,7 @@ module/online_food_delivery/rce/webshell        Web Module       yes            
 module/evolution_cms/rce/login_web              Web Module       no              RCE Cms, Login & Execute Code
 module/citadel_web_kit/cred/log                 Web Module       no              Citadel Web kit, Credential Harvester
 module/patient_appointment/sys/web              Web Module       yes             RCE, Patient Appointment System
+module/rental_unit/storage/shell                Web Module       no              RCE, Storage Unit Rental Management
 '''
 pylds = '''
 Payload Name                                    Type             Verify          Description
@@ -355,6 +356,9 @@ Max Jobs. 1
                         elif tmf[1] == 'module/patient_appointment/sys/web':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/exploits/arey.py')
+                        elif tmf[1] == 'module/rental_unit/storage/shell':
+                            time.sleep(0.5)
+                            os.system('python3 /usr/share/Terminator/lib/data/exploits/unit.py')
                         else:
                             print(Fore.RED+'[-]'+Fore.RESET+' Invalid Module: "'+tmf[1]+'"')
                     else:
