@@ -13,7 +13,15 @@ colorama.init()
 time.sleep(2)
 user=getpass.getuser()
 nowdate=datetime.datetime.now()
-timerun = nowdate.strftime("%H:%M:%S")
+timerun=nowdate.strftime("%H:%M:%S")
+date=nowdate.strftime("%Y:%M:%D")
+try:
+    if os.path.exists("/usr/var/tmf-meta-inf"):
+        meta = True
+    else:
+        meta = False
+except:
+    pass
 try:
     if os.path.exists("/root/.tmf"):
         os.system('rm -rf /root/.tmf > /dev/null 2>&1')
@@ -40,20 +48,11 @@ except:
 done = 'false'
 def animate():
     while done == 'false':
-        try:
-            if os.path.exists("/usr/share/Terminator/core/logs/logs.log"):
-                with open("/usr/share/Terminator/core/logs/logs.log", "a") as t:
-                    t.write(f"\n[{timerun}] ----------------- START CORE -----------------")
-                    t.close()
-            else:
-                pass
-        except:
-            pass
         sys.stdout.write('\r[*] Starting terminator...|')
         try:
             if os.path.exists("/usr/share/Terminator/modules/handlers"):
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as i:
-                    i.write(f"\n[{timerun}] NOTE: Loading Handler Version: 1.2554")
+                    i.write(f"\n[{timerun}] INFO: Loading Handler Version: 1.2554")
                     i.close()
             else:
                 pass
@@ -66,7 +65,7 @@ def animate():
         try:
             if os.path.exists("/usr/share/Terminator/core/logs/logs.log"):
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as v:
-                    v.write(f"\n[{timerun}] NOTE: Loading Terminator Framework Started")
+                    v.write(f"\n[{timerun}] INFO: Loading Terminator Framework Started")
                     v.close()
             else:
                 os.mkdir("/usr/share/Terminator/core/logs")
@@ -154,7 +153,7 @@ def animate():
         time.sleep(0.2)
         sys.stdout.write('\r[*] startinG terminator.../')
         try:
-            if os.path.exists("/usr/share/Terminator/modules"):
+            if os.path.exists("/usr/share/Terminator/modules") and os.path.exists("/usr/share/Terminator/lib/plugins"):
                 mod = True
             else:
                 pass
@@ -174,7 +173,7 @@ def animate():
         try:
             if mod == True:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as r:
-                    r.write(f"\n[{timerun}] NOTE: Modules Loaded Successfully")
+                    r.write(f"\n[{timerun}] INFO: Plugins Loaded Successfully")
                     r.close()
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as y:
@@ -200,23 +199,23 @@ def animate():
                 walk5 = os.listdir("/usr/share/Terminator/modules/other")
                 for ld in walk:
                     load = open("/usr/share/Terminator/core/logs/logs.log", "a")
-                    load.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module: {ld}")
+                    load.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module {ld}")
 
                 for ld2 in walk2:
                     lo = open("/usr/share/Terminator/core/logs/logs.log", "a")
-                    lo.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module: exploits/{ld2}")
+                    lo.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module {ld2}")
 
                 for ld3 in walk3:
                     lu = open("/usr/share/Terminator/core/logs/logs.log", "a")
-                    lu.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module: handlers/{ld3}")
+                    lu.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module {ld3}")
 
                 for ld4 in walk4:
                     lt = open("/usr/share/Terminator/core/logs/logs.log", "a")
-                    lt.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module: payloads/{ld4}")
+                    lt.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module {ld4}")
 
                 for ld5 in walk5:
                     l5 = open("/usr/share/Terminator/core/logs/logs.log", "a")
-                    l5.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module: other/{ld5}")
+                    l5.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module {ld5}")
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as er:
                     er.write(f"\n[{timerun}] FATAL: Unable To Load ADDITIONAL Modules")
@@ -231,6 +230,83 @@ def animate():
         sys.stdout.write('\r[*] starting terminatOr...-')
         time.sleep(0.1)
         sys.stdout.write('\r[*] starting terminatoR...\\')
+        time.sleep(0.3)
+        try:
+            if os.path.exists("/usr/share/Terminator/core/components"):
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as core:
+                    core.write(f"\n[{timerun}] NOTE: Loading Core Components...")
+                    components = True
+                    core.close()
+            else:
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as fail:
+                    fail.write(f"\n[{timerun}] FATAL: Unable To Detect And Load Core Components!")
+                    fail.close()
+        except:
+            pass
+        sys.stdout.write('\r[*] Starting terminator...|')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] sTarting terminator.../')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] stArting terminator...-')
+        time.sleep(0.5)
+        try:
+            if components == True:
+                try:
+                    to_load = ['builder.py', 'core.py']
+                    more = {
+                        'Name': 'Component Loader',
+                        'Components': '/usr/share/Terminator/core/components',
+                        'Description': 'Loads UnNeeded, Needed Components',
+                        'License': 'No License',
+                        'Author': 'G00Dway'
+                    }
+                    comp = more['Components']
+                    for setup in to_load:
+                        try:
+                            if os.path.exists(comp+'/'+setup):
+                                with open(comp+'/'+setup, "w") as n:
+                                    n.write("from core.components import core")
+                                with open("/usr/share/Terminator/core/logs/logs.log", "a") as log:
+                                    log.write(f"[{timerun}] INFO: Loaded Component {setup}")
+                            else:
+                                with open("/usr/share/Terminator/core/logs/logs.log", "a") as error:
+                                    error.write(f"[{timerun}] FATAL: Unable To Load Component {setup}")
+                                os.system(f'touch {comp}/{setup} > /dev/null 2>&1')
+                        except:
+                            pass
+                except:
+                    pass
+        except:
+            pass
+        sys.stdout.write('\r[*] staRting terminator...\\')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starTing terminator...|')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] startIng terminator.../')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] startiNg terminator...-')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] startinG terminator...\\')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting Terminator...|')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting tErminator.../')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting teRminator...-')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting terMinator...\\')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting termInator...|')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting termiNator.../')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting terminAtor...-')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting terminaTor...\\')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting terminatOr...|')
+        time.sleep(0.1)
+        sys.stdout.write('\r[*] starting terminatoR.../')
         time.sleep(0.3)
         os.system('python3 /usr/share/Terminator/core/base/tm.py')
         sys.exit()
