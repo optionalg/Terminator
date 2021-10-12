@@ -267,10 +267,10 @@ def animate():
                                 with open(comp+'/'+setup, "w") as n:
                                     n.write("from core.components import core")
                                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as log:
-                                    log.write(f"[{timerun}] INFO: Loaded Component {setup}")
+                                    log.write(f"\n[{timerun}] INFO: Loaded Component {setup}")
                             else:
                                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as error:
-                                    error.write(f"[{timerun}] FATAL: Unable To Load Component {setup}")
+                                    error.write(f"\n[{timerun}] FATAL: Unable To Load Component {setup}")
                                 os.system(f'touch {comp}/{setup} > /dev/null 2>&1')
                         except:
                             pass
