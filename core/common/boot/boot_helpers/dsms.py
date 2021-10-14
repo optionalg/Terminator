@@ -283,11 +283,11 @@ def animate():
         try:
             if meta == True:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as tmf:
-                    tmf.write(f'[{timerun}] INFO: Found: "/usr/var/tmf-meta-inf"')
+                    tmf.write(f'\n[{timerun}] INFO: Found: "/usr/var/tmf-meta-inf"')
                     tmf.close()
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as tmf_fail:
-                    tmf_fail.write(f'[{timerun}] NOTE: Database "/usr/var/tmf-meta-inf" Does Not Exists, Passing...')
+                    tmf_fail.write(f'\n[{timerun}] NOTE: Database "/usr/var/tmf-meta-inf" Does Not Exists, Passing...')
                     tmf_fail.close()
         except:
             pass
