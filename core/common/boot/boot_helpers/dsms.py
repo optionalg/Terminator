@@ -52,7 +52,7 @@ def animate():
         try:
             if os.path.exists("/usr/share/Terminator/modules/handlers"):
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as i:
-                    i.write(f"\n[{timerun}] INFO: Loading Handler Version: 1.2554")
+                    i.write(f"\n[{timerun}] INFO: Loading Persistent Handlers...")
                     i.close()
             else:
                 pass
@@ -65,7 +65,7 @@ def animate():
         try:
             if os.path.exists("/usr/share/Terminator/core/logs/logs.log"):
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as v:
-                    v.write(f"\n[{timerun}] INFO: Loading Terminator Framework Started")
+                    v.write(f"\n[{timerun}] INFO: Loading Payloads...")
                     v.close()
             else:
                 os.mkdir("/usr/share/Terminator/core/logs")
@@ -192,33 +192,18 @@ def animate():
         sys.stdout.write('\r[*] starting termiNator...\\')
         try:
             if os.path.exists("/usr/share/Terminator/modules"):
-                walk = os.listdir("/usr/share/Terminator/modules")
                 walk2 = os.listdir("/usr/share/Terminator/modules/exploits")
-                walk3 = os.listdir("/usr/share/Terminator/modules/handlers")
-                walk4 = os.listdir("/usr/share/Terminator/modules/payloads")
                 walk5 = os.listdir("/usr/share/Terminator/modules/other")
-                for ld in walk:
-                    load = open("/usr/share/Terminator/core/logs/logs.log", "a")
-                    load.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module {ld}")
-
                 for ld2 in walk2:
                     lo = open("/usr/share/Terminator/core/logs/logs.log", "a")
-                    lo.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module {ld2}")
-
-                for ld3 in walk3:
-                    lu = open("/usr/share/Terminator/core/logs/logs.log", "a")
-                    lu.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module {ld3}")
-
-                for ld4 in walk4:
-                    lt = open("/usr/share/Terminator/core/logs/logs.log", "a")
-                    lt.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module {ld4}")
+                    lo.write(f"\n[{timerun}] WARNING: Loading Additional Module {ld2}")
 
                 for ld5 in walk5:
                     l5 = open("/usr/share/Terminator/core/logs/logs.log", "a")
-                    l5.write(f"\n[{timerun}] WARNING: Loading ADDITIONAL Module {ld5}")
+                    l5.write(f"\n[{timerun}] WARNING: Loading Additional Module {ld5}")
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as er:
-                    er.write(f"\n[{timerun}] FATAL: Unable To Load ADDITIONAL Modules")
+                    er.write(f"\n[{timerun}] FATAL: Unable To Load Additional Modules")
                     er.close()
         except:
             pass
@@ -295,6 +280,17 @@ def animate():
         sys.stdout.write('\r[*] starting teRminator...-')
         time.sleep(0.1)
         sys.stdout.write('\r[*] starting terMinator...\\')
+        try:
+            if meta == True:
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as tmf:
+                    tmf.write(f'[{timerun}] INFO: Found: "/usr/var/tmf-meta-inf"')
+                    tmf.close()
+            else:
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as tmf_fail:
+                    tmf_fail.write(f'[{timerun}] NOTE: Database "/usr/var/tmf-meta-inf" Does Not Exists, Passing...')
+                    tmf_fail.close()
+        except:
+            pass
         time.sleep(0.1)
         sys.stdout.write('\r[*] starting termInator...|')
         time.sleep(0.1)
