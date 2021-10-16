@@ -11,6 +11,7 @@ from sys import platform
 import socket
 from socket import AF_INET, SOCK_STREAM
 colorama.init()
+files = ['ver.py', 'ver2.py', 'ver3.py']
 os.system('clear')
 user = getpass.getuser()
 def removeses():
@@ -203,7 +204,7 @@ def main():
         elif tmf[0] == 'update':
             if len(tmf) < 2:
                 os.system('python3 /usr/share/Terminator/lib/plugins/update/updater.py')
-                os.system('python3 /usr/share/Terminator/bin/version/ver.py')
+                os.system('python3 /usr/share/Terminator/bin/version/'+random.choice(files))
             else:
                 try:
                     if tmf[1] == 'console':
@@ -211,7 +212,7 @@ def main():
                         print(Fore.YELLOW+'[+]'+Fore.RESET+' Console Update Successfull!')
                     elif tmf[1] == 'database':
                         os.system('python3 /usr/share/Terminator/lib/plugins/update/updatedb.py')
-                        os.system('python3 /usr/share/Terminator/bin/version/ver.py')
+                        os.system('python3 /usr/share/Terminator/bin/version/'+random.choice(files))
                     else:
                         print(update_info)
                         print(Fore.RED+'[-]'+Fore.RESET+' Invalid Command For Update: "'+tmf[1]+'"')
