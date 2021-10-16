@@ -110,12 +110,12 @@ mdls = '''
 Module Name                                     Type             Verify          Description
 ------------                                    -----            -------         ------------
 module/multi/handler                            Handler          yes             Handler For Payloads
-module/packet_sniff/http/sniff                  Local Module     yes             HTTP Packet Sniffer, Pass/Email/Login/Other
-module/online_food_delivery/rce/webshell        Web Module       yes             RCE, WebShell Upload & Connect
-module/evolution_cms/rce/login_web              Web Module       no              RCE Cms, Login & Execute Code
-module/citadel_web_kit/cred/log                 Web Module       no              Citadel Web kit, Credential Harvester
-module/patient_appointment/sys/web              Web Module       yes             RCE, Patient Appointment System
-module/rental_unit/storage/shell                Web Module       no              RCE, Storage Unit Rental Management
+module/packet_sniff/http/sniff                  Local            yes             HTTP Packet Sniffer, Pass/Email/Login/Other
+module/online_food_delivery/rce/webshell        Web              yes             RCE, WebShell Upload & Connect
+module/evolution_cms/rce/login_web              Web              no              RCE Cms, Login & Execute Code
+module/citadel_web_kit/cred/log                 Web              no              Citadel Web kit, Credential Harvester
+module/patient_appointment/sys/web              Web              yes             RCE, Patient Appointment System
+module/rental_unit/storage/shell                Web              no              RCE, Storage Unit Rental Management
 '''
 pylds = '''
 Payload Name                                    Type             Verify          Description
