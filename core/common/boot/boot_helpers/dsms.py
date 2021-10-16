@@ -14,7 +14,13 @@ time.sleep(2)
 user=getpass.getuser()
 nowdate=datetime.datetime.now()
 timerun=nowdate.strftime("%H:%M:%S")
-date=nowdate.strftime("%Y:%M:%D")
+try:
+    if os.path.exists("/usr/share/Terminator/core/common/boot/cache"):
+        boot = True
+    else:
+        os.mkdir("/usr/share/Terminator/core/common/boot/cache")
+except:
+    pass
 try:
     if os.path.exists("/usr/var/tmf-meta-inf"):
         meta = True
