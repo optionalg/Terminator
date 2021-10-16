@@ -8,10 +8,10 @@ colorama.init()
 modules = "/usr/share/Terminator/modules"
 core = "/usr/share/Terminator/core"
 boot = "/usr/share/Terminator/core/common/boot"
-type = 'modules'
+type = 'core'
 try:
     if os.path.exists("/usr/share/Terminator/lib/plugins/meta/extractor.py"):
-        os.system('python3 /usr/share/Terminator/lib/plugins/meta/extractor.py '+modules+' '+type)
+        os.system('python3 /usr/share/Terminator/lib/plugins/meta/extractor.py '+core+' '+type)
         print(Fore.BLUE+'[*]'+Fore.RESET+' Extracting Updated Files...')
         time.sleep(0.7)
         print(Fore.YELLOW+'[+]'+Fore.RESET+' Update Completed.')
