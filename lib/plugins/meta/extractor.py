@@ -130,6 +130,7 @@ def conf(dir):
                                         time.sleep(0.1)
                                         sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates.....')
                                         time.sleep(0.1)
+                                        print('')
 
                                     if type == 'modules':
                                         time.sleep(0.1)
