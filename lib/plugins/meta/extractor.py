@@ -8,6 +8,8 @@ colorama.init()
 if len(sys.argv) < 3:
     sys.exit()
 
+all_done = "true"
+
 def module(dir):
     try:
         types = 'exploits'
@@ -117,16 +119,25 @@ def conf(dir):
                         try:
                             if os.path.exists("/usr/share/Terminator/core/base/extra"):
                                 try:
+                                    if all_done == "true":
+                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates.')
+                                        time.sleep(0.1)
+                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates..')
+                                        time.sleep(0.1)
+                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates...')
+                                        time.sleep(0.2)
+                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates....')
+                                        time.sleep(0.1)
+                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates.....')
+                                        time.sleep(0.1)
+
                                     if type == 'modules':
-                                        print(Fore.BLUE+'[*]'+Fore.RESET+' Extracting New & Updated Modules...')
                                         time.sleep(0.1)
                                         module(dirext)
                                     elif type == 'core':
-                                        print(Fore.BLUE+'[*]'+Fore.RESET+' Extracting Updated Core Files...')
                                         time.sleep(0.4)
                                         core(dirext)
                                     elif type == 'boot':
-                                        print(Fore.BLUE+'[*]'+Fore.RESET+' Extracting Updated Boot Cache...')
                                         time.sleep(0.5)
                                         boot(dirext)
                                 except:
@@ -146,8 +157,8 @@ def conf(dir):
                 pass
     try:
         if os.path.exists(dir):
-            print(Fore.BLUE+'[*]'+Fore.RESET+' Working On Database...')
-            time.sleep(0.3)
+            print(Fore.BLUE+'[*]'+Fore.RESET+' Reading Database...')
+            time.sleep(0.5)
             extract(dir)
         else:
             print(Fore.RED+'[-]'+Fore.RESET+ ' Error: Unable To Extract Required, Updated Files...')
