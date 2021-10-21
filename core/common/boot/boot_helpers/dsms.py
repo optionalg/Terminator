@@ -15,6 +15,13 @@ user=getpass.getuser()
 nowdate=datetime.datetime.now()
 timerun=nowdate.strftime("%H:%M:%S")
 try:
+    if os.path.exists("/usr/share/Terminator/core/cache"):
+        pass
+    else:
+        os.mkdir("/usr/share/Terminator/core/cache")
+except:
+    pass
+try:
     if os.path.exists("/usr/share/Terminator/core/common/boot/cache"):
         boot = True
     else:
