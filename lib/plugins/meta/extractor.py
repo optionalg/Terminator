@@ -120,8 +120,10 @@ def conf(dir):
                             if os.path.exists("/usr/share/Terminator/core/base/extra"):
                                 try:
                                     if all_done == "true":
-                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates.')
+                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates')
                                         time.sleep(0.1)
+                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates.')
+                                        time.sleep(0.2)
                                         sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates..')
                                         time.sleep(0.1)
                                         sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates...')
@@ -130,6 +132,12 @@ def conf(dir):
                                         time.sleep(0.1)
                                         sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates.....')
                                         time.sleep(0.1)
+                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates......')
+                                        time.sleep(0.2)
+                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates.......')
+                                        time.sleep(0.1)
+                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates........')
+                                        time.sleep(0.3)
                                         print('')
 
                                     if type == 'modules':
