@@ -310,6 +310,10 @@ def animate():
         sys.stdout.write('\r[*] starting termiNator.../')
         time.sleep(0.1)
         sys.stdout.write('\r[*] starting terminAtor...-')
+        try:
+            os.system('python3 /usr/share/Terminator/core/base/scripts/plugin.py')
+        except:
+            pass
         time.sleep(0.1)
         sys.stdout.write('\r[*] starting terminaTor...\\')
         time.sleep(0.1)

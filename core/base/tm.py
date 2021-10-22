@@ -35,7 +35,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.7.9"+Fore.LIGHTBLACK_EX+"#stable"
+version = "1.8.0"+Fore.LIGHTBLACK_EX+"#stable"
 commands = '''
 Global Commands
 ===============
@@ -80,6 +80,7 @@ Core Commands
     -------                       -----------
     help                          Show available commands
     clear                         Clear terminal window
+    clean                         Clean database logs, cache
     update                        Update Terminator framework (Dont checks for updates)
     show <>                       Show specified command
     use <module>                  Use specified Module
@@ -194,6 +195,15 @@ def main():
             print(commands)
         elif tmf[0] == 'back':
             pass
+        elif tmf[0] == 'clean':
+            print(Fore.BLUE+'[*]'+Fore.RESET+' Cleaning Database...')
+            cache = os.listdir("/usr/share/Terminator/core/base/scripts/cache/libs")
+            logs = "/usr/share/Terminator/core/logs/logs.log"
+            for clr in cache:
+                os.system('rm -rf /usr/share/Terminator/core/base/scripts/cache/libs/'+clr+' > /dev/null 2>&1')
+
+            os.system('rm -rf '+logs+' > /dev/null 2>&1')
+            print(Fore.YELLOW+'[+]'+Fore.RESET+' Completed!')
         elif tmf[0] == 'clear':
             os.system('clear')
         elif tmf[0] == 'exit':
