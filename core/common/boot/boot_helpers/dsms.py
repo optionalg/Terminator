@@ -15,6 +15,13 @@ user=getpass.getuser()
 nowdate=datetime.datetime.now()
 timerun=nowdate.strftime("%H:%M:%S")
 try:
+    if os.path.exists("/usr/share/Terminator/core/components"):
+        c = os.listdir("/usr/share/Terminator/core/components")
+    else:
+        c = False
+except:
+    pass
+try:
     if os.path.exists("/usr/share/Terminator/core/cache"):
         pass
     else:
@@ -250,13 +257,14 @@ def animate():
         try:
             if components == True:
                 try:
-                    to_load = ['builder.py', 'core.py']
+                    to_load = ['builder.py', 'core.py', 'reloader.py', 'req.py', 'make.py']
                     more = {
                         'Name': 'Component Loader',
                         'Components': '/usr/share/Terminator/core/components',
                         'Description': 'Loads UnNeeded, Needed Components',
                         'License': 'No License',
-                        'Author': 'G00Dway'
+                        'Author': 'G00Dway',
+                        'Root': 'Needed'
                     }
                     comp = more['Components']
                     for setup in to_load:
@@ -320,7 +328,7 @@ def animate():
         sys.stdout.write('\r[*] starting terminatOr...|')
         time.sleep(0.1)
         sys.stdout.write('\r[*] starting terminatoR.../')
-        time.sleep(0.3)
+        time.sleep(0.2)
         os.system('python3 /usr/share/Terminator/core/base/tm.py')
         sys.exit()
 
