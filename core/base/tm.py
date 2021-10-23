@@ -11,9 +11,16 @@ from sys import platform
 import socket
 from socket import AF_INET, SOCK_STREAM
 colorama.init()
-files = ['ver.py', 'ver2.py', 'ver3.py']
 os.system('clear')
 user = getpass.getuser()
+try:
+    if user == "root":
+        pass
+    else:
+        print(Fore.RED+'[-]'+Fore.RESET+' ROOT Not Detected! Please ReRun Terminator With ROOT Permissions!')
+        sys.exit()
+except:
+    pass
 def removeses():
     try:
         if os.path.exists("/usr/share/Terminator/core/session"):
@@ -35,7 +42,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.0"+Fore.LIGHTBLACK_EX+"#stable"
+version = "1.8.2"+Fore.LIGHTYELLOW_EX+"#dev"
 commands = '''
 Global Commands
 ===============
@@ -214,15 +221,15 @@ def main():
         elif tmf[0] == 'update':
             if len(tmf) < 2:
                 os.system('python3 /usr/share/Terminator/lib/plugins/update/updater.py')
-                os.system('python3 /usr/share/Terminator/bin/version/'+random.choice(files))
+                os.system('python3 /usr/share/Terminator/bin/version/ver.py')
             else:
                 try:
                     if tmf[1] == 'console':
                         os.system('python3 /usr/share/Terminator/lib/plugins/update/updatercon.py')
-                        print(Fore.YELLOW+'[+]'+Fore.RESET+' Console Update Successfull!')
+                        print(Fore.YELLOW+'[+]'+Fore.RESET+' Console Updated Successfully!')
                     elif tmf[1] == 'database':
                         os.system('python3 /usr/share/Terminator/lib/plugins/update/updatedb.py')
-                        os.system('python3 /usr/share/Terminator/bin/version/'+random.choice(files))
+                        os.system('python3 /usr/share/Terminator/bin/version/ver.py')
                     else:
                         print(update_info)
                         print(Fore.RED+'[-]'+Fore.RESET+' Invalid Command For Update: "'+tmf[1]+'"')

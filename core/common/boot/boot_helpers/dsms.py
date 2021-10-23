@@ -15,6 +15,14 @@ user=getpass.getuser()
 nowdate=datetime.datetime.now()
 timerun=nowdate.strftime("%H:%M:%S")
 try:
+    if user == "root":
+        pass
+    else:
+        print(Fore.RED+'[-]'+Fore.RESET+' ROOT Not Detected! Please ReRun Terminator With ROOT Permissions!')
+        sys.exit()
+except:
+    pass
+try:
     if os.path.exists("/usr/share/Terminator/core/components"):
         c = os.listdir("/usr/share/Terminator/core/components")
     else:

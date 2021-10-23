@@ -1,180 +1,69 @@
 import os
-import time
-import colorama
 import sys
-import random
+import colorama
 from colorama import Fore
+import random
+import string
+import time
 colorama.init()
-if len(sys.argv) < 3:
-    sys.exit()
-
-all_done = "true"
-
-def module(dir):
+url = "https://www.exploit-db.com/download/50420"
+url2 = "https://www.exploit-db.com/download/50382"
+url3 = "https://www.exploit-db.com/download/50379"
+try:
+    if os.path.exists("/usr/share/Terminator/bin/version/plugin-cache"):
+        plugins = True
+    else:
+        os.mkdir("/usr/share/Terminator/bin/version/plugin-cache")
+except:
+    pass
+def check():
+    url1_cache = "50420.pl"
+    url2_cache = "50382.pl"
+    url3_cache = "50379.pl"
     try:
-        types = 'exploits'
-        types1 = 'handlers'
-        types2 = 'other'
-        types3 = 'payloads'
-        dr = os.listdir(dir+'/'+types)
-        dr1 = os.listdir(dir+'/'+types1)
-        dr2 = os.listdir(dir+'/'+types2)
-        dr3 = os.listdir(dir+'/'+types3)
-        for mod in dr:
-            try:
-                if os.path.exists('/usr/var/tmf-meta-inf/extr/'+mod):
-                    pass
-                else:
-                    os.system('cp -r '+dir+'/'+types+'/'+mod+' /usr/var/tmf-meta-inf/extr > /dev/null 2>&1')
-            except:
-                pass
-        for mod2 in dr1:
-            try:
-                if os.path.exists('/usr/var/tmf-meta-inf/extr/'+mod2):
-                    pass
-                else:
-                    os.system('cp -r '+dir+'/'+types1+'/'+mod2+' /usr/var/tmf-meta-inf/extr > /dev/null 2>&1')
-            except:
-                pass
-        for mod3 in dr2:
-            try:
-                if os.path.exists('/usr/var/tmf-meta-inf/extr/'+mod3):
-                    pass
-                else:
-                    os.system('cp -r '+dir+'/'+types2+'/'+mod3+' /usr/var/tmf-meta-inf/extr > /dev/null 2>&1')
-            except:
-                pass
-        for mod4 in dr3:
-            try:
-                if os.path.exists('/usr/var/tmf-meta-inf/extr/'+mod4):
-                    pass
-                else:
-                    os.system('cp -r '+dir+'/'+types3+'/'+mod4+' /usr/var/tmf-meta-inf/extr > /dev/null 2>&1')
-            except:
-                pass
-    except:
-        pass
-    sys.exit()
-
-def core(dir):
-    try:
-        file = 0
-        if os.path.exists(dir):
-            a = os.listdir(dir)
-            if os.path.exists("/usr/share/Terminator/core/cache"):
-                cache = True
-            else:
-                os.mkdir("/usr/share/Terminator/core/cache")
-            
-            if os.path.exists("/usr/share/Terminator/core/cache/00ext.yaml"):
-                pass
-            else:
-                os.system('touch /usr/share/Terminator/core/cache/00ext.yaml')
-
-            for look in a:
-                if os.path.exists("/usr/share/Terminator/core/"+look):
-                    file + 1
-                    with open("/usr/share/Terminator/core/cache/00ext.yaml", "w") as f:
-                        f.write(f"File "+file+": "+look)
-                else:
-                    print(Fore.RED+'[-]'+Fore.RESET+' Error While Extracting Directory '+file+': '+look)
+        if os.path.exists("/usr/share/Terminator/bin/version/plugin-cache/"+url1_cache):
+            good = True
         else:
-            print(Fore.RED+'[-]'+Fore.RESET+' Error While Extracting Core Files')
-            sys.exit()
-    except:
-        pass
-def boot(dir):
-    try:
-        boot_cache_files = ['001boot.yaml', 'ini1.yaml', 'ini2.yaml', 'boot_cmp.py']
-        if os.path.exists(dir):
-            b = os.listdir(dir)
+            print(Fore.BLUE+'[*]'+Fore.RESET+' Installing "50420.pl" Plugin Module...')
+            os.system('wget '+url+' -O /usr/share/Terminator/bin/version/plugin-cache/'+url1_cache+' > /dev/null 2>&1')
+        if os.path.exists("/usr/share/Terminator/bin/version/plugin-cache/"+url2_cache):
+            good1 = True
         else:
-            print(Fore.RED+'[-]'+Fore.RESET+' Error While Extracting Boot Cache')
-            sys.exit()
-        if os.path.exists(dir+'/cache'):
-            boot_cache = True
+            print(Fore.BLUE+'[*]'+Fore.RESET+' Installing "50382.pl" Plugin Module...')
+            os.system('wget '+url2+' -O /usr/share/Terminator/bin/version/plugin-cache/'+url2_cache+' > /dev/null 2>&1')
+        if os.path.exists("/usr/share/Terminator/bin/version/plugin-cache/"+url3_cache):
+            good2 = True
         else:
-            os.mkdir("/usr/share/Terminator/core/common/boot/cache")
-        
-        for make in boot_cache_files:
-            try:
-                if os.path.exists("/usr/share/Terminator/core/common/boot/cache/"+make):
-                    pass
-                else:
-                    os.system('touch /usr/share/Terminator/core/common/boot/cache/'+make+' > /dev/null 2>&1')
-            except:
-                pass
-    except:
-        pass
-
-
-dir = sys.argv[1]
-type = sys.argv[2]
-
-def conf(dir):
-    def extract(dirext):
-            try:
-                if os.path.exists(dirext):
-                    if os.path.exists("/usr/var/tmf-meta-inf") and os.path.exists("/usr/var/tmf-meta-inf/extr") and os.path.exists("/usr/var/tmf-meta-inf/plugins"):
-                        try:
-                            if os.path.exists("/usr/share/Terminator/core/base/extra"):
-                                try:
-                                    if all_done == "true":
-                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates')
-                                        time.sleep(0.1)
-                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates.')
-                                        time.sleep(0.2)
-                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates..')
-                                        time.sleep(0.1)
-                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates...')
-                                        time.sleep(0.2)
-                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates....')
-                                        time.sleep(0.1)
-                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates.....')
-                                        time.sleep(0.1)
-                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates......')
-                                        time.sleep(0.2)
-                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates.......')
-                                        time.sleep(0.1)
-                                        sys.stdout.write(Fore.BLUE+'\r[*]'+Fore.RESET+' Installing Updates........')
-                                        time.sleep(0.3)
-                                        print('')
-
-                                    if type == 'modules':
-                                        time.sleep(0.1)
-                                        module(dirext)
-                                    elif type == 'core':
-                                        time.sleep(0.4)
-                                        core(dirext)
-                                    elif type == 'boot':
-                                        time.sleep(0.5)
-                                        boot(dirext)
-                                except:
-                                    pass
-                            else:
-                                print(Fore.RED+'[-]'+Fore.RESET+' Got Error: "Directory /usr/share/Terminator/core/base/extra not found."')
-                                sys.exit()
-                        except:
-                            pass
+            print(Fore.BLUE+'[*]'+Fore.RESET+' Installing "50379.pl" Plugin Module...')
+            os.system('wget '+url3+' -O /usr/share/Terminator/bin/version/plugin-cache/'+url3_cache+' > /dev/null 2>&1')
+        try:
+            if good == True and good1 == True and good2 == True:
+                time.sleep(0.6)
+                print(Fore.YELLOW+'[+]'+Fore.RESET+' All Good...')
+                time.sleep(0.1)
+                print(Fore.BLUE+'[*]'+Fore.RESET+' PreConfiguring Database...')
+                try:
+                    if os.path.exists("/usr/var/tmf-meta-inf"):
+                        os.system('rm -rf /usr/var/tmf-meta-inf > /dev/null 2>&1')
+                        os.mkdir("/usr/var/tmf-meta-inf")
+                        os.mkdir("/usr/var/tmf-meta-inf/lib")
+                        os.mkdir("/usr/var/tmf-meta-inf/db")
+                        os.mkdir("/usr/var/tmf-meta-inf/data")
                     else:
                         os.mkdir("/usr/var/tmf-meta-inf")
-                        os.mkdir("/usr/var/tmf-meta-inf/extr")
                         os.mkdir("/usr/var/tmf-meta-inf/lib")
-                        os.mkdir("/usr/var/tmf-meta-inf/plugins")
-                        extract(dirext)
-            except:
-                pass
-    try:
-        if os.path.exists(dir):
-            print(Fore.BLUE+'[*]'+Fore.RESET+' Reading Database...')
-            time.sleep(0.5)
-            extract(dir)
-        else:
-            print(Fore.RED+'[-]'+Fore.RESET+ ' Error: Unable To Extract Required, Updated Files...')
-            sys.exit()
+                        os.mkdir("/usr/var/tmf-meta-inf/db")
+                        os.mkdir("/usr/var/tmf-meta-inf/data")
+                except:
+                    pass
+                time.sleep(0.1)
+                sys.exit()
+            else:
+                os.system('python3 /usr/share/Terminator/lib/plugins/meta/extractor.py')
+                sys.exit()
+        except:
+            pass
     except:
         pass
 
-
-
-conf(dir)
+check()
