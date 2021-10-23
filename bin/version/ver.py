@@ -14,7 +14,7 @@ except:
     pass
 try:
     if os.path.exists("/usr/share/Terminator/lib/plugins/meta/extractor.py"):
-        print(Fore.BLUE+'[*]'+Fore.RESET+' Checking Plugin Modules...')
+        print(Fore.BLUE+'[*]'+Fore.RESET+' Reloading Plugins...')
         time.sleep(0.2)
         os.system('python3 /usr/share/Terminator/lib/plugins/meta/extractor.py')
         print(Fore.YELLOW+'[+]'+Fore.RESET+' Please Restart Terminator To Setup Changes!')
