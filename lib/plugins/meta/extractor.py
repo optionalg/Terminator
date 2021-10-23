@@ -59,7 +59,6 @@ def check():
                 time.sleep(0.1)
                 sys.exit()
             else:
-                os.system('python3 /usr/share/Terminator/lib/plugins/meta/extractor.py')
                 sys.exit()
         except:
             pass
