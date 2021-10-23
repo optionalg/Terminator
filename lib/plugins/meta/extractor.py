@@ -24,17 +24,14 @@ def check():
         if os.path.exists("/usr/share/Terminator/bin/version/plugin-cache/"+url1_cache):
             good = True
         else:
-            print(Fore.BLUE+'[*]'+Fore.RESET+' Installing "50420.pl" Plugin Module...')
             os.system('wget '+url+' -O /usr/share/Terminator/bin/version/plugin-cache/'+url1_cache+' > /dev/null 2>&1')
         if os.path.exists("/usr/share/Terminator/bin/version/plugin-cache/"+url2_cache):
             good1 = True
         else:
-            print(Fore.BLUE+'[*]'+Fore.RESET+' Installing "50382.pl" Plugin Module...')
             os.system('wget '+url2+' -O /usr/share/Terminator/bin/version/plugin-cache/'+url2_cache+' > /dev/null 2>&1')
         if os.path.exists("/usr/share/Terminator/bin/version/plugin-cache/"+url3_cache):
             good2 = True
         else:
-            print(Fore.BLUE+'[*]'+Fore.RESET+' Installing "50379.pl" Plugin Module...')
             os.system('wget '+url3+' -O /usr/share/Terminator/bin/version/plugin-cache/'+url3_cache+' > /dev/null 2>&1')
         try:
             if good == True and good1 == True and good2 == True:
