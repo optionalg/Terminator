@@ -100,6 +100,7 @@ Core Commands
     help                          Show available commands
     clear                         Clear terminal window
     clean                         Clean database logs, cache
+    banner                        Show banner
     update                        Update Terminator framework (Dont checks for updates)
     show <>                       Show specified command
     use <module>                  Use specified Module
@@ -182,11 +183,11 @@ def banner():
   | | ___ _ __ _ __ ___  _ _ __   __ _| |_ ___  _ __ 
   | |/ _ \ '__| '_ ` _ \| | '_ \ / _` | __/ _ \| '__|
   | |  __/ |  | | | | | | | | | | (_| | || (_) | |   
-  \_/\___|_|  |_| |_| |_|_|_| |_|\__,_|\__\___/|_|
+  \_/\___|_|  |_| |_| |_|_|_| |_|\__,_|\__\___/|_| Karabakh Is Azerbaijan!
 
-   <-[ Terminator Framework    {version} '''+Fore.RESET+f''']
-   <-[ Modules Loaded                  {result} ]
-   <-[ Author                  -G00Dway- ]
++ -- -=[ Terminator Framework             ]
+      <[ Version                {version} '''+Fore.RESET+f''']
+      <[ Modules Loaded                 {result} ]
 ''')
 banner()
 def main():
@@ -217,6 +218,8 @@ def main():
             print(Fore.YELLOW+'[+]'+Fore.RESET+' Completed!')
         elif tmf[0] == 'clear':
             os.system('clear')
+        elif tmf[0] == 'banner':
+            banner()
         elif tmf[0] == 'exit':
             print(Fore.RED+'[-]'+Fore.RESET+' Terminator Stopped...')
             removeses()
