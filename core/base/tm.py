@@ -14,6 +14,18 @@ colorama.init()
 os.system('clear')
 user = getpass.getuser()
 try:
+    many = os.listdir("/usr/share/Terminator/modules/exploits")
+    many2 = os.listdir("/usr/share/Terminator/modules/handlers")
+    many3 = os.listdir("/usr/share/Terminator/modules/other")
+    many4 = os.listdir("/usr/share/Terminator/modules/payloads")
+    number_files = len(many)
+    number_files2 = len(many2)
+    number_files3 = len(many3)
+    number_files4 = len(many4)
+    result = number_files+number_files2+number_files3+number_files4
+except:
+    pass
+try:
     if user == "root":
         pass
     else:
@@ -170,19 +182,11 @@ def banner():
   | | ___ _ __ _ __ ___  _ _ __   __ _| |_ ___  _ __ 
   | |/ _ \ '__| '_ ` _ \| | '_ \ / _` | __/ _ \| '__|
   | |  __/ |  | | | | | | | | | | (_| | || (_) | |   
-  \_/\___|_|  |_| |_| |_|_|_| |_|\__,_|\__\___/|_| Crash Everything!
+  \_/\___|_|  |_| |_| |_|_|_| |_|\__,_|\__\___/|_|
 
-Authors   ---=[ G00Dway ]
-CodeName  ---=[ FUD-Sec ]
---------------------------
-Core     --[ {core} ]
-Modules  --[ {modules} ]
-Console  --[ {console} ]
-Database --[ {database} ]
-Updater  --[ {updater} ]
-
-Welcome To Terminator Framework! '''+Style.BRIGHT+f'''{version}'''+Style.RESET_ALL+'''
-==============================================
+   <-[ Terminator Framework    {version} '''+Fore.RESET+f''']
+   <-[ Modules Loaded                  {result} ]
+   <-[ Author                  -G00Dway- ]
 ''')
 banner()
 def main():
