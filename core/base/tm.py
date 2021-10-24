@@ -4,7 +4,7 @@ import subprocess
 import random
 import sys
 import colorama
-from colorama import Fore
+from colorama import Fore, Style
 import getpass
 import future
 from sys import platform
@@ -181,7 +181,7 @@ Console  --[ {console} ]
 Database --[ {database} ]
 Updater  --[ {updater} ]
 
-Welcome To Terminator Framework! '''+Fore.YELLOW+f'''{version}'''+Fore.RESET+'''
+Welcome To Terminator Framework! '''+Style.BRIGHT+f'''{version}'''+Style.RESET_ALL+'''
 ==============================================
 ''')
 banner()
