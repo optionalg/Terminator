@@ -133,11 +133,12 @@ Module Name                                     Type             Verify         
 ------------                                    -----            -------         ------------
 module/multi/handler                            Handler          yes             Handler For Payloads
 module/packet_sniff/http/sniff                  Local            yes             HTTP Packet Sniffer, Pass/Email/Login/Other
+module/blueman/bluetooth_dos/l2ping             Local            no              Bluetooth Denial Of Service
 module/online_food_delivery/rce/webshell        Web              yes             RCE, WebShell Upload & Connect
 module/evolution_cms/rce/login_web              Web              no              RCE Cms, Login & Execute Code
-module/citadel_web_kit/cred/log                 Web              no              Citadel Web kit, Credential Harvester
-module/patient_appointment/sys/web              Web              yes             RCE, Patient Appointment System
-module/rental_unit/storage/shell                Web              no              RCE, Storage Unit Rental Management
+module/citadel_web_kit/cred/log                 Web              yes             Citadel Web kit, Credential Harvester
+module/patient_appointment/sys/web              Web              no              RCE, Patient Appointment System
+module/rental_unit/storage/shell                Web              no              RCE, Storage Unit Rental Management             
 '''
 pylds = '''
 Payload Name                                    Type             Verify          Description
@@ -185,9 +186,9 @@ def banner():
   | |  __/ |  | | | | | | | | | | (_| | || (_) | |   
   \_/\___|_|  |_| |_| |_|_|_| |_|\__,_|\__\___/|_| Karabakh Is Azerbaijan!
 
-+ -- -=[ Terminator Framework             ]
++ -- -=[ Terminator Framework Console     ]
       <[ Version                {version} '''+Fore.RESET+f''']
-      <[ Modules Loaded                 {result} ]
+      <[ Payloads, Modules Loaded        {result} ]
 ''')
 banner()
 def main():
@@ -384,6 +385,9 @@ Max Jobs. 1
                         elif tmf[1] == 'module/rental_unit/storage/shell':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/exploits/unit.py')
+                        elif tmf[1] == 'module/blueman/bluetooth_dos/l2ping':
+                            time.sleep(0.5)
+                            os.system('python3 /usr/share/Terminator/lib/data/other/blueman.py')
                         else:
                             print(Fore.RED+'[-]'+Fore.RESET+' Invalid Module: "'+tmf[1]+'"')
                     else:
