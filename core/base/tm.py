@@ -186,7 +186,7 @@ def banner():
   | |  __/ |  | | | | | | | | | | (_| | || (_) | |   
   \_/\___|_|  |_| |_| |_|_|_| |_|\__,_|\__\___/|_| Karabakh Is Azerbaijan!
 
-+ -- -=[ Terminator Framework Console     ]
++ -- -=[ Terminator Framework             ]
       <[ Version                {version} '''+Fore.RESET+f''']
       <[ Payloads, Modules Loaded       {result} ]
 ''')
