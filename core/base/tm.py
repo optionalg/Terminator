@@ -188,7 +188,7 @@ def banner():
 
 + -- -=[ Terminator Framework             ]
       <[ Version                {version} '''+Fore.RESET+f''']
-      <[ Payloads, Modules Loaded       {result} ]
+      <[ Modules Loaded                 {result} ]
 ''')
 banner()
 def main():
