@@ -90,11 +90,14 @@ Module Details:
                     print(Fore.BLUE+'[*]'+Fore.RESET+' TARGET_ADDR ==> '+TARGET_ADDR)
                 elif tmf[1] == 'PACKAGE_SIZE' or tmf[1] == 'package_size':
                     PACKAGE_SIZE=tmf[2]
-                    print(Fore.BLUE+'[*]'+Fore.RESET+' PACKAGE_SIZE ==> '+PACKAGE_SIZE)
-                    if tmf[2] >= 600:
-                        print(Fore.RED+'[-]'+Fore.RESET+' More Than 600 Packets Can Pernamently Turn Off Bluetooth On Device!')
-                    else:
+                    try:
+                        if PACKAGE_SIZE <= 600:
+                            pass
+                        else:
+                            print(Fore.RED+'[-]'+Fore.RESET+' More Than 600 Packets Can Pernamently Turn Off Bluetooth On Device!')
+                    except:
                         pass
+                    print(Fore.BLUE+'[*]'+Fore.RESET+' PACKAGE_SIZE ==> '+PACKAGE_SIZE)
                 elif tmf[1] == 'THREADS' or tmf[1] == 'threads':
                     THREADS=tmf[2]
                     print(Fore.BLUE+'[*]'+Fore.RESET+' THREADS ==> '+THREADS)
