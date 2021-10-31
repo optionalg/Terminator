@@ -71,7 +71,7 @@ def check():
                 sys.stdout.write(f'\r[{now}] Building Database...                              '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.RED+'FAIL'+Fore.RESET+']\n')
         except:
             pass
-        sys.stdout.write(f'\r[{now}] Copying Console Files...                          '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]')
+        sys.stdout.write(f'\r[{now}] Copying Console Files...                          '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']')
         time.sleep(1)
         try:
             os.system('chmod +x bin/tmconsole/tmconsole')
@@ -79,7 +79,6 @@ def check():
             os.system('cp -r bin/tmconsole/tmconsole /usr/bin')
         except:
             pass
-        sys.stdout.write(f'\r[{now}] Copying Console Files...                               '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']')
         print('\n')
         print(f'Finished At [{now}]')
         print('')
