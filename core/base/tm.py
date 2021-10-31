@@ -177,6 +177,13 @@ except:
     pass
 system = ""
 usr = "/usr/share/Terminator"
+try:
+    if updater == Fore.GREEN+"OK"+Fore.RESET and database == Fore.GREEN+"OK"+Fore.RESET and core == Fore.GREEN+"OK"+Fore.RESET and modules == Fore.GREEN+"OK"+Fore.RESET and console == Fore.GREEN+"OK"+Fore.RESET:
+        database_run = Fore.GREEN+"OK"+Fore.RESET
+    else:
+        database_run = Fore.GREEN+"FATAL"+Fore.RESET
+except:
+    pass
 def banner():
     print(f'''
  _____                   _             _             
@@ -187,6 +194,7 @@ def banner():
   \_/\___|_|  |_| |_| |_|_|_| |_|\__,_|\__\___/|_| [ HackNet Community ]
 
 + -- -=[ Terminator Framework             ]
+      <[ Database                       {database_run} ]
       <[ Version                {version} '''+Fore.RESET+f''']
       <[ Modules Loaded                 {result} ]
 ''')
