@@ -194,7 +194,7 @@ def banner():
   \_/\___|_|  |_| |_| |_|_|_| |_|\__,_|\__\___/|_| [ HackNet Community ]
 
 + -- -=[ Terminator Framework             ]
-      <[ Database                       {database_run} ]
+      <[ Database                      {database_run} ]
       <[ Version                {version} '''+Fore.RESET+f''']
       <[ Modules Loaded                 {result} ]
 ''')
