@@ -40,50 +40,38 @@ enter = input("To Proceed With Installation Press [ENTER] Key To Continue... ")
 def check():
     while done == "false":
         print('\n')
-        sys.stdout.write(f'\r[{now}] Checking Terminator Files...                '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]...')
+        sys.stdout.write(f'\r[{now}] Checking Terminator Files...                '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]')
         time.sleep(0.7)
         try:
             if os.path.exists("core/setup/cp/cp.py"):
-                print('')
-                sys.stdout.write(f'\r[{now}] Checking Terminator Files...                 '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']...')
-                print('')
+                sys.stdout.write(f'\r[{now}] Checking Terminator Files...                      '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']\n')
             else:
-                print('')
-                sys.stdout.write(f'\r[{now}] Checking Terminator Files...                 '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.RED+'FAIL'+Fore.RESET+']...')
-                print('')
+                sys.stdout.write(f'\r[{now}] Checking Terminator Files...                      '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.RED+'FAIL'+Fore.RESET+']\n')
         except:
             pass
         time.sleep(0.1)
-        sys.stdout.write(f'\r[{now}] Checking Dependiences...                    '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]...')
-        time.sleep(0.1)
+        sys.stdout.write(f'\r[{now}] Checking Dependiences...                          '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]')
+        time.sleep(0.4)
         try:
             if os.path.exists("/usr/bin/python") and os.path.exists("/usr/bin/python3") and os.path.exists("/usr/bin/msfvenom") and os.path.exists("/usr/bin/msfconsole"):
-                print('')
-                sys.stdout.write(f'\r[{now}] Checking Dependiences...            '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']...')
-                print('')
+                sys.stdout.write(f'\r[{now}] Checking Dependiences...                          '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']\n')
             else:
-                print('')
-                sys.stdout.write(f'\r[{now}] Checking Dependiences...            '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.BLUE+'Installing'+Fore.RESET+']...')
-                print('')
+                sys.stdout.write(f'\r[{now}] Checking Dependiences...                          '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.BLUE+'Installing...'+Fore.RESET+']\n')
                 os.system('bash core/setup/install.sh')
         except:
             pass
-        sys.stdout.write(f'\r[{now}] Building Database...                        '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]...')
+        sys.stdout.write(f'\r[{now}] Building Database...                              '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]...')
         os.system("python3 core/setup/cp/cp.py")
         os.system('mkdir /usr/var/tmf-meta-inf > /dev/null 2>&1')
         time.sleep(0.3)
         try:
             if os.path.exists("/usr/share/Terminator"):
-                print('')
-                sys.stdout.write(f'\r[{now}] Building Database...                        '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']...')
-                print('')
+                sys.stdout.write(f'\r[{now}] Building Database...                              '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']...\n')
             else:
-                print('')
-                sys.stdout.write(f'\r[{now}] Building Database...                        '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.RED+'FAIL'+Fore.RESET+']...')
-                print('')
+                sys.stdout.write(f'\r[{now}] Building Database...                              '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.RED+'FAIL'+Fore.RESET+']...\n')
         except:
             pass
-        sys.stdout.write(f'\r[{now}] Copying Console Files...                    '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]...')
+        sys.stdout.write(f'\r[{now}] Copying Console Files...                          '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]...')
         time.sleep(1)
         try:
             os.system('chmod +x bin/tmconsole/tmconsole')
