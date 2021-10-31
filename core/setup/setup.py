@@ -60,18 +60,18 @@ def check():
                 os.system('bash core/setup/install.sh')
         except:
             pass
-        sys.stdout.write(f'\r[{now}] Building Database...                              '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]...')
+        sys.stdout.write(f'\r[{now}] Building Database...                              '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]\n')
         os.system("python3 core/setup/cp/cp.py")
         os.system('mkdir /usr/var/tmf-meta-inf > /dev/null 2>&1')
         time.sleep(0.3)
         try:
             if os.path.exists("/usr/share/Terminator"):
-                sys.stdout.write(f'\r[{now}] Building Database...                              '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']...\n')
+                sys.stdout.write(f'\r[{now}] Building Database...                              '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']\n')
             else:
-                sys.stdout.write(f'\r[{now}] Building Database...                              '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.RED+'FAIL'+Fore.RESET+']...\n')
+                sys.stdout.write(f'\r[{now}] Building Database...                              '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.RED+'FAIL'+Fore.RESET+']\n')
         except:
             pass
-        sys.stdout.write(f'\r[{now}] Copying Console Files...                          '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]...')
+        sys.stdout.write(f'\r[{now}] Copying Console Files...                          '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]')
         time.sleep(1)
         try:
             os.system('chmod +x bin/tmconsole/tmconsole')
