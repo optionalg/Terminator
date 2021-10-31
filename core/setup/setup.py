@@ -79,6 +79,7 @@ def check():
             os.system('cp -r bin/tmconsole/tmconsole /usr/bin')
         except:
             pass
+        sys.stdout.write(f'\r[{now}] Copying Console Files...                          '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']')
         print('\n')
         print(f'Finished At [{now}]')
         print('')
