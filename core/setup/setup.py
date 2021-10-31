@@ -44,9 +44,11 @@ def check():
         time.sleep(0.7)
         try:
             if os.path.exists("core/setup/cp/cp.py"):
+                print('')
                 sys.stdout.write(f'\r[{now}] Checking Terminator Files...                 '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']...')
                 print('')
             else:
+                print('')
                 sys.stdout.write(f'\r[{now}] Checking Terminator Files...                 '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.RED+'FAIL'+Fore.RESET+']...')
                 print('')
         except:
@@ -56,9 +58,11 @@ def check():
         time.sleep(0.1)
         try:
             if os.path.exists("/usr/bin/python") and os.path.exists("/usr/bin/python3") and os.path.exists("/usr/bin/msfvenom") and os.path.exists("/usr/bin/msfconsole"):
+                print('')
                 sys.stdout.write(f'\r[{now}] Checking Dependiences...            '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']...')
                 print('')
             else:
+                print('')
                 sys.stdout.write(f'\r[{now}] Checking Dependiences...            '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.BLUE+'Installing'+Fore.RESET+']...')
                 print('')
                 os.system('bash core/setup/install.sh')
@@ -70,9 +74,11 @@ def check():
         time.sleep(0.3)
         try:
             if os.path.exists("/usr/share/Terminator"):
+                print('')
                 sys.stdout.write(f'\r[{now}] Building Database...                        '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']...')
                 print('')
             else:
+                print('')
                 sys.stdout.write(f'\r[{now}] Building Database...                        '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.RED+'FAIL'+Fore.RESET+']...')
                 print('')
         except:
