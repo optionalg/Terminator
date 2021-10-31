@@ -54,13 +54,13 @@ def check():
         time.sleep(0.4)
         try:
             if os.path.exists("/usr/bin/python") and os.path.exists("/usr/bin/python3") and os.path.exists("/usr/bin/msfvenom") and os.path.exists("/usr/bin/msfconsole"):
-                sys.stdout.write(f'\r[{now}] Checking Dependiences...                          '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']\n')
+                sys.stdout.write(f'\r[{now}] Checking Dependiences...                             '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']\n')
             else:
-                sys.stdout.write(f'\r[{now}] Checking Dependiences...                          '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.BLUE+'Installing...'+Fore.RESET+']\n')
+                sys.stdout.write(f'\r[{now}] Checking Dependiences...                             '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.BLUE+'Installing...'+Fore.RESET+']\n')
                 os.system('bash core/setup/install.sh')
         except:
             pass
-        sys.stdout.write(f'\r[{now}] Building Database...                              '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]\n')
+        sys.stdout.write(f'\r[{now}] Building Database...                              '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]')
         os.system("python3 core/setup/cp/cp.py")
         os.system('mkdir /usr/var/tmf-meta-inf > /dev/null 2>&1')
         time.sleep(0.3)
