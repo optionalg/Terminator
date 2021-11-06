@@ -54,7 +54,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.3"+Fore.LIGHTYELLOW_EX+"#dev"
+version = "1.8.4"+Fore.LIGHTYELLOW_EX+"#dev"
 commands = '''
 Global Commands
 ===============
@@ -70,9 +70,7 @@ Update Commands
 
     Command                       Description
     -------                       -----------
-    update                        Update everything
-    update console                Update console only
-    update database               Update database only
+    update                        Update Terminator framework
 
 Show Commands
 =============
@@ -235,22 +233,13 @@ def main():
             time.sleep(0.5)
             sys.exit()
         elif tmf[0] == 'update':
-            if len(tmf) < 2:
-                os.system('python3 /usr/share/Terminator/lib/plugins/update/updater.py')
-                os.system('python3 /usr/share/Terminator/bin/version/ver.py')
-            else:
-                try:
-                    if tmf[1] == 'console':
-                        os.system('python3 /usr/share/Terminator/lib/plugins/update/updatercon.py')
-                        print(Fore.YELLOW+'[+]'+Fore.RESET+' Console Updated Successfully!')
-                    elif tmf[1] == 'database':
-                        os.system('python3 /usr/share/Terminator/lib/plugins/update/updatedb.py')
-                        os.system('python3 /usr/share/Terminator/bin/version/ver.py')
-                    else:
-                        print(update_info)
-                        print(Fore.RED+'[-]'+Fore.RESET+' Invalid Command For Update: "'+tmf[1]+'"')
-                except:
-                    pass
+            try:
+                if os.path.exists("/usr/share/Terminator/lib/plugins/update"):
+                    os.system('python3 /usr/share/Terminator/lib/plugins/update/install.py')
+                else:
+                    print(Fore.RED+'[-]'+Fore.RESET+' Update File Was Removed Or Corrupted!')
+            except:
+                pass
         elif tmf[0] == 'jobs':
             try:
                 if os.path.exists("/usr/share/Terminator/core/session") and os.path.exists("/usr/share/Terminator/core/session/session.yaml"):
