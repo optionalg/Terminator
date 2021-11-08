@@ -4,6 +4,7 @@ import colorama
 import string
 import getpass
 import random
+from sys import platform
 from colorama import Fore
 colorama.init()
 KEY_LEN = 20
@@ -12,15 +13,24 @@ def base_str():
     return (string.ascii_letters+string.digits)
 keylist = random.choices(base_str(), k=KEY_LEN)
 key = ''.join(keylist)
+if platform == "linux" or platform == "linux2":
+    linux = "Linux"
+else:
+    linux = "(unknown)"
+
+if user == "root":
+    root = "Yes"
+else:
+    root = "No"
 nums = '''
 File     : '''+key+'''
 Name     : Terminator
 Author   : G00Dway
 User     : '''+user+'''
-Root     : 
-System   : 
+Root     : '''+root+'''
+System   : '''+linux+'''
 License  : GNU 3.0 General Public.
-CPU, GPU :
+CPU, GPU : (unknown)
 TMF-db   : /usr/share/Terminator
 META-db  : /usr/var/tmf-meta-inf
 ROOT-db  : /root/.tmf
@@ -31,8 +41,7 @@ Exec     : /usr/share/Terminator/bin/tmconsole/exec.sh
 Plugins  : /usr/share/Terminator/lib/plugins
 Tested   : Kali Linux, Parrot OS, Debian x64
 Services : Not Available
-Credits  : No One
-
+Credits  : N9RAWJMI, for testing my projects!
 
 
 
