@@ -5,11 +5,16 @@ import datetime
 import colorama
 import string
 import sys
+from sys import platform
 from colorama import Fore, Style
 colorama.init()
 date=datetime.datetime.now()
 now=date.strftime("%H:%M:%S")
 done = "false"
+if platform == "win32" or platform == "win64":
+    print(Fore.BLUE+'[*]'+Fore.RESET+' For Error Codes Please Visit: https://github.com/G00Dway/Terminator/wiki/error_codes')
+    print(Fore.RED+'[-]'+Fore.RESET+' ERROR CODE: 0xtmf999')
+    sys.exit()
 def banner():
     print('''
  _____                   _             _             
@@ -47,6 +52,9 @@ def check():
                 sys.stdout.write(f'\r[{now}] Checking Terminator Files...                      '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']\n')
             else:
                 sys.stdout.write(f'\r[{now}] Checking Terminator Files...                      '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.RED+'FAIL'+Fore.RESET+']\n')
+                print(Fore.BLUE+'[*]'+Fore.RESET+' For Error Codes Please Visit: https://github.com/G00Dway/Terminator/wiki/error_codes')
+                print(Fore.RED+'[-]'+Fore.RESET+' ERROR CODE: 0xtmf799')
+                sys.exit()
         except:
             pass
         time.sleep(0.1)
