@@ -182,6 +182,7 @@ try:
         database_run = Fore.GREEN+"FATAL"+Fore.RESET
 except:
     pass
+tips = ['HINT: After Updating, Terminator Saves '+Fore.GREEN+'Old'+Fore.RESET+' Database At: "/usr/var/tmf-meta-inf"!', 'HINT: Terminator Runs Slow? Why Not Try The '+Fore.GREEN+'clean'+Fore.RESET+' Command!', 'HINT: Always Keep Terminator Up-To-Date!', 'HINT: Use '+Fore.GREEN+'back'+Fore.RESET+' Command To Go Back To Main Menu!', 'HINT: To Kill Running Handler Jobs, Use '+Fore.GREEN+'jkill <Job ID>'+Fore.RESET, 'HINT: To Interact With Handler Jobs, Use '+Fore.GREEN+'int <Job ID>'+Fore.RESET]
 def banner():
     print(f'''
  _____                   _             _             
@@ -197,6 +198,7 @@ def banner():
       <[ Modules Loaded                 {result} ]
 ''')
 banner()
+print(random.choice(tips))
 def main():
     try:
         tmf = input('\033[4mtmf\033[0m > ').strip(" ")
@@ -217,12 +219,14 @@ def main():
         elif tmf[0] == 'clean':
             print(Fore.BLUE+'[*]'+Fore.RESET+' Cleaning Database...')
             cache = os.listdir("/usr/share/Terminator/core/base/scripts/cache/libs")
+            root_files = os.listdir("/root/.tmf")
             logs = "/usr/share/Terminator/core/logs/logs.log"
             for clr in cache:
                 os.system('rm -rf /usr/share/Terminator/core/base/scripts/cache/libs/'+clr+' > /dev/null 2>&1')
-
             os.system('rm -rf '+logs+' > /dev/null 2>&1')
-            print(Fore.YELLOW+'[+]'+Fore.RESET+' Completed!')
+            for clean_root in root_files:
+                os.system('rm -rf /root/.tmf/'+clean_root+' > /dev/null 2>&1')
+            print(Fore.YELLOW+'[+]'+Fore.RESET+' Cleanup Completed!')
         elif tmf[0] == 'clear':
             os.system('clear')
         elif tmf[0] == 'banner':
