@@ -90,7 +90,7 @@ def check():
         except:
             pass
         os.system('touch /usr/share/Terminator/core/setup/first_setup.txt > /dev/null 2>&1')
-        print(Fore.BLUE+'[*]'+Fore.RESET+' Finishing Setup...')
+        print('\n'+Fore.BLUE+'[*]'+Fore.RESET+' Finishing Setup...')
         os.system('python3 /usr/share/Terminator/core/setup/firstrun.py')
         time.sleep(0.5)
         print('\n')
