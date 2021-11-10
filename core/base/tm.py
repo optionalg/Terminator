@@ -199,6 +199,8 @@ def banner():
 ''')
 banner()
 print(random.choice(tips))
+print('----')
+print('')
 def main():
     try:
         tmf = input('\033[4mtmf\033[0m > ').strip(" ")
