@@ -1,0 +1,1 @@
+The cp.py File, Git Clones the Repo To "/usr/share/" Directory, As "Terminator"
