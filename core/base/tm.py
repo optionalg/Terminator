@@ -124,16 +124,16 @@ Update Commands
     update database               Update database only
 '''
 mdls = '''
-Module Name                                     Type             Verify          Description
-------------                                    -----            -------         ------------
-module/multi/handler                            Handler          yes             Handler For Payloads
-module/packet_sniff/http/sniff                  Local            yes             HTTP Packet Sniffer, Pass/Email/Login/Other
-module/blueman/bluetooth_dos/l2ping             Local            no              Bluetooth Denial Of Service
-module/online_food_delivery/rce/webshell        Web              yes             RCE, WebShell Upload & Connect
-module/evolution_cms/rce/login_web              Web              no              RCE Cms, Login & Execute Code
-module/citadel_web_kit/cred/log                 Web              yes             Citadel Web kit, Credential Harvester
-module/patient_appointment/sys/web              Web              no              RCE, Patient Appointment System
-module/rental_unit/storage/shell                Web              no              RCE, Storage Unit Rental Management             
+#    Module Name                                     Type             Verify          Description
+-    ------------                                    -----            -------         ------------
+1    module/multi/handler                            Handler          yes             Handler For Payloads
+2    module/packet_sniff/http/sniff                  Local            yes             HTTP Packet Sniffer, Pass/Email/Login/Other
+3    module/blueman/bluetooth_dos/l2ping             Local            no              Bluetooth Denial Of Service
+4    module/online_food_delivery/rce/webshell        Web              yes             RCE, WebShell Upload & Connect
+5    module/evolution_cms/rce/login_web              Web              no              RCE Cms, Login & Execute Code
+6    module/citadel_web_kit/cred/log                 Web              yes             Citadel Web kit, Credential Harvester
+7    module/patient_appointment/sys/web              Web              no              RCE, Patient Appointment System
+8    module/rental_unit/storage/shell                Web              no              RCE, Storage Unit Rental Management             
 '''
 pylds = '''
 Payload Name                                    Type             Verify          Description
@@ -363,29 +363,29 @@ Max Jobs. 1
             else:
                 try:
                     if modules == Fore.GREEN+"OK"+Fore.RESET and database == Fore.GREEN+"OK"+Fore.RESET:
-                        if tmf[1] == 'multi/handler' or tmf[1] == 'module/multi/handler':
+                        if tmf[1] == 'multi/handler' or tmf[1] == 'module/multi/handler' or tmf[1] == '1':
                             time.sleep(0.7)
                             print(Fore.BLUE+'[*]'+Fore.RESET+' Set Default Payload: "payload/win/win_reverse_shell"')
                             os.system('python3 /usr/share/Terminator/lib/data/handlers/handler.py')
-                        elif tmf[1] == 'module/online_food_delivery/rce/webshell':
+                        elif tmf[1] == 'module/online_food_delivery/rce/webshell' or tmf[1] == '4':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/exploits/foodrce.py')
-                        elif tmf[1] == 'module/evolution_cms/rce/login_web':
+                        elif tmf[1] == 'module/evolution_cms/rce/login_web' or tmf[1] == '5':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/exploits/evo.py')
-                        elif tmf[1] == 'module/citadel_web_kit/cred/log':
+                        elif tmf[1] == 'module/citadel_web_kit/cred/log' or tmf[1] == '6':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/exploits/citadel_web.py')
-                        elif tmf[1] == 'module/packet_sniff/http/sniff':
+                        elif tmf[1] == 'module/packet_sniff/http/sniff' or tmf[1] == '2':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/other/http.py')
-                        elif tmf[1] == 'module/patient_appointment/sys/web':
+                        elif tmf[1] == 'module/patient_appointment/sys/web' or tmf[1] == '7':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/exploits/arey.py')
-                        elif tmf[1] == 'module/rental_unit/storage/shell':
+                        elif tmf[1] == 'module/rental_unit/storage/shell' or tmf[1] == '8':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/exploits/unit.py')
-                        elif tmf[1] == 'module/blueman/bluetooth_dos/l2ping':
+                        elif tmf[1] == 'module/blueman/bluetooth_dos/l2ping' or tmf[1] == '3':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/other/blueman.py')
                         else:
