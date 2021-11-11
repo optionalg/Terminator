@@ -4,7 +4,6 @@ import time
 import sys
 import colorama
 import subprocess
-from sys import stdout
 import future
 import datetime
 import getpass
@@ -13,10 +12,10 @@ colorama.init()
 time.sleep(2)
 user=getpass.getuser()
 nowdate=datetime.datetime.now()
-timerun=nowdate.strftime("%H:%M:%S")
+timerun=nowdate.strftime("(%Y/%M/%I) - %H:%M:%S")
 try:
     if user == "root":
-        pass
+        root = True
     else:
         print(Fore.RED+'[-]'+Fore.RESET+' ROOT Not Detected! Please ReRun Terminator With ROOT Permissions!')
         sys.exit()
