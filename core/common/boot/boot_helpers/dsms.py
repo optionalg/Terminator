@@ -12,7 +12,7 @@ colorama.init()
 time.sleep(2)
 user=getpass.getuser()
 nowdate=datetime.datetime.now()
-timerun=nowdate.strftime("(%Y/%M/%I) - %H:%M:%S")
+timerun=nowdate.strftime("(%D) - %H:%M:%S")
 try:
     if user == "root":
         root = True
