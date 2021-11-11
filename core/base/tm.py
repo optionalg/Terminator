@@ -14,15 +14,12 @@ colorama.init()
 os.system('clear')
 user = getpass.getuser()
 try:
-    many = os.listdir("/usr/share/Terminator/modules/exploits")
-    many2 = os.listdir("/usr/share/Terminator/modules/handlers")
-    many3 = os.listdir("/usr/share/Terminator/modules/other")
-    many4 = os.listdir("/usr/share/Terminator/modules/payloads")
-    number_files = len(many)
-    number_files2 = len(many2)
-    number_files3 = len(many3)
-    number_files4 = len(many4)
-    result = number_files+number_files2+number_files3+number_files4
+    result = 0
+    make = os.listdir('/usr/share/Terminator/modules')
+    for i in make:
+        ex = os.listdir('/usr/share/Terminator/modules/'+i)
+        for e in ex:
+            result+=1
 except:
     pass
 try:
