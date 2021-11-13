@@ -196,7 +196,6 @@ def banner():
 ''')
 banner()
 print(random.choice(tips))
-print('----')
 print('')
 def main():
     try:
