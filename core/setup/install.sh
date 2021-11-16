@@ -1,1 +1,1 @@
-apt install ruby perl metasploit-framework xterm zenity python python3-pip gem git -y &>> /usr/share/Terminator/core/setup/bash_install.log
+apt install ruby perl metasploit-framework xterm zenity python python3-pip gem git -y > /dev/null 2>&1

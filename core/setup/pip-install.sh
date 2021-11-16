@@ -1,1 +1,1 @@
-pip3 install colorama scapy pysocks imports future paramiko flask bs4 &>> /usr/share/Terminator/core/setup/bash_install.log
+pip3 install colorama scapy pysocks imports future paramiko flask bs4 > /dev/null 2>&1
