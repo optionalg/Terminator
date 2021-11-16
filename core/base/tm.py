@@ -13,10 +13,12 @@ from socket import AF_INET, SOCK_STREAM
 colorama.init()
 user = getpass.getuser()
 try:
+    print('')
     error_got = ""
     with open("/usr/share/Terminator/core/logs/logs.log", "r") as error:
         for line in error:
             if 'FATAL' in line:
+                error_got = line
                 print(Fore.RED+"[-]"+Fore.RESET+" Got Error In Logs: "+line)
 except:
     pass
