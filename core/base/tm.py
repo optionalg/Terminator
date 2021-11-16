@@ -17,7 +17,7 @@ try:
     with open("/usr/share/Terminator/core/logs/logs.log", "r") as error:
         for line in error:
             if 'FATAL' in line:
-                error_got = Fore.RED+"\n[-]"+Fore.RESET+" Got Error(s) In Logs: "+line
+                print(Fore.RED+"\n[-]"+Fore.RESET+" Got Error In Logs: "+line)
 except:
     pass
 try:
@@ -149,13 +149,6 @@ payload/poc/redragon_mouse/wr                   Windows          no             
 payload/win/win_reverse_shell                   Windows          yes             reverse shell Payload (win32, win64)
 payload/apk/android_reverse_shell               Android          yes             reverse shell Payload (V.3 - 9)
 '''
-try:
-    if error_got == "":
-        pass
-    else:
-        print(error_got)
-except:
-    pass
 try:
     if os.path.exists("/usr/share/Terminator/lib/db/dbrun.py") and os.path.exists("/usr/share/Terminator/lib/data"):
         database = Fore.GREEN+"OK"+Fore.RESET
