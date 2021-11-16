@@ -17,7 +17,7 @@ try:
     with open("/usr/share/Terminator/core/logs/logs.log", "r") as error:
         for line in error:
             if 'FATAL' in line:
-                error_got = Fore.RED+"[-]"+Fore.RESET+" Got Error In Logs: "+line
+                error_got = Fore.RED+"\n[-]"+Fore.RESET+" Got Error(s) In Logs: "+line
 except:
     pass
 try:
