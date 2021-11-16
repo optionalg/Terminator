@@ -7,6 +7,7 @@ import subprocess
 import future
 import datetime
 import getpass
+import glob
 from colorama import Fore
 colorama.init()
 time.sleep(2)
@@ -82,7 +83,9 @@ def animate():
                     i.write(f"\n[{timerun}] INFO: Loading Persistent Handlers...")
                     i.close()
             else:
-                pass
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as handler:
+                    handler.write(f"\n[{timerun}] FATAL: Unable To Load Persistent Handlers")
+                    handler.close()
         except:
             pass
         time.sleep(0.1)
@@ -90,13 +93,14 @@ def animate():
         time.sleep(0.1)
         sys.stdout.write('\r[*] stArting terminator...-')
         try:
-            if os.path.exists("/usr/share/Terminator/core/logs/logs.log"):
+            if os.path.exists("/usr/share/Terminator/modules/payloads"):
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as v:
                     v.write(f"\n[{timerun}] INFO: Loading Payloads...")
                     v.close()
             else:
-                os.mkdir("/usr/share/Terminator/core/logs")
-                os.system('touch /usr/share/Terminator/core/logs/logs.log')
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as payload:
+                    payload.write(f"\n[{timerun}] FATAL: Unable To Load Payloads")
+                    payload.close()
         except:
             pass
         time.sleep(0.1)
@@ -118,7 +122,7 @@ def animate():
         except ImportError:
             try:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as u:
-                    u.write(f"\n[{timerun}] FATAL: Some Imports Maybe Not Imported!")
+                    u.write(f"\n[{timerun}] FATAL: Unable To Import Python Packages")
                     u.close()
             except:
                 pass
@@ -199,12 +203,16 @@ def animate():
         time.sleep(0.6)
         try:
             if mod == True:
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as i:
+                    i.write(f"\n[{timerun}] INFO: Loading Plugins...")
+                    i.close()
+
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as r:
                     r.write(f"\n[{timerun}] INFO: Plugins Loaded Successfully")
                     r.close()
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as y:
-                    y.write(f"\n[{timerun}] FATAL: Unable To Load Modules")
+                    y.write(f"\n[{timerun}] FATAL: Unable To Load Plugins & Modules")
                     y.close()
         except:
             pass
@@ -219,19 +227,16 @@ def animate():
         sys.stdout.write('\r[*] starting termiNator...\\')
         try:
             if os.path.exists("/usr/share/Terminator/modules"):
-                walk2 = os.listdir("/usr/share/Terminator/modules/exploits")
-                walk5 = os.listdir("/usr/share/Terminator/modules/other")
-                for ld2 in walk2:
-                    lo = open("/usr/share/Terminator/core/logs/logs.log", "a")
-                    lo.write(f"\n[{timerun}] WARNING: Loading Additional Module {ld2}")
-
-                for ld5 in walk5:
-                    l5 = open("/usr/share/Terminator/core/logs/logs.log", "a")
-                    l5.write(f"\n[{timerun}] WARNING: Loading Additional Module {ld5}")
+                l = os.listdir("/usr/share/Terminator/modules")
+                for i in l:
+                    a = os.listdir("/usr/share/Terminator/modules/"+i)
+                    write_log = open("/usr/share/Terminator/core/logs/logs.log", "a")
+                    write_log.write(f"\n[{timerun}] NOTE: Loading Additional Module {a}")
+                    write_log.close()
             else:
-                with open("/usr/share/Terminator/core/logs/logs.log", "a") as er:
-                    er.write(f"\n[{timerun}] FATAL: Unable To Load Additional Modules")
-                    er.close()
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as fail:
+                    fail.write(f"\n[{timerun}] FATAL: Unable To Load Modules Database")
+                    fail.close()
         except:
             pass
         time.sleep(0.1)
@@ -278,12 +283,15 @@ def animate():
                         try:
                             if os.path.exists(comp+'/'+setup):
                                 with open(comp+'/'+setup, "w") as n:
-                                    n.write("from core.components import core")
+                                    n.write("# This is the core component of Terminator for errors, Removing this file does not affects to Terminator")
+                                    n.close()
                                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as log:
                                     log.write(f"\n[{timerun}] INFO: Loaded Component {setup}")
+                                    log.close()
                             else:
-                                with open("/usr/share/Terminator/core/logs/logs.log", "a") as error:
-                                    error.write(f"\n[{timerun}] FATAL: Unable To Load Component {setup}")
+                                with open("/usr/share/Terminator/core/logs/logs.log", "a") as p:
+                                    p.write(f"\n[{timerun}] NOTE: Setting Up Component {setup}")
+                                    p.close()
                                 os.system(f'touch {comp}/{setup} > /dev/null 2>&1')
                         except:
                             pass
@@ -311,7 +319,8 @@ def animate():
         try:
             if meta == True:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as tmf:
-                    tmf.write(f'\n[{timerun}] INFO: Found: "/usr/var/tmf-meta-inf"')
+                    tmf.write(f'\n[{timerun}] INFO: Found Database: "/usr/var/tmf-meta-inf"')
+                    tmf.write(f'\n[{timerun}] INFO: Scanning Database: "/usr/var/tmf-meta-inf"')
                     tmf.close()
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as tmf_fail:
@@ -326,6 +335,9 @@ def animate():
         time.sleep(0.1)
         sys.stdout.write('\r[*] starting terminAtor...-')
         try:
+            with open("/usr/share/Terminator/core/logs/logs.log", "a") as plugin_load:
+                plugin_load.write(f"\n[{timerun}] NOTE: Starting Cache Plugin...")
+                plugin_load.close()
             os.system('python3 /usr/share/Terminator/core/base/scripts/plugin.py')
         except:
             pass
@@ -337,7 +349,9 @@ def animate():
         sys.stdout.write('\r[*] starting terminatoR.../')
         time.sleep(0.2)
         os.system('python3 /usr/share/Terminator/core/base/tm.py')
-        sys.exit()
+        break
+
 
 done = "false"
 animate()
+sys.exit()

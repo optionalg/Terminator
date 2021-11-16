@@ -31,6 +31,8 @@ def write_to(file):
         with open(file, "a") as f:
             f.write(f"\n[{now}] core[i]: setup log has created at '/usr/share/Terminator/core/setup/setup_logs.log'")
             f.write(f"\n[{now}] core[i]: dependiences installed.")
+            f.write(f"\n[{now}] core[i]: got 'bash_install.log'")
+            f.write(f"\n[{now}] core[i]: reading 'bash_install.log'...")
             for l in files:
                 if os.path.exists("/usr/share/Terminator/core/setup/"+l):
                     f.write(f"\n[{now}] core[i]: path exists [ '/usr/share/Terminator/core/setup/{l}' ]")

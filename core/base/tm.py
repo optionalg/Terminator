@@ -11,8 +11,15 @@ from sys import platform
 import socket
 from socket import AF_INET, SOCK_STREAM
 colorama.init()
-os.system('clear')
 user = getpass.getuser()
+try:
+    error_got = ""
+    with open("/usr/share/Terminator/core/logs/logs.log", "r") as error:
+        for line in error:
+            if 'FATAL' in line:
+                error_got = Fore.RED+"[-]"+Fore.RESET+" Got Error In Logs: "+line
+except:
+    pass
 try:
     result = 0
     make = os.listdir('/usr/share/Terminator/modules')
@@ -51,7 +58,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.4"+Fore.LIGHTYELLOW_EX+"#dev"
+version = "1.8.4.1"+Fore.LIGHTYELLOW_EX+"#dev"
 commands = '''
 Global Commands
 ===============
@@ -143,6 +150,13 @@ payload/win/win_reverse_shell                   Windows          yes            
 payload/apk/android_reverse_shell               Android          yes             reverse shell Payload (V.3 - 9)
 '''
 try:
+    if error_got == "":
+        pass
+    else:
+        print(error_got)
+except:
+    pass
+try:
     if os.path.exists("/usr/share/Terminator/lib/db/dbrun.py") and os.path.exists("/usr/share/Terminator/lib/data"):
         database = Fore.GREEN+"OK"+Fore.RESET
     else:
@@ -191,7 +205,7 @@ def banner():
 
 + -- -=[ Terminator Framework             ]
       <[ Database                      {database_run} ]
-      <[ Version                {version} '''+Fore.RESET+f''']
+      <[ Version              {version} '''+Fore.RESET+f''']
       <[ Modules Loaded                 {result} ]
 ''')
 banner()
