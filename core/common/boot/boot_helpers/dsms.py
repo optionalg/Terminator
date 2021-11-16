@@ -231,8 +231,9 @@ def animate():
                 for i in l:
                     a = os.listdir("/usr/share/Terminator/modules/"+i)
                     write_log = open("/usr/share/Terminator/core/logs/logs.log", "a")
-                    write_log.write(f"\n[{timerun}] NOTE: Loading Additional Module {a}")
-                    write_log.close()
+                    for load in a:
+                        write_log.write(f"\n[{timerun}] NOTE: Loading Additional Module {load}")
+                        write_log.close()
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as fail:
                     fail.write(f"\n[{timerun}] FATAL: Unable To Load Modules Database")
