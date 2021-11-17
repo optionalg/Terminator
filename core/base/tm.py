@@ -202,7 +202,7 @@ def banner():
 + -- -=[ Terminator Framework             ]
       <[ Database                      {database_run} ]
       <[ Version              {version} '''+Fore.RESET+f''']
-      <[ Modules Loaded                 {result} ]
+      <[ Modules Loaded                {result} ]
 ''')
 banner()
 print(random.choice(tips))
