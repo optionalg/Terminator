@@ -60,7 +60,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.4.1"+Fore.LIGHTYELLOW_EX+"#dev"
+version = "1.8.4.2"+Fore.LIGHTYELLOW_EX+"#dev"
 commands = '''
 Global Commands
 ===============
@@ -138,11 +138,12 @@ mdls = '''
 1    module/multi/handler                            Handler          yes             Handler For Payloads
 2    module/packet_sniff/http/sniff                  Local            yes             HTTP Packet Sniffer, Pass/Email/Login/Other
 3    module/blueman/bluetooth_dos/l2ping             Local            no              Bluetooth Denial Of Service
-4    module/online_food_delivery/rce/webshell        Web              yes             RCE, WebShell Upload & Connect
-5    module/evolution_cms/rce/login_web              Web              no              RCE Cms, Login & Execute Code
+4    module/online_food_delivery/rce/webshell        Web/RCE          yes             RCE, WebShell Upload & Connect
+5    module/evolution_cms/rce/login_web              Web/RCE          no              RCE Cms, Login & Execute Code
 6    module/citadel_web_kit/cred/log                 Web              yes             Citadel Web kit, Credential Harvester
-7    module/patient_appointment/sys/web              Web              no              RCE, Patient Appointment System
-8    module/rental_unit/storage/shell                Web              no              RCE, Storage Unit Rental Management             
+7    module/patient_appointment/sys/web              Web/RCE          no              RCE, Patient Appointment System
+8    module/rental_unit/storage/shell                Web/RCE          no              RCE, Storage Unit Rental Management             
+9    module/online_learn/rce/shell                   Web/RCE          no              RCE, Online Learning System WebShell    
 '''
 pylds = '''
 Payload Name                                    Type             Verify          Description
@@ -396,8 +397,11 @@ Max Jobs. 1
                         elif tmf[1] == 'module/blueman/bluetooth_dos/l2ping' or tmf[1] == '3':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/other/blueman.py')
+                        elif tmf[1] == 'module/online_learn/rce/shell' or tmf[1] == '9':
+                            time.sleep(0.5)
+                            os.system('python3 /usr/share/Terminator/lib/data/exploits/online.py')
                         else:
-                            print(Fore.RED+'[-]'+Fore.RESET+' Invalid Module: "'+tmf[1]+'"')
+                            print(Fore.RED+'[-]'+Fore.RESET+' Invalid Module Number/Name: "'+tmf[1]+'"')
                     else:
                         time.sleep(0.5)
                         print(Fore.RED+'[-]'+Fore.RESET+' Unable To Load Modules!')
