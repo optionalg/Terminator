@@ -10,7 +10,7 @@ import getpass
 import glob
 from colorama import Fore
 colorama.init()
-time.sleep(2)
+time.sleep(3)
 user=getpass.getuser()
 nowdate=datetime.datetime.now()
 timerun=nowdate.strftime("(%D) - %H:%M:%S")
