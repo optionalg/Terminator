@@ -54,7 +54,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.4.3"+Fore.LIGHTYELLOW_EX+"#dev"
+version = "1.8.4.6"+Fore.LIGHTYELLOW_EX+"#dev"
 commands = '''
 Global Commands
 ===============
@@ -99,7 +99,7 @@ Core Commands
     clear                         Clear terminal window
     clean                         Clean database logs, cache
     banner                        Show banner
-    update                        Update Terminator framework (Dont checks for updates)
+    update                        Update Terminator framework
     show <>                       Show specified command
     use <module>                  Use specified Module
     set <option> <value>          Set specified option to specified value (Module use only)

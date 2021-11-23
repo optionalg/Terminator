@@ -8,7 +8,6 @@ from colorama import Fore
 colorama.init()
 def db():
     url = "https://github.com/G00Dway/Terminator"
-    print(Fore.BLUE+'[*]'+Fore.RESET+' Updating Terminator Framework Database (This will take a while)...')
     try:
         if os.path.exists("/usr/var/tmf-meta-inf/Terminator-old"):
             os.system('rm -rf /usr/var/tmf-meta-inf/Terminator-old > /dev/null 2>&1')
@@ -31,5 +30,15 @@ def db():
         pass
 
 
-db()
+def check():
+    try:
+        if os.path.exists("/usr/share/Terminator/lib/plugins/update/update.sh"):
+            os.system('bash /usr/share/Terminator/lib/plugins/update/update.sh')
+        else:
+            print(Fore.RED+'[-]'+Fore.RESET+' Update Checker File Corrupted Or Removed, Using GIT Clone Method...')
+            db()
+    except:
+        pass
+
+check()
 sys.exit()
