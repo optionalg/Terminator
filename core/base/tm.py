@@ -243,7 +243,7 @@ def main():
                 if os.path.exists("/usr/share/Terminator/lib/plugins/update"):
                     os.system('python3 /usr/share/Terminator/lib/plugins/update/install.py')
                 else:
-                    print(Fore.RED+'[-]'+Fore.RESET+' Update File Was Removed Or Corrupted!')
+                    print(Fore.RED+'[-]'+Fore.RESET+' Update File Was Removed Or Corrupted.')
             except:
                 pass
         elif tmf[0] == 'jobs':
