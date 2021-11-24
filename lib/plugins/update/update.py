@@ -29,3 +29,13 @@ def db():
 
 
 db()
+try:
+    change = []
+    print(Fore.YELLOW+'[+]'+Fore.RESET+' Reading Changelogs...')
+    with open("/usr/share/Terminator/lib/plugins/update/data/changelog", "r") as f:
+        for line in f:
+            change.append(line)
+            print(Fore.GREEN+'Changelog:'+Fore.RESET+f' {line}')
+except:
+    pass
+sys.exit()
