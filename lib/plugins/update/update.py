@@ -4,7 +4,7 @@ import time
 import colorama
 from colorama import Fore
 def db():
-    print(Fore.BLUE+'[*]'+Fore.RESET+' Updating Terminator Framework...')
+    print(Fore.BLUE+'[*]'+Fore.RESET+' Updating To Latest Version...')
     url = "https://github.com/G00Dway/Terminator"
     try:
         if os.path.exists("/usr/var/tmf-meta-inf/Terminator-old"):

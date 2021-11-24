@@ -11,7 +11,7 @@ def check():
         if os.path.exists("/usr/share/Terminator/lib/plugins/update/update.sh"):
             os.system('bash /usr/share/Terminator/lib/plugins/update/update.sh')
         else:
-            print(Fore.RED+'[-]'+Fore.RESET+' Update Checker File Corrupted Or Removed!')
+            print(Fore.RED+'[-]'+Fore.RESET+' Unable To Update, Update File Corrupted Or Removed!')
     except:
         pass
 
