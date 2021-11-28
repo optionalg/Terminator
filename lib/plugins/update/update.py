@@ -2,7 +2,7 @@ import os
 import sys
 import time
 import colorama
-from colorama import Fore
+from colorama import Fore, Style
 def db():
     print(Fore.BLUE+'[*]'+Fore.RESET+' Updating To Latest Version...')
     url = "https://github.com/G00Dway/Terminator"
@@ -35,8 +35,9 @@ try:
     with open("/usr/share/Terminator/lib/plugins/update/data/changelog", "r") as f:
         ch = f.read()
         f.close()
+    time.sleep(0.1)
     print(Fore.YELLOW+'[+]'+Fore.RESET+' Changelog:')
-    print(ch)
+    print(Style.BRIGHT, ch, Style.RESET_ALL)
 except:
     pass
 sys.exit()
