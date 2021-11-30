@@ -35,9 +35,9 @@ try:
     with open("/usr/share/Terminator/lib/plugins/update/data/changelog", "r") as f:
         ch = f.read()
         f.close()
-    time.sleep(0.2)
+    time.sleep(0.1)
     print(Fore.YELLOW+'[+]'+Fore.RESET+' Changelog:')
-    print(Style.BRIGHT, ch, Style.RESET_ALL)
+    print(Style.BRIGHT+''+ch, Style.RESET_ALL)
 except:
     pass
 sys.exit()
