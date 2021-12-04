@@ -4,13 +4,15 @@ import subprocess
 import random
 import sys
 import colorama
-from colorama import Fore, Style
+from colorama import Fore, Style, Back
 import getpass
 import future
 from sys import platform
 import socket
 from socket import AF_INET, SOCK_STREAM
 colorama.init()
+module_name = ""
+payload_name = ""
 user = getpass.getuser()
 try:
     print('')
@@ -54,7 +56,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.4.7"+Fore.LIGHTYELLOW_EX+"#dev"
+version = "1.8.5.1"+Fore.LIGHTYELLOW_EX+"#dev"
 commands = '''
 Global Commands
 ===============
@@ -80,6 +82,14 @@ Show Commands
     show modules                  Show all available Modules
     show payloads                 Show all available Payloads
     show logs                     Show database activity (Logs)
+
+Search Commands
+===============
+    
+    Command                       Description
+    -------                       -----------
+    search module <name>          Search a module by name
+    search payload <name>         Search a payload by name
 
 Job Commands
 ============
@@ -146,6 +156,41 @@ payload/poc/redragon_mouse/wr                   Windows          no             
 payload/win/win_reverse_shell                   Windows          yes             reverse shell Payload (win32, win64)
 payload/apk/android_reverse_shell               Android          yes             reverse shell Payload (V.3 - 9)
 '''
+def search(type, name):
+    count = 0
+    modules_list = '''
+#    Module Name                                     Type             Verify          Description
+-    ------------                                    -----            -------         ------------
+'''
+    payloads = '''
+Payload Name                                    Type             Verify          Description
+-------------                                   -----            -------         ------------
+'''
+    try:
+        if type == 'module':
+            for line in mdls.split('\n'):
+                if name in line:
+                    count+=1
+                    modules_list+=line+'\n'
+            print(modules_list)
+            if count == 0:
+                print(Fore.RED+'[-]'+Fore.RESET+' No Results Found.')
+            else:
+                print(Fore.BLUE+'[*]'+Fore.RESET+f' Found {count} Results')
+        elif type == 'payload':
+            for line2 in pylds.split('\n'):
+                if name in line2:
+                    count+=1
+                    payloads+=line2+'\n'
+            print(payloads)
+            if count == 0:
+                print(Fore.RED+'[-]'+Fore.RESET+' No Results Found.')
+            else:
+                print(Fore.BLUE+'[*]'+Fore.RESET+f' Found {count} Results')
+        else:
+            pass
+    except:
+        pass
 try:
     if os.path.exists("/usr/share/Terminator/lib/db/dbrun.py") and os.path.exists("/usr/share/Terminator/lib/data"):
         database = Fore.GREEN+"OK"+Fore.RESET
@@ -338,6 +383,28 @@ Max Jobs. 1
                             pass
                     else:
                         print(Fore.RED+'[-]'+Fore.RESET+' Invalid Number: "'+tmf[1]+'"')
+                except:
+                    pass
+        elif tmf[0] == 'search':
+            if len(tmf) < 3:
+                print(Fore.RED+'[-]'+Fore.RESET+' Usage: search <type> <name>')
+                print(Fore.RED+'[-]'+Fore.RESET+' Valid Types: ("module", "payload")')
+            else:
+                try:
+                    if tmf[1] == 'module':
+                        if tmf[2] == '':
+                            print(Fore.RED+'[-]'+Fore.RESET+' Please Enter a Module Name!')
+                        else:
+                            module_name = tmf[2]
+                            search('module', module_name)
+                    elif tmf[1] == 'payload':
+                        if tmf[2] == '':
+                            print(Fore.RED+'[-]'+Fore.RESET+' Please Enter a Payload Name!')
+                        else:
+                            payload_name = tmf[2]
+                            search('payload', payload_name)
+                    else:
+                        print(Fore.RED+'[-]'+Fore.RESET+' Valid Types: ("module", "payload")')
                 except:
                     pass
         elif tmf[0] == 'show':
