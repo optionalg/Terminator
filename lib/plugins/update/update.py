@@ -4,7 +4,7 @@ import time
 import colorama
 from colorama import Fore, Style
 def db():
-    print(Fore.BLUE+'[*]'+Fore.RESET+' Updating To Latest Version...')
+    print(Fore.BLUE+'[*]'+Fore.RESET+' Downloading Update...')
     url = "https://github.com/G00Dway/Terminator"
     try:
         if os.path.exists("/usr/var/tmf-meta-inf/Terminator-old"):
@@ -14,6 +14,7 @@ def db():
         if os.path.exists("/usr/share/Terminator"):
             os.system('mv /usr/share/Terminator /usr/var/tmf-meta-inf/Terminator-old > /dev/null 2>&1')
             os.system("git clone "+url+" /usr/share/Terminator > /dev/null 2>&1")
+            print(Fore.BLUE+'[*]'+Fore.RESET+' Installing Update...')
             if os.path.exists("/usr/share/Terminator"):
                 os.system('rm -rf /usr/bin/tmconsole > /dev/null 2>&1')
                 os.system('chmod +x /usr/share/Terminator/bin/tmconsole/tmconsole > /dev/null 2>&1')
@@ -29,15 +30,4 @@ def db():
 
 
 db()
-try:
-    change = []
-    print(Fore.YELLOW+'[+]'+Fore.RESET+' Reading Changelogs...')
-    with open("/usr/share/Terminator/lib/plugins/update/data/changelog", "r") as f:
-        ch = f.read()
-        f.close()
-    time.sleep(0.1)
-    print(Fore.YELLOW+'[+]'+Fore.RESET+' Changelog:')
-    print(Style.BRIGHT+''+ch, Style.RESET_ALL)
-except:
-    pass
 sys.exit()

@@ -1,8 +1,5 @@
 import os
-import time
-import subprocess
 import sys
-import getpass
 import colorama
 from colorama import Fore
 colorama.init()
