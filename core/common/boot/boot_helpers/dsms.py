@@ -7,13 +7,62 @@ import subprocess
 import future
 import datetime
 import getpass
-import glob
 from colorama import Fore
 colorama.init()
 time.sleep(3)
 user=getpass.getuser()
 nowdate=datetime.datetime.now()
 timerun=nowdate.strftime("(%D) - %H:%M:%S")
+args = []
+auto_upd = False
+clean_db = False
+def add_args():
+    try:
+        base = ["auto_update_check", "clean_database_startup"]
+        if os.path.exists("/usr/share/Terminator/core/base/extra/settings.ini"):
+            with open("/usr/share/Terminator/core/base/extra/settings.ini", "r") as settings:
+                for setting in settings:
+                    if "auto_update_check" in setting:
+                        if "True" in setting:
+                            global auto_upd
+                            auto_upd = True
+                        else:
+                            pass
+                    if "clean_database_startup" in setting:
+                        if "True" in setting:
+                            global clean_db
+                            clean_db = True
+                        else:
+                            pass
+                    else:
+                        with open("/usr/share/Terminator/core/logs/logs.log", "a") as warning:
+                            warning.write(f'\n[{timerun}] WARNING: Unknown Settings Detected In "settings.ini"')
+                            warning.close()
+        else:
+            pass
+
+    except:
+        pass
+def console():
+    if auto_upd == True:
+        try:
+            if os.path.exists("/usr/share/Terminator/lib/plugins/update/update.sh"):
+                os.system('bash /usr/share/Terminator/lib/plugins/update/update.sh > /usr/share/Terminator/core/logs/auto_update.log')
+            else:
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as update:
+                    update.write(f"\n[{timerun}] FATAL: Unable To Start Update File, Update File Corrupted Or Removed!")
+                    update.close()
+        except:
+            pass
+    if clean_db == True:
+        try:
+            if os.path.exists("/usr/share/Terminator/core/base/extra/scripts/cln.py"):
+                os.system('python3 /usr/share/Terminator/core/base/extra/scripts/cln.py')
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as clean:
+                    clean.write(f"\n[{timerun}] INFO: Database Successfully Cleaned")
+                    clean.close()
+        except:
+            pass
 try:
     if user == "root":
         root = True
@@ -73,6 +122,8 @@ try:
         pass
 except:
     pass
+add_args()
+console()
 done = 'false'
 def animate():
     while done == 'false':

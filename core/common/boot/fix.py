@@ -11,7 +11,6 @@ class Info:
     tmconsole_location = "/usr/bin/tmconsole"
     setup = "setup.sh"
     remove = "uninstall.sh", "bin.sh"
-    desktop_location = "/usr/share/applications"
 
 class Dir:
     home = "/home/"
@@ -26,4 +25,4 @@ class Systems:
     parrot = "Parrot OS" # Available, Tested
     windows = "win32", "win64" # Not Supported
     linux = "Linux", "Linux2" # Available, Not Tested
-    wifislax = "WifiSlax" # Not Supported
+    wifislax = "WifiSlax" # Available, Not Tested
