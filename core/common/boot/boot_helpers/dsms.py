@@ -34,10 +34,6 @@ def add_args():
                             clean_db = True
                         else:
                             pass
-                    else:
-                        with open("/usr/share/Terminator/core/logs/logs.log", "a") as warning:
-                            warning.write(f'\n[{timerun}] WARNING: Unknown Settings Detected In "settings.ini"')
-                            warning.close()
         else:
             pass
 
@@ -47,6 +43,9 @@ def console():
     if auto_upd == True:
         try:
             if os.path.exists("/usr/share/Terminator/lib/plugins/update/update.sh"):
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as update:
+                    update.write(f'\n[{timerun}] INFO: Wrote Update Result As "/usr/share/Terminator/core/logs/auto_update.log"')
+                    update.close()
                 os.system('bash /usr/share/Terminator/lib/plugins/update/update.sh > /usr/share/Terminator/core/logs/auto_update.log')
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as update:
@@ -60,6 +59,10 @@ def console():
                 os.system('python3 /usr/share/Terminator/core/base/extra/scripts/cln.py')
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as clean:
                     clean.write(f"\n[{timerun}] INFO: Database Successfully Cleaned")
+                    clean.close()
+            else:
+                with open("/usr/share/Terminator/core/logs/logs.log", "a") as clean:
+                    clean.write(f"\n[{timerun}] FATAL: Unable To Start Cleaner And Clean Database!")
                     clean.close()
         except:
             pass
