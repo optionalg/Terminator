@@ -22,7 +22,7 @@ try:
                     print(Fore.BLUE+'[*]'+Fore.RESET+' First Run Detected.')
                     print(Fore.BLUE+'[*]'+Fore.RESET+' Removing UnNeeded Temporary Files...')
                     if os.path.exists("/usr/share/Terminator/core/base/extra/scripts/cln.py"):
-                        os.system('python3 /usr/share/Terminator/core/base/extra/scripts/cln.py')
+                        pass
                     else:
                         print(Fore.RED+'[-]'+Fore.RESET+' Unable To Remove Temporary Files, Passing...')
 except:
