@@ -95,6 +95,7 @@ def check():
         os.system('touch /usr/share/Terminator/core/setup/first_setup.txt > /dev/null 2>&1')
         print('\n'+Fore.BLUE+'[*]'+Fore.RESET+' Finishing Setup...')
         os.system('python3 /usr/share/Terminator/core/setup/firstrun.py')
+        os.system('python3 /usr/share/Terminator/core/setup/console.py')
         time.sleep(0.5)
         print('\n')
         print(f'Finished At [{now}]')
