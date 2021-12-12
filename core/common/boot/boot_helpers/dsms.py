@@ -16,6 +16,14 @@ timerun=nowdate.strftime("(%D) - %H:%M:%S")
 args = []
 auto_upd = False
 clean_db = False
+try:
+    if os.path.exists("/usr/share/Terminator/core/setup/use.log"):
+        os.system('python3 /usr/share/Terminator/core/components/firstrun.py')
+        os.system('rm -rf /usr/share/Terminator/core/setup/use.log > /dev/null 2>&1')
+    else:
+        pass
+except:
+    pass
 def add_args():
     try:
         base = ["auto_update_check", "clean_database_startup"]
