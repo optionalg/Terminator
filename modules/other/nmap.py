@@ -1,50 +1,32 @@
 from __future__ import print_function
 import optparse
+import socket
+import concurrent.futures
 from socket import *
+import sys
 from threading import *
+import threading
 import colorama
 from colorama import Fore
-screenLock = Semaphore(value=1)
-def connScan(tgtHost, tgtPort):
+if len(sys.argv) < 2:
+    sys.exit()
+
+
+ip = sys.argv[1]
+print(Fore.BLUE+'[*]'+Fore.RESET+f' Scanning {ip}')
+
+print_lock = threading.Lock()
+def scan(ip, port):
+    scanner = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    scanner.settimeout(1)
     try:
-        connSkt = socket(AF_INET, SOCK_STREAM)
-        connSkt.connect((tgtHost, tgtPort))
-        connSkt.send("ip")
-        results = connSkt.recv(1024)
-        screenLock.acquire()
-        print(Fore.YELLOW+"[+]"+Fore.RESET+" %d/TCP Open" % (tgtPort))
-        print(Fore.YELLOW+"[+]"+Fore.RESET+"" + str(results))
+        scanner.connect((ip, port))
+        scanner.close()
+        with print_lock:
+            print(Fore.YELLOW+'[+]'+Fore.RESET+f' {ip}: Port {port} Opened')
     except:
-        screenLock.acquire()
-        print(Fore.RED+"[-]"+Fore.RESET+" %d/TCP Closed" % tgtPort)
-    finally:
-        screenLock.release()
-        connSkt.close()
-def portScan(tgtHost, tgtPorts):
-    try:
-        tgtIP = gethostbyname(tgtHost)
-    except:
-        print(Fore.RED+"[-]"+Fore.RESET+" Cannot Resolve '%s': Unknown Host" % tgtHost)
-        return
-    try:
-        tgtName = gethostbyaddr(tgtIP)
-        print(Fore.YELLOW+"[+]"+Fore.RESET+" Scan Results For: " + tgtName[0])
-    except:
-        print(Fore.YELLOW+"[+]"+Fore.RESET+" Scan Results For: " + tgtIP)
-    setdefaulttimeout(1)
-    for tgtPort in tgtPorts:
-       t = Thread(target=connScan, args=(tgtHost, int(tgtPort.strip())))
-       t.start()
-def main():
-    parser = optparse.OptionParser(('usage %prog -H <target host> -p <target port(s) separated by space>'))
-    parser.add_option("-H", dest="tgtHost", type="string", help="specify target host")
-    parser.add_option("-p", dest="tgtPort", type="string", help="specify target port(s) separated by space")
-    (options, args) = parser.parse_args()
-    tgtHost = str(options.tgtHost).strip()
-    tgtPorts = [s.strip() for s in str(options.tgtPort).split(',')]
-    if (tgtHost == None) | (tgtPorts[0] == None):
-        print(parser.usage)
-        exit(0)
-    portScan(tgtHost, tgtPorts)
-if __name__ == "__main__":
-    main()
+        pass
+
+with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
+    for port in range(1000):
+        executor.submit(scan, ip, port + 1)
