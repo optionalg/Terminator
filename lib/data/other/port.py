@@ -55,10 +55,10 @@ while True:
                     print('''
 Module ('''+Fore.RED+'''port_scan/local/scan'''+Fore.RESET+''') Options:
 
-      Option          Rank              Description                        Current Value
-      --------        ------            -------------                      ---------------
-      IP_ADDR         Required          IP Address Of Device               '''+IP_ADDR+'''
-      PORT_RANGE      Required          Port Range (E.g <int>-<int>)       '''+PORT_RANGE+'''
+      Option          Rank              Description                                  Current Value
+      --------        ------            -------------                                ---------------
+      IP_ADDR         Required          IP Address Of Device                         '''+IP_ADDR+'''
+      PORT_RANGE      Required          Target Port(s) (Seperated by Space)          '''+PORT_RANGE+'''
 
 Module About:
 
@@ -95,7 +95,7 @@ Module Details:
             print(Fore.RED+'[-]'+Fore.RESET+' Please Set Options First!')
         else:
             try:
-                os.system('python3 /usr/share/Terminator/modules/other/nmap.py '+IP_ADDR+' '+PORT_RANGE)
+                os.system('python3 /usr/share/Terminator/modules/other/nmap.py -H '+IP_ADDR+' -p '+PORT_RANGE)
                 print(Fore.BLUE+'[*]'+Fore.RESET+' Module Execution Completed.')
             except Exception:
                 pass
