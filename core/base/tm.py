@@ -56,7 +56,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.5.4"+Fore.LIGHTYELLOW_EX+"#dev"
+version = "1.8.5.5"+Fore.LIGHTYELLOW_EX+"#dev"
 commands = '''
 Global Commands
 ===============
@@ -148,6 +148,7 @@ mdls = '''
 7    module/patient_appointment/sys/web              Web/RCE          no              RCE, Uploads Specified Payload And Executes Command
 8    module/rental_unit/storage/shell                Web/RCE          no              RCE, Uploads WebShell And Opens Reverse TCP Handler        
 9    module/online_learn/rce/shell                   Web/RCE          no              RCE, BruteForces WebShell, If Found Uploads WebShell And Executes Command  
+10   module/port_scan/local/scan                     Local            yes             Port Scanner, Scans For Opened-Closed Ports In Target Device
 '''
 pylds = '''
 Payload Name                                    Type             Verify          Description
@@ -461,6 +462,9 @@ Max Jobs. 1
                         elif tmf[1] == 'module/online_learn/rce/shell' or tmf[1] == '9':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/exploits/online.py')
+                        elif tmf[1] == 'module/port_scan/local/scan' or tmf[1] == '10':
+                            time.sleep(0.5)
+                            os.system('python3 /usr/share/Terminator/lib/data/other/port.py')
                         else:
                             print(Fore.RED+'[-]'+Fore.RESET+' Invalid Module Number/Name: "'+tmf[1]+'"')
                     else:

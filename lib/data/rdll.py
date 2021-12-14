@@ -1,1 +1,1 @@
-from lib.plugins.plugin import *
+from core.base.tm import *
