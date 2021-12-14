@@ -1,43 +1,50 @@
-import nmap
-import re
-import sys
+from __future__ import print_function
+import optparse
+from socket import *
+from threading import *
 import colorama
 from colorama import Fore
-import os
-colorama.init()
-if len(sys.argv) < 3:
-    sys.exit()
-
-ip_add_entered = sys.argv[1]
-port_range = sys.argv[2]
-
-
-ip_add_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$")
-
-port_range_pattern = re.compile("([0-9]+)-([0-9]+)")
-
-port_min = 0
-port_max = 65535
-open_ports = []
-while True:
-    if ip_add_pattern.search(ip_add_entered):
-        print(Fore.BLUE+"[*]"+Fore.RESET+f" {ip_add_entered} Is a Valid IP Address")
-        break
-
-while True:
-    port_range_valid = port_range_pattern.search(port_range.replace(" ",""))
-    if port_range_valid:
-        port_min = int(port_range_valid.group(1))
-        port_max = int(port_range_valid.group(2))
-        break
-
-nm = nmap.PortScanner()
-print(Fore.YELLOW+'[+]'+Fore.RESET+f' Scanning {ip_add_entered}')
-for port in range(port_min, port_max + 1):
+screenLock = Semaphore(value=1)
+def connScan(tgtHost, tgtPort):
     try:
-        result = nm.scan(ip_add_entered, str(port))
-        port_status = (result['scan'][ip_add_entered]['tcp'][port]['state'])
-        print(Fore.BLUE+"[*]"+Fore.RESET+f" {ip_add_entered}: Port {port} Is {port_status}")
+        connSkt = socket(AF_INET, SOCK_STREAM)
+        connSkt.connect((tgtHost, tgtPort))
+        connSkt.send("ip")
+        results = connSkt.recv(1024)
+        screenLock.acquire()
+        print(Fore.YELLOW+"[+]"+Fore.RESET+" %d/TCP Open" % (tgtPort))
+        print(Fore.YELLOW+"[+]"+Fore.RESET+"" + str(results))
     except:
-        print(Fore.RED+"[-]"+Fore.RESET+f" {ip_add_entered}: Cannot Scan Port {port}.")
-        
+        screenLock.acquire()
+        print(Fore.RED+"[-]"+Fore.RESET+" %d/TCP Closed" % tgtPort)
+    finally:
+        screenLock.release()
+        connSkt.close()
+def portScan(tgtHost, tgtPorts):
+    try:
+        tgtIP = gethostbyname(tgtHost)
+    except:
+        print(Fore.RED+"[-]"+Fore.RESET+" Cannot Resolve '%s': Unknown Host" % tgtHost)
+        return
+    try:
+        tgtName = gethostbyaddr(tgtIP)
+        print(Fore.YELLOW+"[+]"+Fore.RESET+" Scan Results For: " + tgtName[0])
+    except:
+        print(Fore.YELLOW+"[+]"+Fore.RESET+" Scan Results For: " + tgtIP)
+    setdefaulttimeout(1)
+    for tgtPort in tgtPorts:
+       t = Thread(target=connScan, args=(tgtHost, int(tgtPort.strip())))
+       t.start()
+def main():
+    parser = optparse.OptionParser(('usage %prog -H <target host> -p <target port(s) separated by space>'))
+    parser.add_option("-H", dest="tgtHost", type="string", help="specify target host")
+    parser.add_option("-p", dest="tgtPort", type="string", help="specify target port(s) separated by space")
+    (options, args) = parser.parse_args()
+    tgtHost = str(options.tgtHost).strip()
+    tgtPorts = [s.strip() for s in str(options.tgtPort).split(',')]
+    if (tgtHost == None) | (tgtPorts[0] == None):
+        print(parser.usage)
+        exit(0)
+    portScan(tgtHost, tgtPorts)
+if __name__ == "__main__":
+    main()
