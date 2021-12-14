@@ -1,32 +1,37 @@
-from __future__ import print_function
-import optparse
 import socket
-import concurrent.futures
-from socket import *
-import sys
-from threading import *
+import os
 import threading
+import sys
+import datetime
 import colorama
 from colorama import Fore
 if len(sys.argv) < 2:
     sys.exit()
 
+target = sys.argv[1]
+time = datetime.datetime.now()
+now = time.strftime("%H:%M:%S")
 
-ip = sys.argv[1]
-print(Fore.BLUE+'[*]'+Fore.RESET+f' Scanning {ip}')
+print(Fore.BLUE+'[*]'+Fore.RESET+' Scanning Device: '+target)
+print(Fore.BLUE+'[*]'+Fore.RESET+' Started At: '+now)
 
-print_lock = threading.Lock()
-def scan(ip, port):
-    scanner = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    scanner.settimeout(1)
+ports = []
+
+def scan(port):
+    connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    socket.setdefaulttimeout(1)
     try:
-        scanner.connect((ip, port))
-        scanner.close()
-        with print_lock:
-            print(Fore.YELLOW+'[+]'+Fore.RESET+f' {ip}: Port {port} Opened')
-    except:
+        connection.connect(target, port)
+        connection.close()
+        print(Fore.YELLOW+'[+]'+Fore.RESET+f' {target}: Port {port} Is Open')
+        ports.append(port)
+    except Exception:
         pass
 
-with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
-    for port in range(1000):
-        executor.submit(scan, ip, port + 1)
+scanned = 1
+for port in range(1, 65500):
+    thread = threading.Thread(target=scan, kwargs={'port':scanned})
+    scanned += 1
+    thread.start()
+
+print(Fore.BLUE+'[*]'+Fore.RESET+f' {scanned} Ports Were Scanned.')
