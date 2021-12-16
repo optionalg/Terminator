@@ -6,6 +6,7 @@ import subprocess
 from colorama import Fore
 colorama.init()
 IP_ADDR=""
+PORT_RANGE=""
 shw = '''
 Module Commands For "show"
 ==========================
@@ -54,9 +55,10 @@ while True:
                     print('''
 Module ('''+Fore.RED+'''port_scan/local/scan'''+Fore.RESET+''') Options:
 
-      Option          Rank              Description                                  Current Value
-      --------        ------            -------------                                ---------------
-      IP_ADDR         Required          IP Address Of Device                         '''+IP_ADDR+'''
+      Option          Rank              Description                                Current Value
+      --------        ------            -------------                              ---------------
+      IP_ADDR         Required          IP Address Of Device                       '''+IP_ADDR+'''
+      PORT_RANGE      Required          Port Range (E.g <int>-<int>)               '''+PORT_RANGE+'''
 
 Module About:
 
@@ -81,16 +83,19 @@ Module Details:
                 if tmf[1] == 'IP_ADDR' or tmf[1] == 'ip_addr':
                     IP_ADDR=tmf[2]
                     print(Fore.BLUE+'[*]'+Fore.RESET+' IP_ADDR ==> '+IP_ADDR)
+                elif tmf[1] == 'PORT_RANGE' or tmf[1] == 'port_range':
+                    PORT_RANGE=tmf[2]
+                    print(Fore.YELLOW+'[+]'+Fore.RESET+' PORT_RANGE ==> '+PORT_RANGE)
                 else:
                     print(Fore.RED+'[-]'+Fore.RESET+' Please Specify a Valid Option!')
             except:
                 pass
     elif tmf[0] == 'run':
-        if IP_ADDR == "":
+        if IP_ADDR == "" or PORT_RANGE == "":
             print(Fore.RED+'[-]'+Fore.RESET+' Please Set Options First!')
         else:
             try:
-                os.system('python3 /usr/share/Terminator/modules/other/nmap.py '+IP_ADDR)
+                os.system('python3 /usr/share/Terminator/modules/other/nmap.py '+IP_ADDR+' '+PORT_RANGE)
                 print(Fore.BLUE+'[*]'+Fore.RESET+' Module Execution Completed.')
             except Exception:
                 pass
