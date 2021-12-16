@@ -85,7 +85,7 @@ Module Details:
                     print(Fore.BLUE+'[*]'+Fore.RESET+' IP_ADDR ==> '+IP_ADDR)
                 elif tmf[1] == 'PORT_RANGE' or tmf[1] == 'port_range':
                     PORT_RANGE=tmf[2]
-                    print(Fore.YELLOW+'[+]'+Fore.RESET+' PORT_RANGE ==> '+PORT_RANGE)
+                    print(Fore.BLUE+'[*]'+Fore.RESET+' PORT_RANGE ==> '+PORT_RANGE)
                 else:
                     print(Fore.RED+'[-]'+Fore.RESET+' Please Specify a Valid Option!')
             except:
