@@ -1,37 +1,45 @@
 import socket
-import os
-import threading
+import ipaddress
+import re
 import sys
-import datetime
 import colorama
 from colorama import Fore
-if len(sys.argv) < 2:
+if len(sys.argv) < 3:
     sys.exit()
 
-target = sys.argv[1]
-time = datetime.datetime.now()
-now = time.strftime("%H:%M:%S")
+ip_add_entered = sys.argv[1]
+port_range = sys.argv[2]
 
-print(Fore.BLUE+'[*]'+Fore.RESET+' Scanning Device: '+target)
-print(Fore.BLUE+'[*]'+Fore.RESET+' Started At: '+now)
+port_range_pattern = re.compile("([0-9]+)-([0-9]+)")
 
-ports = []
-
-def scan(port):
-    connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    socket.setdefaulttimeout(1)
+port_min = 0
+port_max = 65535
+open_ports = []
+while True:
     try:
-        connection.connect(target, port)
-        connection.close()
-        print(Fore.YELLOW+'[+]'+Fore.RESET+f' {target}: Port {port} Is Open')
-        ports.append(port)
-    except Exception:
+        ip_address_obj = ipaddress.ip_address(ip_add_entered)
+        print(Fore.YELLOW+"[+]"+Fore.RESET+" You Entered a Valid IP Address.")
+        break
+    except:
+        print(Fore.RED+"[-]"+Fore.RESET+" You Entered An Invalid IP Address")
+    
+
+while True:
+    port_range_valid = port_range_pattern.search(port_range.replace(" ",""))
+    if port_range_valid:
+        port_min = int(port_range_valid.group(1))
+        port_max = int(port_range_valid.group(2))
+        break
+
+for port in range(port_min, port_max + 1):
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.settimeout(0.5)
+            s.connect((ip_add_entered, port))
+            open_ports.append(port)
+
+    except:
         pass
 
-scanned = 1
-for port in range(1, 65500):
-    thread = threading.Thread(target=scan, kwargs={'port':scanned})
-    scanned += 1
-    thread.start()
-
-print(Fore.BLUE+'[*]'+Fore.RESET+f' {scanned} Ports Were Scanned.')
+for port in open_ports:
+    print(Fore.BLUE+'[*]'+Fore.RESET+f' {ip_add_entered}: Port {port} Is Open.')
