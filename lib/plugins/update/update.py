@@ -16,6 +16,7 @@ def db():
             os.system("git clone "+url+" /usr/share/Terminator > /dev/null 2>&1")
             print(Fore.BLUE+'[*]'+Fore.RESET+' Installing Update...')
             if os.path.exists("/usr/share/Terminator"):
+                os.mkdir('/usr/share/Terminator/core/logs')
                 os.system('python3 /usr/share/Terminator/lib/plugins/meta/extractor.py')
             else:
                 print(Fore.RED+'[-]'+Fore.RESET+' Update Failed, Using Old Database Instead New')
