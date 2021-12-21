@@ -16,10 +16,7 @@ def db():
             os.system("git clone "+url+" /usr/share/Terminator > /dev/null 2>&1")
             print(Fore.BLUE+'[*]'+Fore.RESET+' Installing Update...')
             if os.path.exists("/usr/share/Terminator"):
-                os.system('rm -rf /usr/bin/tmconsole > /dev/null 2>&1')
-                os.system('chmod +x /usr/share/Terminator/bin/tmconsole/tmconsole > /dev/null 2>&1')
-                os.system('cp -r /usr/share/Terminator/bin/tmconsole/tmconsole /usr/bin > /dev/null 2>&1')
-                os.system('python3 /usr/share/Terminator/bin/version/ver.py')
+                os.system('python3 /usr/share/Terminator/lib/plugins/meta/extractor.py')
             else:
                 print(Fore.RED+'[-]'+Fore.RESET+' Update Failed, Using Old Database Instead New')
                 os.system('mv /usr/var/tmf-meta-inf/Terminator-old /usr/share/Terminator > /dev/null 2>&1')

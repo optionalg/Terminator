@@ -6,60 +6,37 @@ import random
 import string
 import time
 colorama.init()
-url = "https://www.exploit-db.com/download/50420"
-url2 = "https://www.exploit-db.com/download/50382"
-url3 = "https://www.exploit-db.com/download/50379"
-try:
-    if os.path.exists("/usr/share/Terminator/bin/version/plugin-cache"):
-        plugins = True
-    else:
-        os.mkdir("/usr/share/Terminator/bin/version/plugin-cache")
-except:
-    pass
-def check():
-    url1_cache = "50420.pl"
-    url2_cache = "50382.pl"
-    url3_cache = "50379.pl"
+def extr():
     try:
-        if os.path.exists("/usr/share/Terminator/bin/version/plugin-cache/"+url1_cache):
-            good = True
-        else:
-            os.system('wget '+url+' -O /usr/share/Terminator/bin/version/plugin-cache/'+url1_cache+' > /dev/null 2>&1')
-        if os.path.exists("/usr/share/Terminator/bin/version/plugin-cache/"+url2_cache):
-            good1 = True
-        else:
-            os.system('wget '+url2+' -O /usr/share/Terminator/bin/version/plugin-cache/'+url2_cache+' > /dev/null 2>&1')
-        if os.path.exists("/usr/share/Terminator/bin/version/plugin-cache/"+url3_cache):
-            good2 = True
-        else:
-            os.system('wget '+url3+' -O /usr/share/Terminator/bin/version/plugin-cache/'+url3_cache+' > /dev/null 2>&1')
-        try:
-            if good == True and good1 == True and good2 == True:
-                time.sleep(0.6)
-                print(Fore.YELLOW+'[+]'+Fore.RESET+' All Good...')
-                time.sleep(0.1)
-                print(Fore.BLUE+'[*]'+Fore.RESET+' PreConfiguring Database...')
-                try:
-                    if os.path.exists("/usr/var/tmf-meta-inf"):
-                        os.system('rm -rf /usr/var/tmf-meta-inf > /dev/null 2>&1')
-                        os.mkdir("/usr/var/tmf-meta-inf")
-                        os.mkdir("/usr/var/tmf-meta-inf/lib")
-                        os.mkdir("/usr/var/tmf-meta-inf/db")
-                        os.mkdir("/usr/var/tmf-meta-inf/data")
-                    else:
-                        os.mkdir("/usr/var/tmf-meta-inf")
-                        os.mkdir("/usr/var/tmf-meta-inf/lib")
-                        os.mkdir("/usr/var/tmf-meta-inf/db")
-                        os.mkdir("/usr/var/tmf-meta-inf/data")
-                except:
-                    pass
-                time.sleep(0.1)
-                sys.exit()
-            else:
-                sys.exit()
-        except:
-            pass
+        os.system('mv /usr/bin/tmconsole /usr/share/Terminator/core/logs/cache_meta > /dev/null 2>&1')
+        os.system('chmod +x /usr/share/Terminator/bin/tmconsole/tmconsole > /dev/null 2>&1')
+        os.system('cp -r /usr/share/Terminator/bin/tmconsole/tmconsole /usr/bin > /dev/null 2>&1')
+        os.system('python3 /usr/share/Terminator/bin/version/ver.py')
     except:
         pass
 
-check()
+
+def install():
+    try:
+        if os.path.exists("/usr/share/Terminator"):
+            if os.path.exists("/usr/share/Terminator/core/logs/meta"):
+                if os.path.exists('/usr/share/Terminator/core/logs/meta/Terminator.zip'):
+                    os.system('rm -rf /usr/share/Terminator/core/logs/meta/Terminator.zip > /dev/null 2>&1')
+                    install()
+                else:
+                    os.system('cp -r /usr/share/Terminator /usr/share/Terminator/core/logs/meta > /dev/null 2>&1')
+                    os.system('mv /usr/share/Terminator/core/logs/meta/Terminator /usr/share/Terminator/core/logs/meta/Terminator.zip > /dev/null 2>&1')
+            else:
+                os.mkdir('/usr/share/Terminator/core/logs/meta')
+                install()
+        if os.path.exists("/usr/share/Terminator/core/logs/cache_meta"):
+            os.system('rm -rf /usr/share/Terminator/core/logs/cache_meta')
+            os.mkdir('/usr/share/Terminator/core/logs/cache_meta')
+            extr()
+        else:
+            os.mkdir('/usr/share/Terminator/core/logs/cache_meta')
+            extr()
+    except:
+        pass
+
+sys.exit()
