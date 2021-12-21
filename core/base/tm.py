@@ -56,7 +56,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.5.5"+Fore.LIGHTYELLOW_EX+"#dev"
+version = "1.8.5.6"+Fore.LIGHTBLACK_EX+"#stable"
 commands = '''
 Global Commands
 ===============
@@ -241,7 +241,7 @@ def banner():
 
 + -- -=[ Terminator Framework             ]
       <[ Database                      {database_run} ]
-      <[ Version              {version} '''+Fore.RESET+f''']
+      <[ Version          {version} '''+Fore.RESET+f''']
       <[ Modules Loaded                {result} ]
 ''')
 banner()
