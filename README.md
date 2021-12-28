@@ -6,7 +6,7 @@
 * With Terminator Framework You Can Test Your Devices For Any RCE Vulnerabilities!
 - - - - - - - - - - - - -  - - - - - - --  - -- - - - - - - - - - - - - -- - -   - - - -
 * Author: G00Dway
-* Organization: FUD-Sec
+* Organization: HackNET-Azerbaijan
 # Installaton:
 - Read <a href="https://github.com/G00Dway/Terminator/wiki/Installation">Installation</a> For How To Install Terminator!
 # Disclaimer!
