@@ -39,4 +39,5 @@ def install():
     except:
         pass
 
+install()
 sys.exit()
