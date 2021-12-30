@@ -5,6 +5,7 @@ import sys
 import subprocess
 from colorama import Fore
 colorama.init()
+VER="2.1"
 PAYLOAD="payload/win/win_reverse_shell"
 LHOST=""
 LPORT=""
@@ -29,6 +30,13 @@ Module Commands For "show"
       show options                     Show options of the Handler
       show payloads                    Show payloads available for Handler
 
+Search Commands
+===============
+
+      Command                          Description
+      -------                          -----------
+      search <name>                    Search for a payload by name
+
 Module Commands
 ===============
 
@@ -45,6 +53,25 @@ payload/poc/redragon_mouse/wr                   Windows          no             
 payload/win/win_reverse_shell                   Windows          yes             reverse shell Payload (win32, win64)
 payload/apk/android_reverse_shell               Android          yes             reverse shell Payload (V.3 - 9)
 '''
+def search(name):
+    count = 0
+    payloads = '''
+Payload Name                                    Type             Verify          Description
+-------------                                   -----            -------         ------------
+'''
+    try:
+        for line2 in pylds.split('\n'):
+            if name in line2:
+                count+=1
+                payloads+=line2+'\n'
+        print(payloads)
+        if count == 0:
+            print(Fore.RED+'[-]'+Fore.RESET+' No Results Found.')
+        else:
+            print(Fore.BLUE+'[*]'+Fore.RESET+f' Found {count} Results')
+    except:
+        pass
+
 try:
     tmf = input('\033[4mtmf\033[0m-('+Fore.RED+'multi/handler'+Fore.RESET+') > ').strip(" ")
 except KeyboardInterrupt:
@@ -59,6 +86,15 @@ while True:
         os.system('clear')
     elif tmf[0] == 'back' or tmf[0] == 'exit':
         sys.exit()
+    elif tmf[0] == 'search':
+        if len(tmf) < 2:
+            print(Fore.RED+'[-]'+Fore.RESET+' Usage: search <name>')
+        else:
+            try:
+                py_name = tmf[1]
+                search(py_name)
+            except:
+                pass
     elif tmf[0] == 'show':
         if len(tmf) < 2:
             print(shw)
@@ -83,7 +119,7 @@ Handler About:
 
       Handler Title : Multi Handler For Payloads
       Author        : G00Dway
-      Version       : 1.2554
+      Version       : '''+VER+'''
 
 Handler Details:
 
@@ -107,7 +143,7 @@ Handler About:
 
       Handler Title : Multi Handler For Payloads
       Author        : G00Dway
-      Version       : 1.2554
+      Version       : '''+VER+'''
 
 Handler Details:
 
@@ -132,7 +168,7 @@ Handler About:
 
       Handler Title : Multi Handler For Payloads
       Author        : G00Dway
-      Version       : 1.2554
+      Version       : '''+VER+'''
 
 Payload About:
 
