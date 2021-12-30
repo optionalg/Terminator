@@ -70,9 +70,6 @@ def check():
             pass
         print(Fore.BLUE+'[*]'+Fore.RESET+' Installing PIP Packages...')
         os.system('bash core/setup/pip-install.sh')
-        print(Fore.BLUE+'[*]'+Fore.RESET+' Installing NPM Packages...')
-        os.system('npm install -g github-files-fetcher')
-        os.system('npm install pm2')
         sys.stdout.write(f'\r[{now}] Building Database...                         '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]')
         os.system("python3 core/setup/cp/cp.py")
         os.system('mkdir /usr/var/tmf-meta-inf > /dev/null 2>&1')
