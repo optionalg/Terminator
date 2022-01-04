@@ -57,7 +57,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.5.7"+Fore.LIGHTBLACK_EX+"#stable"
+version = "1.8.5.8"+Fore.LIGHTBLACK_EX+"#stable"
 commands = '''
 Global Commands
 ===============
