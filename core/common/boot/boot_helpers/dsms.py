@@ -5,6 +5,7 @@ import sys
 import colorama
 import subprocess
 import future
+import pickle
 import datetime
 import getpass
 from colorama import Fore
@@ -288,6 +289,11 @@ def animate():
         time.sleep(0.1)
         sys.stdout.write('\r[*] starting termiNator...\\')
         try:
+            if os.path.exists("/usr/share/Terminator/core/base/extra/scripts/loaded.dat"):
+                os.system('rm -rf /usr/share/Terminator/core/base/extra/scripts/loaded.dat > /dev/null 2>&1')
+                os.system('touch /usr/share/Terminator/core/base/extra/scripts/loaded.dat > /dev/null 2>&1')
+            else:
+                os.system('touch /usr/share/Terminator/core/base/extra/scripts/loaded.dat > /dev/null 2>&1')
             if os.path.exists("/usr/share/Terminator/modules"):
                 l = os.listdir("/usr/share/Terminator/modules")
                 for i in l:
@@ -295,6 +301,8 @@ def animate():
                     for load in a:
                         with open("/usr/share/Terminator/core/logs/logs.log", "a") as write_log:
                             write_log.write(f"\n[{timerun}] NOTE: Loading Additional Module {load}")
+                            with open("/usr/share/Terminator/core/base/extra/scripts/loaded.dat", "a") as binary:
+                                pickle.dump(load, binary)
                             write_log.close()
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as fail:

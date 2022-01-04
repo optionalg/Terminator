@@ -4,6 +4,7 @@ import subprocess
 import random
 import sys
 import colorama
+import pickle
 from colorama import Fore, Style, Back
 import getpass
 import future
@@ -56,7 +57,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.5.6"+Fore.LIGHTBLACK_EX+"#stable"
+version = "1.8.5.7"+Fore.LIGHTBLACK_EX+"#stable"
 commands = '''
 Global Commands
 ===============
@@ -140,15 +141,16 @@ mdls = '''
 #    Module Name                                     Type             Verify          Description
 -    ------------                                    -----            -------         ------------
 1    module/multi/handler                            Handler          yes             Handler For Payloads
-2    module/packet_sniff/http/sniff                  Local            yes             HTTP Packet Sniffer, Pass/Email/Login/Other
+2    module/packet_sniff/http/sniff                  Local            yes             HTTP/HTTPS Packet Sniffer
 3    module/blueman/bluetooth_dos/l2ping             Local            no              Bluetooth Denial Of Service Module
-4    module/online_food_delivery/rce/webshell        Web/RCE          yes             RCE, Uploads Payload And Executes Command
-5    module/evolution_cms/rce/login_web              Web/RCE          no              CMS RCE, Logins And Executes Command
+4    module/online_food_delivery/rce/webshell        Web/RCE          yes             RCE, WebShell Upload & Execute Command
+5    module/evolution_cms/rce/login_web              Web/RCE          no              CMS RCE, Login & Execute Command
 6    module/citadel_web_kit/cred/log                 Web              yes             Citadel Web kit, Credential Harvester Module
-7    module/patient_appointment/sys/web              Web/RCE          no              RCE, Uploads Specified Payload And Executes Command
-8    module/rental_unit/storage/shell                Web/RCE          no              RCE, Uploads WebShell And Opens Reverse TCP Handler        
-9    module/online_learn/rce/shell                   Web/RCE          no              RCE, BruteForces WebShell, If Found Uploads WebShell And Executes Command  
-10   module/port_scan/local/scan                     Local            yes             Port Scanner, Scans For Opened-Closed Ports In Target Device
+7    module/patient_appointment/sys/web              Web/RCE          no              RCE, WebShell Uplaod & Command Execute
+8    module/rental_unit/storage/shell                Web/RCE          no              RCE, WebShell Upload & Reverse TCP    
+9    module/online_learn/rce/shell                   Web/RCE          no              RCE, Advanced WebShell Upload & BruteForcer
+10   module/port_scan/local/scan                     Local            yes             Port Scanner, Advanced IPY Port Scanner
+11   module/apache/apache_web/rce                    Web/RCE          no              Apache Web RCE, Advanced Apache Vulnerability Scanner
 '''
 pylds = '''
 Payload Name                                    Type             Verify          Description
@@ -465,6 +467,9 @@ Max Jobs. 1
                         elif tmf[1] == 'module/port_scan/local/scan' or tmf[1] == '10':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/other/port.py')
+                        elif tmf[1] == 'module/apache/apache_web/rce' or tmf[1] == '11':
+                            time.sleep(0.3)
+                            os.system('python3 /usr/share/Terminator/lib/data/exploits/ap.py')
                         else:
                             print(Fore.RED+'[-]'+Fore.RESET+' Invalid Module Number/Name: "'+tmf[1]+'"')
                     else:

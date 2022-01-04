@@ -15,7 +15,6 @@ port_range_pattern = re.compile("([0-9]+)-([0-9]+)")
 port_min = 0
 port_max = 65535
 open_ports = []
-print(Fore.BLUE+'[*]'+Fore.RESET+f' Scanning For Opened Ports On: {ip_add_entered}')
 while True:
     port_range_valid = port_range_pattern.search(port_range.replace(" ",""))
     if port_range_valid:
