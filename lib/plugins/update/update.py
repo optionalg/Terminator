@@ -17,7 +17,7 @@ def db():
             print(Fore.BLUE+'[*]'+Fore.RESET+' Installing Update...')
             if os.path.exists("/usr/share/Terminator"):
                 os.mkdir('/usr/share/Terminator/core/logs')
-                os.system('python3 /usr/share/Terminator/lib/plugins/meta/extractor.py')
+                os.system('python3 /usr/share/Terminator/bin/version/ver.py')
             else:
                 print(Fore.RED+'[-]'+Fore.RESET+' Update Failed, Using Old Database Instead New')
                 os.system('mv /usr/var/tmf-meta-inf/Terminator-old /usr/share/Terminator > /dev/null 2>&1')
