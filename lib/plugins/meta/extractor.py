@@ -22,13 +22,16 @@ def install():
             if os.path.exists("/usr/share/Terminator/core/logs/meta"):
                 if os.path.exists('/usr/share/Terminator/core/logs/meta/Terminator.zip'):
                     os.system('rm -rf /usr/share/Terminator/core/logs/meta/Terminator.zip > /dev/null 2>&1')
-                    install()
+                    os.system('cp -r /usr/share/Terminator /usr/share/Terminator/core/logs/meta > /dev/null 2>&1')
+                    os.system('mv /usr/share/Terminator/core/logs/meta/Terminator /usr/share/Terminator/core/logs/meta/Terminator.zip > /dev/null 2>&1')
                 else:
                     os.system('cp -r /usr/share/Terminator /usr/share/Terminator/core/logs/meta > /dev/null 2>&1')
                     os.system('mv /usr/share/Terminator/core/logs/meta/Terminator /usr/share/Terminator/core/logs/meta/Terminator.zip > /dev/null 2>&1')
             else:
                 os.mkdir('/usr/share/Terminator/core/logs/meta')
                 install()
+        else:
+            sys.exit()
         if os.path.exists("/usr/share/Terminator/core/logs/cache_meta"):
             os.system('rm -rf /usr/share/Terminator/core/logs/cache_meta')
             os.mkdir('/usr/share/Terminator/core/logs/cache_meta')
@@ -38,6 +41,6 @@ def install():
             extr()
     except:
         pass
+    sys.exit()
 
 install()
-sys.exit()
