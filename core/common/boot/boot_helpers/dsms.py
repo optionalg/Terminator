@@ -301,9 +301,9 @@ def animate():
                     for load in a:
                         with open("/usr/share/Terminator/core/logs/logs.log", "a") as write_log:
                             write_log.write(f"\n[{timerun}] NOTE: Loading Additional Module {load}")
-                            with open("/usr/share/Terminator/core/base/extra/scripts/loaded.dat", "a") as binary:
-                                pickle.dump(load, binary)
                             write_log.close()
+                        with open("/usr/share/Terminator/core/base/extra/scripts/loaded.dat", "a") as binary:
+                            pickle.dump(load, binary)
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as fail:
                     fail.write(f"\n[{timerun}] FATAL: Unable To Load Modules Database")
