@@ -18,35 +18,32 @@ pl_command = '''
 pl_run = {
 
 }
-def read():
-    global pl_command
-    global pl_run
-    pl = os.listdir('/usr/share/Terminator/lib/plugins/global/plugins')
-    if pl:
-        for i in pl:
-            try:
-                if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml'):
-                    with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml', 'r') as plugin_desc:
-                        desc = plugin_desc.read()
-                        plugin_desc.close()
-                    if desc in pl_command:
-                        pass
-                    else:
-                        pl_command += desc+'\n'
+pl = os.listdir('/usr/share/Terminator/lib/plugins/global/plugins')
+if pl:
+    for i in pl:
+        try:
+            if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml'):
+                with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml', 'r') as plugin_desc:
+                    desc = plugin_desc.read()
+                    plugin_desc.close()
+                if desc in pl_command:
+                    pass
                 else:
-                    print(Fore.RED+'[-]'+Fore.RESET+f' Unable To Load Plugin "{i}"')
-                if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml'):
-                    with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml', 'r') as plugin_run:
-                        run = plugin_run.read()
-                        plugin_run.close()
-                    if run == 'clean':
-                        pass
-                    else:
-                        pl_run[run] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/run.py'
-            except:
-                pass
-    else:
-        pass
+                    pl_command += desc+'\n'
+            else:
+                print(Fore.RED+'[-]'+Fore.RESET+f' Unable To Load Plugin "{i}"')
+            if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml'):
+                with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml', 'r') as plugin_run:
+                    run = plugin_run.read()
+                    plugin_run.close()
+                if run == 'clean':
+                    pass
+                else:
+                    pl_run[run] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/run.py'
+        except:
+            pass
+else:
+    pass
         
 
 
@@ -57,18 +54,14 @@ cc_verify = ""
 plugins = {
     'cclean': '/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean'
 }
-def plugin_load():
-    def cclean():
-        global cc_verify
-        try:
-            if os.path.exists("/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean"):
-                cc_verify = "Installed"
-            else:
-                cc_verify = "Not Installed"
-        except:
-            pass
+try:
+    if os.path.exists("/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean"):
+        cc_verify = "Installed"
+    else:
+        cc_verify = "Not Installed"
+except:
+    pass
 
-    cclean()
 
 
 
@@ -208,7 +201,6 @@ Plugin Commands
     plugins                       Show all available plugins
     setup <name>                  Setup specified plugin
     remove <name>                 Remove specified plugin
-    reload                        Reload all plugins
 
 Plugins Installed
 =================
@@ -363,7 +355,6 @@ def main():
         if tmf == []:
             pass
         elif tmf[0] == 'help' or tmf[0] == '?':
-            read()
             print(commands)
         elif tmf[0] == 'back':
             pass
@@ -392,10 +383,6 @@ def main():
             removeses()
             time.sleep(0.5)
             sys.exit()
-        elif tmf[0] == 'reload':
-            print(Fore.BLUE+'[*]'+Fore.RESET+' Reloading Plugins...')
-            time.sleep(0.4)
-            read()
         elif tmf[0] == 'update':
             try:
                 if os.path.exists("/usr/share/Terminator/lib/plugins/update"):
@@ -588,7 +575,6 @@ Max Jobs. 1
                 except:
                     pass
         elif tmf[0] == 'plugins':
-            plugin_load()
             print(plg)
         elif tmf[0] == 'setup':
             if len(tmf) < 2:
@@ -606,6 +592,8 @@ Max Jobs. 1
                             else:
                                 os.mkdir(dir)
                                 if name == 'cclean':
+                                    global cc_verify
+                                    cc_verify = "Installed"
                                     os.system('cp -r /usr/share/Terminator/core/base/extra/scripts/cln.py '+dir+' > /dev/null 2>&1')
                                     os.system('mv '+dir+'/cln.py '+dir+'/run.py > /dev/null 2>&1')
                                     os.system('touch '+dir+'/desc.yaml > /dev/null 2>&1')
@@ -638,7 +626,9 @@ Max Jobs. 1
                         try:
                             if os.path.exists(dir):
                                 if name_rem == 'cclean':
+                                    global cc_verify
                                     os.system('rm -rf '+dir+' > /dev/null 2>&1')
+                                    cc_verify = "Not Installed"
                                 else:
                                     time.sleep(0.5)
                                     os.system('python3 '+dir+'/remove.py')
