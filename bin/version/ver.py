@@ -2,8 +2,6 @@ import os
 import colorama
 from colorama import Fore
 import sys
-import time
-import random
 colorama.init()
 try:
     if os.path.exists("/usr/share/Terminator/bin/version/plugin-cache"):

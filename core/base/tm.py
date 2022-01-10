@@ -12,17 +12,95 @@ from sys import platform
 import socket
 from socket import AF_INET, SOCK_STREAM
 colorama.init()
+# Plugin Read
+pl_command = '''
+'''
+pl_run = {
+
+}
+def read():
+    global pl_command
+    pl = os.listdir('/usr/share/Terminator/lib/plugins/global/plugins')
+    pl_command = '''
+    '''
+    for i in pl:
+        try:
+            if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml'):
+                with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml', 'r') as plugin_desc:
+                    desc = plugin_desc.read()
+                    plugin_desc.close()
+                pl_command += desc+'\n'
+            else:
+                print(Fore.RED+'[-]'+Fore.RESET+f' Unable To Load Plugin "{i}"')
+            if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml'):
+                with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml', 'r') as plugin_run:
+                    run = plugin_run.read()
+                    plugin_run.close()
+                if run == 'clean':
+                    pass
+                else:
+                    pl_run[run] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/run.py'
+        except:
+            pass
+        
+
+
+# Plugin Names
+cc_verify = "None"
+
+# Inside Plugin Database
+plugins = {
+    'cclean': '/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean'
+}
+def plugin_load():
+    def cclean():
+        global cc_verify
+        try:
+            if os.path.exists("/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean"):
+                cc_verify = "Installed"
+            else:
+                cc_verify = "Not Installed"
+        except:
+            pass
+    cclean()
+
+
+
+plg = f'''
+Plugins Marketplace
+Plugins: 1
+===================
+
+    Plugins
+    -------
+    Name        : cclean
+    Author      : G00Dway
+    Description : a plugin to clean database
+    File        : tmf.cclean
+    Download    : Not Needed
+    Plugin      : {cc_verify}
+    =============================================
+'''
 module_name = ""
 payload_name = ""
 user = getpass.getuser()
 try:
     print('')
+    error_num = 0
     error_got = []
     with open("/usr/share/Terminator/core/logs/logs.log", "r") as error:
         for line in error:
             if 'FATAL' in line:
+                error_num += 1
                 error_got.append(line)
-                print(Fore.RED+"[-]"+Fore.RESET+" Got Error In Logs: "+line)
+        if error_got == []:
+            pass
+        else:
+            print(Fore.RED+'[-]'+Fore.RESET+' Errors Detected In Logs: '+error_num)
+            error_num = 1
+            for i in error_got:
+                print(Fore.RED+'[-]'+Fore.RESET+f' Error ({error_num}): '+i)
+                error_num += 1
 except:
     pass
 try:
@@ -57,8 +135,8 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.5.8"+Fore.LIGHTBLACK_EX+"#stable"
-commands = '''
+version = "1.8.5.9"+Fore.LIGHTBLACK_EX+"#stable"
+commands = f'''
 Global Commands
 ===============
 
@@ -108,7 +186,6 @@ Core Commands
     -------                       -----------
     help                          Show available commands
     clear                         Clear terminal window
-    clean                         Clean database logs, cache
     banner                        Show banner
     update                        Update Terminator framework
     show <>                       Show specified command
@@ -116,6 +193,23 @@ Core Commands
     set <option> <value>          Set specified option to specified value (Module use only)
     run                           Run the Module (Module use only)
     exit                          Exit from Terminator
+
+Plugin Commands
+===============
+
+    Command                       Description
+    -------                       -----------
+    plugins                       Show all available plugins
+    setup <name>                  Setup specified plugin
+    remove <name>                 Remove specified plugin
+    reload                        Reload all plugins
+
+Plugins Installed
+=================
+
+    Command                       Description
+    -------                       -----------
+    {pl_command}
 '''
 showcommands = '''
 Show Commands
@@ -231,7 +325,7 @@ try:
         database_run = Fore.GREEN+"FATAL"+Fore.RESET
 except:
     pass
-tips = ['HINT: After Updating, Terminator Saves '+Fore.GREEN+'old'+Fore.RESET+' Database At: "/usr/var/tmf-meta-inf"!', 'HINT: Terminator Runs Slow? Why Not Try The '+Fore.GREEN+'clean'+Fore.RESET+' Command!', 'HINT: Always Keep Terminator Up-To-Date!', 'HINT: While in Module, You Can Use '+Fore.GREEN+'back'+Fore.RESET+' Command To Exit from Module use!', 'HINT: To Kill Running Handler Jobs, Use '+Fore.GREEN+'jkill <Job ID>'+Fore.RESET, 'HINT: To Interact With Handler Jobs, Use '+Fore.GREEN+'int <Job ID>'+Fore.RESET, 'HINT: You can Change Settings Under "/usr/share/Terminator/core/base/extra/'+Fore.GREEN+'settings.ini'+Fore.RESET+'"']
+tips = ['INFO: After Updating, Terminator Saves '+Fore.GREEN+'old'+Fore.RESET+' Database At: "/usr/var/tmf-meta-inf"!', 'HINT: Terminator Runs Slow? Why Not Try The '+Fore.GREEN+'clean'+Fore.RESET+' Command!', 'INFO: Always Keep Terminator Up-To-Date!', 'HINT: While in Module, You Can Use '+Fore.GREEN+'back'+Fore.RESET+' Command To Exit from Module use!', 'HINT: To Kill Running Handler Jobs, Use '+Fore.GREEN+'jkill <Job ID>'+Fore.RESET, 'HINT: To Interact With Handler Jobs, Use '+Fore.GREEN+'int <Job ID>'+Fore.RESET, 'HINT: You can Change Settings Under "/usr/share/Terminator/core/base/extra/'+Fore.GREEN+'settings.ini'+Fore.RESET+'"', 'HINT: You Can Add Your Own Plugins At: '+Fore.GREEN+'"/usr/share/Terminator/lib/plugins/global/plugins"'+Fore.RESET+' Directory!']
 def banner():
     print(f'''
  _____                   _             _             
@@ -263,29 +357,39 @@ def main():
         if tmf == []:
             pass
         elif tmf[0] == 'help' or tmf[0] == '?':
+            read()
             print(commands)
         elif tmf[0] == 'back':
             pass
         elif tmf[0] == 'clean':
-            print(Fore.BLUE+'[*]'+Fore.RESET+' Cleaning Database...')
-            cache = os.listdir("/usr/share/Terminator/core/base/scripts/cache/libs")
-            root_files = os.listdir("/root/.tmf")
-            logs = "/usr/share/Terminator/core/logs/logs.log"
-            for clr in cache:
-                os.system('rm -rf /usr/share/Terminator/core/base/scripts/cache/libs/'+clr+' > /dev/null 2>&1')
-            os.system('rm -rf '+logs+' > /dev/null 2>&1')
-            for clean_root in root_files:
-                os.system('rm -rf /root/.tmf/'+clean_root+' > /dev/null 2>&1')
-            print(Fore.YELLOW+'[+]'+Fore.RESET+' Cleanup Completed!')
+            try:
+                if os.path.exists("/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean"):
+                    print(Fore.BLUE+'[*]'+Fore.RESET+' Cleaning Database...')
+                    time.sleep(0.2)
+                    os.system('python3 /usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean/run.py')
+                    print(Fore.BLUE+'[*]'+Fore.RESET+' Completed.')
+                else:
+                    print(Fore.RED+'[-]'+Fore.RESET+' Unknown Command: "'+tmf[0]+'"')
+            except:
+                pass
         elif tmf[0] == 'clear':
             os.system('clear')
         elif tmf[0] == 'banner':
             banner()
-        elif tmf[0] == 'exit':
+        elif tmf[0] in pl_run:
+            key = pl_run[tmf[0]]
+            print(Fore.BLUE+'[*]'+Fore.RESET+' Running Plugin '+Fore.GREEN+''+tmf[0]+''+Fore.RESET+'...')
+            time.sleep(0.3)
+            os.system('python3 '+key)
+        elif tmf[0] == 'exit' or tmf[0] == 'quit':
             print(Fore.RED+'[-]'+Fore.RESET+' Terminator Stopped...')
             removeses()
             time.sleep(0.5)
             sys.exit()
+        elif tmf[0] == 'reload':
+            print(Fore.BLUE+'[*]'+Fore.RESET+' Reloading Plugins...')
+            time.sleep(0.4)
+            read()
         elif tmf[0] == 'update':
             try:
                 if os.path.exists("/usr/share/Terminator/lib/plugins/update"):
@@ -475,6 +579,70 @@ Max Jobs. 1
                     else:
                         time.sleep(0.5)
                         print(Fore.RED+'[-]'+Fore.RESET+' Unable To Load Modules!')
+                except:
+                    pass
+        elif tmf[0] == 'plugins':
+            plugin_load()
+            print(plg)
+        elif tmf[0] == 'setup':
+            if len(tmf) < 2:
+                print(Fore.RED+'[-]'+Fore.RESET+' Usage: setup <name>')
+            else:
+                try:
+                    name = tmf[1]
+                    if name in plugins:
+                        dir = plugins[name]
+                        print(Fore.BLUE+'[*]'+Fore.RESET+' Setting Up Plugin '+Fore.GREEN+f'{name}'+Fore.RESET+'...')
+                        time.sleep(0.5)
+                        try:
+                            if os.path.exists(dir):
+                                print(Fore.RED+'[-]'+Fore.RESET+' Plugin '+Fore.GREEN+f'{name}'+Fore.RESET+' Already Setup.')
+                            else:
+                                os.mkdir(dir)
+                                if name == 'cclean':
+                                    os.system('cp -r /usr/share/Terminator/core/base/extra/scripts/cln.py '+dir+' > /dev/null 2>&1')
+                                    os.system('mv '+dir+'/cln.py '+dir+'/run.py > /dev/null 2>&1')
+                                    os.system('touch '+dir+'/desc.yaml > /dev/null 2>&1')
+                                    os.system('touch '+dir+'/cmd.yaml > /dev/null 2>&1')
+                                    with open(dir+'/desc.yaml', 'w') as f:
+                                        f.write('clean                         Clean database logs, cache')
+                                        f.close()
+                                    with open(dir+'/cmd.yaml', 'w') as f2:
+                                        f2.write('clean')
+                                        f2.close()
+                                else:
+                                    os.system('python3 '+dir+'/setup.py')
+                                time.sleep(0.3)
+                                print(Fore.YELLOW+'[+]'+Fore.RESET+' Setup For Plugin '+Fore.GREEN+f'{name}'+Fore.RESET+' Completed.')
+                        except:
+                            pass
+                    else:
+                        print(Fore.RED+'[-]'+Fore.RESET+' Invalid Plugin: "'+name+'"')
+                except:
+                    pass
+        elif tmf[0] == 'remove':
+            if len(tmf) < 2:
+                print(Fore.RED+'[-]'+Fore.RESET+' Usage: remove <name>')
+            else:
+                try:
+                    name_rem = tmf[1]
+                    if name_rem in plugins:
+                        dir = plugins[name_rem]
+                        print(Fore.BLUE+'[*]'+Fore.RESET+' Removing Plugin '+Fore.GREEN+f'{name}'+Fore.RESET+'...')
+                        try:
+                            if os.path.exists(dir):
+                                if name_rem == 'cclean':
+                                    os.system('rm -rf '+dir+' > /dev/null 2>&1')
+                                else:
+                                    time.sleep(0.5)
+                                    os.system('python3 '+dir+'/remove.py')
+                                print(Fore.YELLOW+'[+]'+Fore.RESET+' Plugin '+Fore.GREEN+f'{name}'+Fore.RESET+' Removed.')
+                            else:
+                                print(Fore.RED+'[-]'+Fore.RESET+' Plugin '+Fore.GREEN+f'{name}'+Fore.RESET+' Is Not Installed.')
+                        except:
+                            pass
+                    else:
+                        print(Fore.RED+'[-]'+Fore.RESET+' Invalid Plugin: "'+name+'"')
                 except:
                     pass
         else:

@@ -80,7 +80,7 @@ try:
         root = True
     else:
         print(Fore.RED+'[-]'+Fore.RESET+' ROOT Not Detected! Please ReRun Terminator With ROOT Permissions!')
-        sys.exit()
+        exit()
 except:
     pass
 try:
