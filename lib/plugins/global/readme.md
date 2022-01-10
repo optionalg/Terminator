@@ -4,8 +4,8 @@ cmd.yaml = Command of the plugin
 
 desc.yaml = Command and description of the plugin 
 (E.g =      cmd                         Description)
-       -----   -------------------------
-        4 Space         25 Space 
+       --      -------------------------
+        2 Space         25 Space 
 
 run.py = The core commands of the plugin, to run
 
