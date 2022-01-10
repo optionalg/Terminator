@@ -13,8 +13,7 @@ import socket
 from socket import AF_INET, SOCK_STREAM
 colorama.init()
 # Plugin Read
-pl_command = '''
-'''
+pl_command = ''''''
 pl_run = {
 
 }
@@ -598,10 +597,10 @@ Max Jobs. 1
                                     os.system('touch '+dir+'/desc.yaml > /dev/null 2>&1')
                                     os.system('touch '+dir+'/cmd.yaml > /dev/null 2>&1')
                                     with open(dir+'/desc.yaml', 'w') as f:
-                                        f.write('clean                         Clean database logs, cache')
+                                        f.write('   clean                         Clean database logs, cache')
                                         f.close()
                                     with open(dir+'/cmd.yaml', 'w') as f2:
-                                        f2.write('clean')
+                                        f2.write('  clean')
                                         f2.close()
                                 else:
                                     os.system('python3 '+dir+'/setup.py')
