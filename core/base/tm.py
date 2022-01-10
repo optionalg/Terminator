@@ -22,11 +22,6 @@ def read():
     global pl_command
     global pl_run
     pl = os.listdir('/usr/share/Terminator/lib/plugins/global/plugins')
-    pl_command = '''
-    '''
-    pl_run = {
-
-    }
     if pl:
         for i in pl:
             try:
@@ -50,14 +45,13 @@ def read():
                         pl_run[run] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/run.py'
             except:
                 pass
-            return pl_command, pl_run
     else:
         pass
         
 
 
 # Plugin Names
-cc_verify = "None"
+cc_verify = ""
 
 # Inside Plugin Database
 plugins = {
@@ -73,7 +67,7 @@ def plugin_load():
                 cc_verify = "Not Installed"
         except:
             pass
-        return cc_verify
+
     cclean()
 
 
