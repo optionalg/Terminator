@@ -592,7 +592,6 @@ Max Jobs. 1
                             else:
                                 os.mkdir(dir)
                                 if name == 'cclean':
-                                    global cc_verify
                                     cc_verify = "Installed"
                                     os.system('cp -r /usr/share/Terminator/core/base/extra/scripts/cln.py '+dir+' > /dev/null 2>&1')
                                     os.system('mv '+dir+'/cln.py '+dir+'/run.py > /dev/null 2>&1')
@@ -608,6 +607,7 @@ Max Jobs. 1
                                     os.system('python3 '+dir+'/setup.py')
                                 time.sleep(0.3)
                                 print(Fore.YELLOW+'[+]'+Fore.RESET+' Setup For Plugin '+Fore.GREEN+f'{name}'+Fore.RESET+' Completed.')
+                                print(Fore.BLUE+'[*]'+Fore.RESET+' Please Restart Terminator To Load All Plugins Correctly!')
                         except:
                             pass
                     else:
@@ -626,13 +626,13 @@ Max Jobs. 1
                         try:
                             if os.path.exists(dir):
                                 if name_rem == 'cclean':
-                                    global cc_verify
                                     os.system('rm -rf '+dir+' > /dev/null 2>&1')
                                     cc_verify = "Not Installed"
                                 else:
                                     time.sleep(0.5)
                                     os.system('python3 '+dir+'/remove.py')
                                 print(Fore.YELLOW+'[+]'+Fore.RESET+' Plugin '+Fore.GREEN+f'{name}'+Fore.RESET+' Removed.')
+                                print(Fore.BLUE+'[*]'+Fore.RESET+' Please Restart Terminator To Load All Plugins Correctly!')
                             else:
                                 print(Fore.RED+'[-]'+Fore.RESET+' Plugin '+Fore.GREEN+f'{name}'+Fore.RESET+' Is Not Installed.')
                         except:
