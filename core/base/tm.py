@@ -524,8 +524,6 @@ Max Jobs. 1
                         print(Fore.RED+'[-]'+Fore.RESET+' Invalid Command For Show: "'+tmf[1]+'"')
                 except:
                     pass
-        elif tmf[0] == 'set':
-            print(Fore.RED+'[-]'+Fore.RESET+' This Command Is Module Use Only!')
         elif tmf[0] == 'use':
             if len(tmf) < 2:
                 print(Fore.RED+'[-]'+Fore.RESET+' Please Specify The Module Name')
