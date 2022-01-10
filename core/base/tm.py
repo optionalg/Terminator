@@ -20,28 +20,39 @@ pl_run = {
 }
 def read():
     global pl_command
+    global pl_run
     pl = os.listdir('/usr/share/Terminator/lib/plugins/global/plugins')
     pl_command = '''
     '''
-    for i in pl:
-        try:
-            if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml'):
-                with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml', 'r') as plugin_desc:
-                    desc = plugin_desc.read()
-                    plugin_desc.close()
-                pl_command += desc+'\n'
-            else:
-                print(Fore.RED+'[-]'+Fore.RESET+f' Unable To Load Plugin "{i}"')
-            if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml'):
-                with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml', 'r') as plugin_run:
-                    run = plugin_run.read()
-                    plugin_run.close()
-                if run == 'clean':
-                    pass
+    pl_run = {
+
+    }
+    if pl:
+        for i in pl:
+            try:
+                if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml'):
+                    with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml', 'r') as plugin_desc:
+                        desc = plugin_desc.read()
+                        plugin_desc.close()
+                    if desc in pl_command:
+                        pass
+                    else:
+                        pl_command += desc+'\n'
                 else:
-                    pl_run[run] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/run.py'
-        except:
-            pass
+                    print(Fore.RED+'[-]'+Fore.RESET+f' Unable To Load Plugin "{i}"')
+                if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml'):
+                    with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml', 'r') as plugin_run:
+                        run = plugin_run.read()
+                        plugin_run.close()
+                    if run == 'clean':
+                        pass
+                    else:
+                        pl_run[run] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/run.py'
+            except:
+                pass
+            return pl_command, pl_run
+    else:
+        pass
         
 
 
@@ -62,6 +73,7 @@ def plugin_load():
                 cc_verify = "Not Installed"
         except:
             pass
+        return cc_verify
     cclean()
 
 
