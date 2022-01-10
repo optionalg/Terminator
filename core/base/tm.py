@@ -620,16 +620,16 @@ Max Jobs. 1
                 try:
                     name_rem = tmf[1]
                     if name_rem in plugins:
-                        dir = plugins[name_rem]
+                        dir_rem = plugins[name_rem]
                         print(Fore.BLUE+'[*]'+Fore.RESET+' Removing Plugin '+Fore.GREEN+f'{name}'+Fore.RESET+'...')
                         try:
-                            if os.path.exists(dir):
+                            if os.path.exists(dir_rem):
                                 if name_rem == 'cclean':
-                                    os.system('rm -rf '+dir+' > /dev/null 2>&1')
+                                    os.system('rm -rf '+dir_rem+' > /dev/null 2>&1')
                                     cc_verify = "Not Installed"
                                 else:
                                     time.sleep(0.5)
-                                    os.system('python3 '+dir+'/remove.py')
+                                    os.system('python3 '+dir_rem+'/remove.py')
                                 print(Fore.YELLOW+'[+]'+Fore.RESET+' Plugin '+Fore.GREEN+f'{name}'+Fore.RESET+' Removed.')
                                 print(Fore.BLUE+'[*]'+Fore.RESET+' Please Restart Terminator To Load All Plugins Correctly!')
                             else:
