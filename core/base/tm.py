@@ -60,21 +60,21 @@ if pl:
                 print(Fore.RED+'[-]'+Fore.RESET+f' Unable To Load Plugin "{i}"')
             if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/all.yaml'):
                 with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/all.yaml', 'r') as plugin_write:
-                    name = "Unknown"
-                    author = "Unknown"
-                    description = "Unknown"
+                    name = "??"
+                    author = "??"
+                    description = "??"
                     for line in plugin_write:
                         if 'name=' in line:
                             name = line
-                            name = name.split('name=')
+                            name = name.split('name=', '\n')
                         elif 'author=' in line:
                             author = line
-                            author = author.split('author=')
+                            author = author.split('author=', '\n')
                         elif 'desc=' in line:
                             description = line
-                            description = description.split('desc=')
+                            description = description.split('desc=', '\n')
                         else:
-                            print(Fore.RED+'[-]'+Fore.RESET+f' Unable To Load Plugin "{i}"...')
+                            print(Fore.RED+'[-]'+Fore.RESET+f' Error Loading Plugin "{i}"...')
                     plg += f'''
     Name        : {name[1]}
     Author      : {author[1]}
