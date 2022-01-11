@@ -66,13 +66,16 @@ if pl:
                     for line in plugin_write:
                         if 'name=' in line:
                             name = line
-                            name = name.split('name=', '\n')
+                            name = name.split('name=')
+                            name = name[1].split('\n')
                         elif 'author=' in line:
                             author = line
-                            author = author.split('author=', '\n')
+                            author = author.split('author=')
+                            author = author[1].split('\n')
                         elif 'desc=' in line:
                             description = line
-                            description = description.split('desc=', '\n')
+                            description = description.split('desc=')
+                            description = description[1].split('\n')
                         else:
                             print(Fore.RED+'[-]'+Fore.RESET+f' Error Loading Plugin "{i}"...')
                     plg += f'''
