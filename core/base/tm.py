@@ -12,13 +12,11 @@ from sys import platform
 import socket
 from socket import AF_INET, SOCK_STREAM
 colorama.init()
-count = 0
 plugins = {
     'cclean': '/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean'
 }
 plg = f'''
 Plugins Marketplace
-Plugins: {count}
 ===================
 
     Plugins
@@ -38,7 +36,6 @@ pl_run = {
 pl = os.listdir('/usr/share/Terminator/lib/plugins/global/plugins')
 if pl:
     for i in pl:
-        count += 1
         try:
             if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml'):
                 with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml', 'r') as plugin_desc:
@@ -48,6 +45,8 @@ if pl:
                     pass
                 else:
                     pl_command += desc+'\n'
+            else:
+                pass
             if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml'):
                 with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml', 'r') as plugin_run:
                     run = plugin_run.read()
