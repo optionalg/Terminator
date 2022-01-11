@@ -415,7 +415,7 @@ def animate():
         time.sleep(0.1)
         sys.stdout.write('\r[*] starting terminatOr...|')
         time.sleep(0.1)
-        sys.stdout.write('\r[*] starting terminatoR.../')
+        sys.stdout.write('\r[*] starting terminatoR.../\n')
         time.sleep(0.2)
         os.system('python3 /usr/share/Terminator/core/base/tm.py')
         break
