@@ -66,13 +66,16 @@ if pl:
                     for line in plugin_write:
                         if 'name=' in line:
                             name = line
-                            name = name.split('name=')
+                            name = name.split('name=', '\\n')
+                            name = name[1]
                         elif 'author=' in line:
                             author = line
-                            author = author.split('author=')
+                            author = author.split('author=', '\\n')
+                            author = author[1]
                         elif 'desc=' in line:
                             description = line
-                            description = description.split('desc=')
+                            description = description.split('desc=', '\\n')
+                            description = description[1]
                         else:
                             print(Fore.RED+'[-]'+Fore.RESET+f' Unable To Load Plugin "{i}"...')
                     plg += f'''
@@ -111,7 +114,6 @@ module_name = ""
 payload_name = ""
 user = getpass.getuser()
 try:
-    print('')
     error_num = 0
     error_got = []
     with open("/usr/share/Terminator/core/logs/logs.log", "r") as error:
