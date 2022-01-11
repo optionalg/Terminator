@@ -619,7 +619,7 @@ Max Jobs. 1
                     name_rem = tmf[1]
                     if name_rem in plugins:
                         dir_rem = plugins[name_rem]
-                        print(Fore.BLUE+'[*]'+Fore.RESET+' Removing Plugin '+Fore.GREEN+f'{name}'+Fore.RESET+'...')
+                        print(Fore.BLUE+'[*]'+Fore.RESET+' Removing Plugin '+Fore.GREEN+f'{name_rem}'+Fore.RESET+'...')
                         try:
                             if os.path.exists(dir_rem):
                                 if name_rem == 'cclean':
@@ -628,14 +628,14 @@ Max Jobs. 1
                                 else:
                                     time.sleep(0.5)
                                     os.system('python3 '+dir_rem+'/remove.py')
-                                print(Fore.YELLOW+'[+]'+Fore.RESET+' Plugin '+Fore.GREEN+f'{name}'+Fore.RESET+' Removed.')
+                                print(Fore.YELLOW+'[+]'+Fore.RESET+' Plugin '+Fore.GREEN+f'{name_rem}'+Fore.RESET+' Removed.')
                                 print(Fore.BLUE+'[*]'+Fore.RESET+' Please Restart Terminator To Load All Plugins Correctly!')
                             else:
-                                print(Fore.RED+'[-]'+Fore.RESET+' Plugin '+Fore.GREEN+f'{name}'+Fore.RESET+' Is Not Installed.')
+                                print(Fore.RED+'[-]'+Fore.RESET+' Plugin '+Fore.GREEN+f'{name_rem}'+Fore.RESET+' Is Not Installed.')
                         except:
                             pass
                     else:
-                        print(Fore.RED+'[-]'+Fore.RESET+' Invalid Plugin: "'+name+'"')
+                        print(Fore.RED+'[-]'+Fore.RESET+' Invalid Plugin: "'+name_rem+'"')
                 except:
                     pass
         else:
