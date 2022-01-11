@@ -12,6 +12,24 @@ from sys import platform
 import socket
 from socket import AF_INET, SOCK_STREAM
 colorama.init()
+count = 0
+plugins = {
+    'cclean': '/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean'
+}
+plg = f'''
+Plugins Marketplace
+Plugins: {count}
+===================
+
+    Plugins
+    -------
+    Name        : cclean
+    Author      : G00Dway
+    Description : a plugin to clean database
+    File        : tmf.cclean
+    Setup, etc. : Support
+    =============================================
+'''
 # Plugin Read
 pl_command = ''''''
 pl_run = {
@@ -20,6 +38,7 @@ pl_run = {
 pl = os.listdir('/usr/share/Terminator/lib/plugins/global/plugins')
 if pl:
     for i in pl:
+        count += 1
         try:
             if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml'):
                 with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml', 'r') as plugin_desc:
@@ -29,8 +48,6 @@ if pl:
                     pass
                 else:
                     pl_command += desc+'\n'
-            else:
-                print(Fore.RED+'[-]'+Fore.RESET+f' Unable To Load Plugin "{i}"')
             if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml'):
                 with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml', 'r') as plugin_run:
                     run = plugin_run.read()
@@ -39,6 +56,43 @@ if pl:
                     pass
                 else:
                     pl_run[run] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/run.py'
+                    plugins[run] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i
+            else:
+                print(Fore.RED+'[-]'+Fore.RESET+f' Unable To Load Plugin "{i}"')
+            if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/all.yaml'):
+                with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/all.yaml', 'r') as plugin_write:
+                    name = "Unknown"
+                    author = "Unknown"
+                    description = "Unknown"
+                    for line in plugin_write:
+                        if 'name=' in line:
+                            name = line
+                            name = name.split('name=')
+                        elif 'author=' in line:
+                            author = line
+                            author = author.split('author=')
+                        elif 'desc=' in line:
+                            description = line
+                            description = description.split('desc=')
+                        else:
+                            print(Fore.RED+'[-]'+Fore.RESET+f' Unable To Load Plugin "{i}"...')
+                    plg += f'''
+    Name        : {name}
+    Author      : {author}
+    Description : {description}
+    File        : {i}
+    Setup, etc. : Doesnt Support
+    =============================================
+    '''
+            else:
+                pass
+            if os.path.exists("/usr/share/Terminator/core/logs/plugins.log"):
+                with open('/usr/share/Terminator/core/logs/plugins.log', 'w') as load_pl:
+                    load_pl.write(i) 
+                    load_pl.close()
+            else:
+                os.system('touch /usr/share/Terminator/core/logs/plugins.log > /dev/null 2>&1')
+
         except:
             pass
 else:
@@ -50,35 +104,10 @@ else:
 cc_verify = ""
 
 # Inside Plugin Database
-plugins = {
-    'cclean': '/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean'
-}
-try:
-    if os.path.exists("/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean"):
-        cc_verify = "Installed"
-    else:
-        cc_verify = "Not Installed"
-except:
-    pass
 
 
 
 
-plg = f'''
-Plugins Marketplace
-Plugins: 1
-===================
-
-    Plugins
-    -------
-    Name        : cclean
-    Author      : G00Dway
-    Description : a plugin to clean database
-    File        : tmf.cclean
-    Download    : Not Needed
-    Plugin      : {cc_verify}
-    =============================================
-'''
 module_name = ""
 payload_name = ""
 user = getpass.getuser()
@@ -133,7 +162,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.5.9"+Fore.LIGHTBLACK_EX+"#stable"
+version = "1.8.6.0"+Fore.LIGHTBLACK_EX+"#stable"
 commands = f'''
 Global Commands
 ===============
@@ -198,7 +227,7 @@ Plugin Commands
     Command                       Description
     -------                       -----------
     plugins                       Show all available plugins
-    setup <name>                  Setup specified plugin
+    setup <name>                  Setup specified plugin (Only for inside Terminator plugins!)
     remove <name>                 Remove specified plugin
 
 Plugins Installed
@@ -589,7 +618,6 @@ Max Jobs. 1
                             else:
                                 os.mkdir(dir)
                                 if name == 'cclean':
-                                    cc_verify = "Installed"
                                     os.system('cp -r /usr/share/Terminator/core/base/extra/scripts/cln.py '+dir+' > /dev/null 2>&1')
                                     os.system('mv '+dir+'/cln.py '+dir+'/run.py > /dev/null 2>&1')
                                     os.system('touch '+dir+'/desc.yaml > /dev/null 2>&1')
@@ -600,8 +628,7 @@ Max Jobs. 1
                                     with open(dir+'/cmd.yaml', 'w') as f2:
                                         f2.write('clean')
                                         f2.close()
-                                else:
-                                    os.system('python3 '+dir+'/setup.py')
+
                                 time.sleep(0.3)
                                 print(Fore.YELLOW+'[+]'+Fore.RESET+' Setup For Plugin '+Fore.GREEN+f'{name}'+Fore.RESET+' Completed.')
                                 print(Fore.BLUE+'[*]'+Fore.RESET+' Please Restart Terminator To Load All Plugins Correctly!')
@@ -624,10 +651,9 @@ Max Jobs. 1
                             if os.path.exists(dir_rem):
                                 if name_rem == 'cclean':
                                     os.system('rm -rf '+dir_rem+' > /dev/null 2>&1')
-                                    cc_verify = "Not Installed"
                                 else:
-                                    time.sleep(0.5)
-                                    os.system('python3 '+dir_rem+'/remove.py')
+                                    os.system('rm -rf '+dir_rem+' > /dev/null 2>&1')
+
                                 print(Fore.YELLOW+'[+]'+Fore.RESET+' Plugin '+Fore.GREEN+f'{name_rem}'+Fore.RESET+' Removed.')
                                 print(Fore.BLUE+'[*]'+Fore.RESET+' Please Restart Terminator To Load All Plugins Correctly!')
                             else:
