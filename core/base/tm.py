@@ -79,9 +79,9 @@ if pl:
                         else:
                             print(Fore.RED+'[-]'+Fore.RESET+f' Error Loading Plugin "{i}"...')
                     plg += f'''
-    Name        : {name[1]}
-    Author      : {author[1]}
-    Description : {description[1]}
+    Name        : {name[0]}
+    Author      : {author[0]}
+    Description : {description[0]}
     File        : {i}
     Setup, etc. : Doesnt Support
     =============================================
