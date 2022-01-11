@@ -67,15 +67,12 @@ if pl:
                         if 'name=' in line:
                             name = line
                             name = name.split('name=', '\\n')
-                            name = name[1]
                         elif 'author=' in line:
                             author = line
                             author = author.split('author=', '\\n')
-                            author = author[1]
                         elif 'desc=' in line:
                             description = line
                             description = description.split('desc=', '\\n')
-                            description = description[1]
                         else:
                             print(Fore.RED+'[-]'+Fore.RESET+f' Unable To Load Plugin "{i}"...')
                     plg += f'''
@@ -402,11 +399,6 @@ def main():
             os.system('clear')
         elif tmf[0] == 'banner':
             banner()
-        elif tmf[0] in pl_run:
-            key = pl_run[tmf[0]]
-            print(Fore.BLUE+'[*]'+Fore.RESET+' Running Plugin '+Fore.GREEN+''+tmf[0]+''+Fore.RESET+'...')
-            time.sleep(0.3)
-            os.system('python3 '+key)
         elif tmf[0] == 'exit' or tmf[0] == 'quit':
             print(Fore.RED+'[-]'+Fore.RESET+' Terminator Stopped...')
             removeses()
@@ -666,7 +658,13 @@ Max Jobs. 1
                 except:
                     pass
         else:
-            print(Fore.RED+'[-]'+Fore.RESET+' Unknown Command: "'+tmf[0]+'"')
+            if tmf[0] in pl_run:
+                key = pl_run[tmf[0]]
+                print(Fore.BLUE+'[*]'+Fore.RESET+' Running Plugin '+Fore.GREEN+''+tmf[0]+''+Fore.RESET+'...')
+                time.sleep(0.3)
+                os.system('python3 '+key)
+            else:
+                print(Fore.RED+'[-]'+Fore.RESET+' Unknown Command: "'+tmf[0]+'"')
         try:
             tmf = input('\033[4mtmf\033[0m > ').strip(" ")
         except KeyboardInterrupt:
