@@ -6,12 +6,15 @@ import sys
 import colorama
 import pickle
 from colorama import Fore, Style, Back
+import datetime
 import getpass
 import future
 from sys import platform
 import socket
 from socket import AF_INET, SOCK_STREAM
 colorama.init()
+day = datetime.datetime.now()
+now = day.strftime("(%D) At: %H:%M:%S")
 # Inside Plugin Database
 removable = {
     'cclean': '/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean'
@@ -160,6 +163,8 @@ try:
 except:
     pass
 version = "1.8.6.1"+Fore.LIGHTBLACK_EX+"#stable"
+build = '123254.2'
+setup_v = '12213.1'
 commands = f'''
 Global Commands
 ===============
@@ -211,6 +216,7 @@ Core Commands
     help                          Show available commands
     clear                         Clear terminal window
     banner                        Show banner
+    about                         About framework, etc.
     update                        Update Terminator framework
     show <>                       Show specified command
     use <module>                  Use specified Module
@@ -243,19 +249,6 @@ Show Commands
     show modules                  Show all available Modules
     show payloads                 Show all available Payloads
     show logs                     Show database activity (Logs)
-'''
-about = f'''
-            About
-=================================
-Framework     : Terminator
-Author        : G00Dway
-Organization  : HackNET Community
-Country       : Azerbaijan
-
-          Social Links
-==================================
-Discord       : {Fore.GREEN}https://discord.gg/cKTkTRW48P{Fore.RESET}
-TikTok        : HackNET - Azerbaijan (@hacknet_azerbaijan)
 '''
 mdls = '''
 #    Module Name                                     Type             Verify          Description
@@ -399,6 +392,34 @@ def main():
                 pass
         elif tmf[0] == 'clear':
             os.system('clear')
+        elif tmf[0] == 'about':
+            try:
+                if os.path.exists('/usr/share/Terminator/core/logs/time.log'):
+                    with open('/usr/share/Terminator/core/logs/time.log', 'r') as s:
+                        update_v = s.readline()
+                        s.close()
+                else:
+                    update_v = 'Unknown'
+            except:
+                pass
+            about = f'''
+            About
+=================================
+Framework     : Terminator
+Version       : {version}{Fore.RESET}
+Build Version : {build}
+Setup Version : {setup_v}
+Last Update   : {update_v}
+Author        : G00Dway
+Organization  : HackNET Community
+Country       : Azerbaijan
+
+          Social Links
+==================================
+Discord       : {Fore.GREEN}https://discord.gg/cKTkTRW48P{Fore.RESET}
+TikTok        : HackNET - Azerbaijan (@hacknet_azerbaijan)
+'''
+            print(about)
         elif tmf[0] == 'banner':
             banner()
         elif tmf[0] == 'exit' or tmf[0] == 'quit':
@@ -408,6 +429,12 @@ def main():
             sys.exit()
         elif tmf[0] == 'update':
             try:
+                if os.path.exists("/usr/share/Terminator/core/logs/time.log"):
+                    with open("/usr/share/Terminator/core/logs/time.log", "w") as t:
+                        t.write(now)
+                        t.close()
+                else:
+                    os.system('touch /usr/share/Terminator/core/logs/time.log > /dev/null 2>&1')
                 if os.path.exists("/usr/share/Terminator/lib/plugins/update"):
                     os.system('python3 /usr/share/Terminator/lib/plugins/update/install.py')
                 else:
