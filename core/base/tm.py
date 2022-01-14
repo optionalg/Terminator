@@ -12,6 +12,10 @@ from sys import platform
 import socket
 from socket import AF_INET, SOCK_STREAM
 colorama.init()
+# Inside Plugin Database
+removable = {
+    'cclean': '/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean'
+}
 plugins = {
     'cclean': '/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean'
 }
@@ -30,9 +34,7 @@ Plugins Marketplace
 '''
 # Plugin Read
 pl_command = ''''''
-pl_run = {
-
-}
+pl_run = {}
 pl = os.listdir('/usr/share/Terminator/lib/plugins/global/plugins')
 if pl:
     for i in pl:
@@ -49,13 +51,12 @@ if pl:
                 pass
             if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml'):
                 with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml', 'r') as plugin_run:
-                    run = plugin_run.read()
+                    run = plugin_run.readline()
                     plugin_run.close()
-                if run == 'clean':
+                if i == 'tmf.cclean':
                     pass
                 else:
                     pl_run[run] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/run.py'
-                    plugins[run] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i
             else:
                 print(Fore.RED+'[-]'+Fore.RESET+f' Unable To Load Plugin "{i}"')
             if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/all.yaml'):
@@ -77,7 +78,12 @@ if pl:
                             description = description.split('desc=')
                             description = description[1].split('\n')
                         else:
-                            print(Fore.RED+'[-]'+Fore.RESET+f' Error Loading Plugin "{i}"...')
+                            print(Fore.RED+'[-]'+Fore.RESET+f' Error Loading Plugin "{i}" Dependiences...')
+                    removable[name[0]] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i
+                    if name[0] in removable:
+                        pass
+                    else:
+                        removable[run] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i
                     plg += f'''
     Name        : {name[0]}
     Author      : {author[0]}
@@ -99,16 +105,6 @@ if pl:
             pass
 else:
     pass
-        
-
-
-# Plugin Names
-cc_verify = ""
-
-# Inside Plugin Database
-
-
-
 
 module_name = ""
 payload_name = ""
@@ -163,7 +159,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.6.0"+Fore.LIGHTBLACK_EX+"#stable"
+version = "1.8.6.1"+Fore.LIGHTBLACK_EX+"#stable"
 commands = f'''
 Global Commands
 ===============
@@ -612,8 +608,8 @@ Max Jobs. 1
                             if os.path.exists(dir):
                                 print(Fore.RED+'[-]'+Fore.RESET+' Plugin '+Fore.GREEN+f'{name}'+Fore.RESET+' Already Setup.')
                             else:
-                                os.mkdir(dir)
                                 if name == 'cclean':
+                                    os.mkdir(dir)
                                     os.system('cp -r /usr/share/Terminator/core/base/extra/scripts/cln.py '+dir+' > /dev/null 2>&1')
                                     os.system('mv '+dir+'/cln.py '+dir+'/run.py > /dev/null 2>&1')
                                     os.system('touch '+dir+'/desc.yaml > /dev/null 2>&1')
@@ -640,12 +636,13 @@ Max Jobs. 1
             else:
                 try:
                     name_rem = tmf[1]
-                    if name_rem in plugins:
-                        dir_rem = plugins[name_rem]
+                    if name_rem in removable:
+                        dir_rem = removable[name_rem]
                         print(Fore.BLUE+'[*]'+Fore.RESET+' Removing Plugin '+Fore.GREEN+f'{name_rem}'+Fore.RESET+'...')
                         try:
                             if os.path.exists(dir_rem):
                                 if name_rem == 'cclean':
+                                    time.sleep(0.3)
                                     os.system('rm -rf '+dir_rem+' > /dev/null 2>&1')
                                 else:
                                     os.system('rm -rf '+dir_rem+' > /dev/null 2>&1')
@@ -661,9 +658,10 @@ Max Jobs. 1
                 except:
                     pass
         else:
-            if tmf[0] in pl_run:
-                key = pl_run[tmf[0]]
-                print(Fore.BLUE+'[*]'+Fore.RESET+' Running Plugin '+Fore.GREEN+''+tmf[0]+''+Fore.RESET+'...')
+            cmd = tmf[0]
+            if cmd in removable:
+                key = pl_run[cmd]
+                print(Fore.BLUE+'[*]'+Fore.RESET+' Running Plugin '+Fore.GREEN+''+cmd+''+Fore.RESET+'...')
                 time.sleep(0.3)
                 os.system('python3 '+key)
             else:
