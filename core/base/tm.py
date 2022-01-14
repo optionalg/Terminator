@@ -244,15 +244,18 @@ Show Commands
     show payloads                 Show all available Payloads
     show logs                     Show database activity (Logs)
 '''
-update_info = '''
-Update Commands
-===============
+about = f'''
+            About
+=================================
+Framework     : Terminator
+Author        : G00Dway
+Organization  : HackNET Community
+Country       : Azerbaijan
 
-    Command                       Description
-    -------                       -----------
-    update                        Update everything
-    update console                Update console only
-    update database               Update database only
+          Social Links
+==================================
+Discord       : {Fore.GREEN}https://discord.gg/cKTkTRW48P{Fore.RESET}
+TikTok        : HackNET - Azerbaijan (@hacknet_azerbaijan)
 '''
 mdls = '''
 #    Module Name                                     Type             Verify          Description
@@ -356,7 +359,7 @@ def banner():
   | | ___ _ __ _ __ ___  _ _ __   __ _| |_ ___  _ __ 
   | |/ _ \ '__| '_ ` _ \| | '_ \ / _` | __/ _ \| '__|
   | |  __/ |  | | | | | | | | | | (_| | || (_) | |   
-  \_/\___|_|  |_| |_| |_|_|_| |_|\__,_|\__\___/|_| [ HackNet Community ]
+  \_/\___|_|  |_| |_| |_|_|_| |_|\__,_|\__\___/|_| [ HackNET Community ]
 
 + -- -=[ Terminator Framework             ]
       <[ Database                      {database_run} ]
