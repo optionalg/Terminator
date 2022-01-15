@@ -13,8 +13,6 @@ from sys import platform
 import socket
 from socket import AF_INET, SOCK_STREAM
 colorama.init()
-day = datetime.datetime.now()
-now = day.strftime("(%D) At: %H:%M:%S")
 # Inside Plugin Database
 removable = {
     'cclean': '/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean'
@@ -428,6 +426,8 @@ TikTok             : HackNET - Azerbaijan (@hacknet_azerbaijan)
             time.sleep(0.5)
             sys.exit()
         elif tmf[0] == 'update':
+            day = datetime.datetime.now()
+            now = day.strftime("(%D) At: %H:%M:%S")
             try:
                 if os.path.exists("/usr/share/Terminator/core/logs/time.log"):
                     with open("/usr/share/Terminator/core/logs/time.log", "w") as t:
