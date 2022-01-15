@@ -403,7 +403,7 @@ def main():
             except:
                 pass
             about = f'''
-            About
+              About
 =================================
 Framework          : Terminator
 Version            : {version}{Fore.RESET}
@@ -414,10 +414,10 @@ Author             : G00Dway
 Organization       : HackNET Community
 Country            : Azerbaijan
 
-          Social Links
+           Social Links
 ==================================
-Discord       : {Fore.GREEN}https://discord.gg/cKTkTRW48P{Fore.RESET}
-TikTok        : HackNET - Azerbaijan (@hacknet_azerbaijan)
+Discord            : {Fore.GREEN}https://discord.gg/cKTkTRW48P{Fore.RESET}
+TikTok             : HackNET - Azerbaijan (@hacknet_azerbaijan)
 '''
             print(about)
         elif tmf[0] == 'banner':
