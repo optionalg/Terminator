@@ -405,14 +405,14 @@ def main():
             about = f'''
             About
 =================================
-Framework     : Terminator
-Version       : {version}{Fore.RESET}
-Build Version : {build}
-Setup Version : {setup_v}
-Last Update   : {update_v}
-Author        : G00Dway
-Organization  : HackNET Community
-Country       : Azerbaijan
+Framework          : Terminator
+Version            : {version}{Fore.RESET}
+Build Version      : {build}
+Setup Version      : {setup_v}
+Last Update Check  : {update_v}
+Author             : G00Dway
+Organization       : HackNET Community
+Country            : Azerbaijan
 
           Social Links
 ==================================
@@ -435,6 +435,9 @@ TikTok        : HackNET - Azerbaijan (@hacknet_azerbaijan)
                         t.close()
                 else:
                     os.system('touch /usr/share/Terminator/core/logs/time.log > /dev/null 2>&1')
+                    with open("/usr/share/Terminator/core/logs/time.log", "w") as t:
+                        t.write(now)
+                        t.close()
                 if os.path.exists("/usr/share/Terminator/lib/plugins/update"):
                     os.system('python3 /usr/share/Terminator/lib/plugins/update/install.py')
                 else:
