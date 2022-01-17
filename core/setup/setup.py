@@ -41,7 +41,10 @@ time.sleep(0.1)
 banner()
 print('')
 time.sleep(1)
-enter = input("To Proceed With Installation Press [ENTER] Key To Continue... ")
+try:
+    enter = input("To Proceed With Installation Press [ENTER] Key To Continue... ")
+except:
+    sys.exit()
 def check():
     while done == "false":
         print('\n')
