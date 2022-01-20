@@ -13,3 +13,6 @@
 * We Are NOT Responsible For You Actions With This Program! Please Use Terminator At Your OWN Risk!
 # Bugs?
 - Saw a Bug? Report It At: https://github.com/G00Dway/Terminator/issues
+
+
+Powered by ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
