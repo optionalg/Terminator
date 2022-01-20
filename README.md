@@ -1,3 +1,4 @@
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
 # Terminator
 - Terminator Framework
 - Welcome To Terminator Framework Repo!
@@ -13,7 +14,3 @@
 * We Are NOT Responsible For You Actions With This Program! Please Use Terminator At Your OWN Risk!
 # Bugs?
 - Saw a Bug? Report It At: https://github.com/G00Dway/Terminator/issues
-
-
-
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
