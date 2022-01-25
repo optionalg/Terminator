@@ -253,7 +253,7 @@ mdls = '''
 -    ------------                                    -----            -------         ------------
 1    module/multi/handler                            Handler          yes             Handler For Payloads
 2    module/packet_sniff/http/sniff                  Local            yes             HTTP/HTTPS Packet Sniffer
-3    module/blueman/bluetooth_dos/l2ping             Local            no              Bluetooth Denial Of Service Module
+3    module/blueman/bluetooth_dos/l2ping             Local            yes             Bluetooth Denial Of Service Module
 4    module/online_food_delivery/rce/webshell        Web/RCE          yes             RCE, WebShell Upload & Execute Command
 5    module/evolution_cms/rce/login_web              Web/RCE          no              CMS RCE, Login & Execute Command
 6    module/citadel_web_kit/cred/log                 Web              yes             Citadel Web kit, Credential Harvester Module
