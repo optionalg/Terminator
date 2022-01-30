@@ -160,7 +160,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.6.1"+Fore.LIGHTBLACK_EX+"#stable"
+version = "1.8.6.2"+Fore.LIGHTBLACK_EX+"#stable"
 build = '123254.2'
 setup_v = '12213.1'
 commands = f'''
@@ -262,6 +262,7 @@ mdls = '''
 9    module/online_learn/rce/shell                   Web/RCE          no              RCE, Advanced WebShell Upload & BruteForcer
 10   module/port_scan/local/scan                     Local            yes             Port Scanner, Advanced IPY Port Scanner
 11   module/apache/apache_web/rce                    Web/RCE          no              Apache Web RCE, Advanced Apache Vulnerability Scanner
+12   module/gerapy/log/rce_shell                     Web/RCE          yes             RCE, Login & Upload WebShell
 '''
 pylds = '''
 Payload Name                                    Type             Verify          Description
@@ -584,6 +585,10 @@ Max Jobs. 1
             else:
                 try:
                     if modules == Fore.GREEN+"OK"+Fore.RESET and database == Fore.GREEN+"OK"+Fore.RESET:
+                        if tmf[1].isdigit():
+                            print(Fore.BLUE+'[*]'+Fore.RESET+f' Loading Module Number {tmf[1]} Assigments...')
+                        else:
+                            print(Fore.BLUE+'[*]'+Fore.RESET+' Loading Module "'+tmf[1]+'" Assigments...')
                         if tmf[1] == 'multi/handler' or tmf[1] == 'module/multi/handler' or tmf[1] == '1':
                             time.sleep(0.7)
                             print(Fore.BLUE+'[*]'+Fore.RESET+' Set Default Payload: "payload/win/win_reverse_shell"')
@@ -618,8 +623,20 @@ Max Jobs. 1
                         elif tmf[1] == 'module/apache/apache_web/rce' or tmf[1] == '11':
                             time.sleep(0.3)
                             os.system('python3 /usr/share/Terminator/lib/data/exploits/ap.py')
+                        elif tmf[1] == 'module/gerapy/log/rce_shell' or tmf[1] == '12':
+                            time.sleep(0.5)
+                            os.system('python3 /usr/share/Terminator/lib/data/exploits/gr.py')
                         else:
-                            print(Fore.RED+'[-]'+Fore.RESET+' Invalid Module Number/Name: "'+tmf[1]+'"')
+                            if tmf[1].isdigit():
+                                print(Fore.RED+'[-]'+Fore.RESET+' Unable To Load Module Number: '+tmf[1])
+                                print(Fore.RED+'[-]'+Fore.RESET+' Please Enter a Valid Module Number!')
+                            else:
+                                print(Fore.RED+'[-]'+Fore.RESET+' Unable To Load Module: "'+tmf[1]+'"')
+                                print(Fore.RED+'[-]'+Fore.RESET+' Please Enter a Valid Module Name!')
+                        if tmf[1].isdigit():
+                            print(Fore.BLUE+'[*]'+Fore.RESET+' Closed Module Number: '+tmf[1])
+                        else:
+                            print(Fore.BLUE+'[*]'+Fore.RESET+' Closed Module: "'+tmf[1]+'"')
                     else:
                         time.sleep(0.5)
                         print(Fore.RED+'[-]'+Fore.RESET+' Unable To Load Modules!')
