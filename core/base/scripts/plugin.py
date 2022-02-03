@@ -41,7 +41,6 @@ Exec     : /usr/share/Terminator/bin/tmconsole/exec.sh
 Plugins  : /usr/share/Terminator/lib/plugins
 Tested   : Kali Linux, Parrot OS, Debian x64
 Services : Not Available
-Credits  : N9RAWJMI, for testing my projects!
 
 
 
