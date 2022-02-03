@@ -21,10 +21,9 @@ try:
                 if 'firstrun' in activity:
                     print(Fore.BLUE+'[*]'+Fore.RESET+' First Run Detected.')
                     print(Fore.BLUE+'[*]'+Fore.RESET+' Removing UnNeeded Temporary Files...')
-                    if os.path.exists("/usr/share/Terminator/core/base/extra/scripts/cln.py"):
-                        pass
-                    else:
-                        print(Fore.RED+'[-]'+Fore.RESET+' Unable To Remove Temporary Files, Passing...')
+                    os.system('rm -rf /usr/share/Terminator/README.md > /dev/null 2>&1')
+                    os.system('rm -rf /usr/share/Terminator/setup.sh > /dev/null 2>&1')
+                    os.system('rm -rf /usr/share/Terminator/uninstall.sh > /dev/null 2>&1')
 except:
     pass
 sys.exit()
