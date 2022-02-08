@@ -15,8 +15,24 @@ user=getpass.getuser()
 nowdate=datetime.datetime.now()
 timerun=nowdate.strftime("(%D) - %H:%M:%S")
 args = []
+boot_ver = "0.4"
 auto_upd = False
 clean_db = False
+try:
+    if os.path.exists("/usr/share/Terminator/core/logs"):
+        pass
+    else:
+        os.mkdir("/usr/share/Terminator/core/logs")
+        os.system('touch /usr/share/Terminator/core/logs/logs.log > /dev/null 2>&1')
+except:
+    pass
+try:
+    with open("/usr/share/Terminator/core/logs/logs.log", "a") as uii:
+        uii.write(f"\n[{timerun}] CORE: Starting Background Processes...")
+        uii.write(f"\n[{timerun}] CORE: Loading Database...")
+        uii.close()
+except:
+    pass
 try:
     if os.path.exists("/usr/share/Terminator/core/setup/use.log"):
         os.system('python3 /usr/share/Terminator/core/components/firstrun.py')
@@ -120,14 +136,6 @@ try:
 except:
     pass
 try:
-    if os.path.exists("/usr/share/Terminator/core/logs"):
-        pass
-    else:
-        os.mkdir("/usr/share/Terminator/core/logs")
-        os.system('touch /usr/share/Terminator/core/logs/logs.log')
-except:
-    pass
-try:
     if os.path.exists("/usr/share/Terminator"):
         ter = True
     else:
@@ -157,13 +165,9 @@ def animate():
         sys.stdout.write('\r[*] stArting terminator...-')
         try:
             if os.path.exists("/usr/share/Terminator/modules/payloads"):
-                with open("/usr/share/Terminator/core/logs/logs.log", "a") as v:
-                    v.write(f"\n[{timerun}] INFO: Loading Payloads...")
-                    v.close()
+                payloads = True
             else:
-                with open("/usr/share/Terminator/core/logs/logs.log", "a") as payload:
-                    payload.write(f"\n[{timerun}] FATAL: Unable To Load Payloads")
-                    payload.close()
+                payloads = False
         except:
             pass
         time.sleep(0.1)
@@ -174,7 +178,7 @@ def animate():
         sys.stdout.write('\r[*] startIng terminator.../')
         time.sleep(0.1)
         sys.stdout.write('\r[*] startiNg terminator...-')
-        time.sleep(0.3)
+        time.sleep(0.2)
         sys.stdout.write('\r[*] startinG terminator...\\')
         try:
             import colorama
@@ -263,19 +267,16 @@ def animate():
                 os.system('touch /usr/share/Terminator/core/logs/logs.log')
         except:
             pass
-        time.sleep(0.6)
+        time.sleep(0.3)
         try:
             if mod == True:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as i:
                     i.write(f"\n[{timerun}] INFO: Loading Plugins...")
+                    i.write(f"\n[{timerun}] INFO: Plugins Loaded Successfully")
                     i.close()
-
-                with open("/usr/share/Terminator/core/logs/logs.log", "a") as r:
-                    r.write(f"\n[{timerun}] INFO: Plugins Loaded Successfully")
-                    r.close()
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as y:
-                    y.write(f"\n[{timerun}] FATAL: Unable To Load Plugins & Modules")
+                    y.write(f"\n[{timerun}] FATAL: Unable To Load Plugins")
                     y.close()
         except:
             pass
@@ -294,17 +295,37 @@ def animate():
                 os.system('touch /usr/share/Terminator/core/base/extra/scripts/loaded.dat > /dev/null 2>&1')
             else:
                 os.system('touch /usr/share/Terminator/core/base/extra/scripts/loaded.dat > /dev/null 2>&1')
-            if os.path.exists("/usr/share/Terminator/modules"):
+            if os.path.exists("/usr/share/Terminator/modules") and os.path.exists("/usr/share/Terminator/core/logs"):
                 l = os.listdir("/usr/share/Terminator/modules")
+                log_file = "/usr/share/Terminator/core/logs/modules.log"
+                if os.path.exists(log_file):
+                    pass
+                else:
+                    os.system('touch '+log_file+' > /dev/null 2>&1')
                 for i in l:
                     a = os.listdir("/usr/share/Terminator/modules/"+i)
                     for load in a:
-                        with open("/usr/share/Terminator/core/logs/logs.log", "a") as write_log:
-                            write_log.write(f"\n[{timerun}] NOTE: Loading Additional Module {load}")
-                            write_log.close()
+                        if '.log' in load:
+                            if payloads:
+                                with open("/usr/share/Terminator/core/logs/logs.log", 'a') as payload_detect:
+                                    payload_detect.write(f"\n[{timerun}] NOTE: Loading Additional Payload {load}")
+                                    payload_detect.close()
+                            else:
+                                with open("/usr/share/Terminator/core/logs/logs.log", 'a') as payload_detect_fail:
+                                    payload_detect_fail.write(f"\n[{timerun}] FATAL: Unable To Load Payloads!")
+                                    payload_detect_fail.close()
+                        else:
+                            with open("/usr/share/Terminator/core/logs/logs.log", "a") as write_log:
+                                write_log.write(f"\n[{timerun}] NOTE: Loading Additional Module {load}")
+                                write_log.close()
+                    
+                    for module_ldd in a:
+                        with open(log_file, "w") as mdddl:
+                            mdddl.write(f"\n{module_ldd}")
+                            mdddl.close()
             else:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as fail:
-                    fail.write(f"\n[{timerun}] FATAL: Unable To Load Modules Database")
+                    fail.write(f"\n[{timerun}] FATAL: Unable To Load Modules")
                     fail.close()
         except:
             pass
@@ -316,7 +337,7 @@ def animate():
         sys.stdout.write('\r[*] starting terminatOr...-')
         time.sleep(0.1)
         sys.stdout.write('\r[*] starting terminatoR...\\')
-        time.sleep(0.3)
+        time.sleep(0.2)
         try:
             if os.path.exists("/usr/share/Terminator/core/components"):
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as core:
@@ -334,7 +355,7 @@ def animate():
         sys.stdout.write('\r[*] sTarting terminator.../')
         time.sleep(0.1)
         sys.stdout.write('\r[*] stArting terminator...-')
-        time.sleep(0.5)
+        time.sleep(0.2)
         try:
             if components == True:
                 try:
@@ -404,9 +425,6 @@ def animate():
         time.sleep(0.1)
         sys.stdout.write('\r[*] starting terminAtor...-')
         try:
-            with open("/usr/share/Terminator/core/logs/logs.log", "a") as plugin_load:
-                plugin_load.write(f"\n[{timerun}] NOTE: Starting Cache Plugin...")
-                plugin_load.close()
             os.system('python3 /usr/share/Terminator/core/base/scripts/plugin.py')
         except:
             pass
