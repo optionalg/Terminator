@@ -82,6 +82,9 @@ def check():
                 sys.stdout.write(f'\r[{now}] Building Database...                              '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']\n')
             else:
                 sys.stdout.write(f'\r[{now}] Building Database...                              '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.RED+'FAIL'+Fore.RESET+']\n')
+                print(Fore.RED+'[!]'+Fore.RESET+' Unable To Build Database, Stopping...')
+                time.sleep(0.6)
+                sys.exit()
         except:
             pass
         sys.stdout.write(f'\r[{now}] Copying Console Files...                          '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']')
