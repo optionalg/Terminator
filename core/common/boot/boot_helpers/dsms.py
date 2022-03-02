@@ -15,7 +15,7 @@ user=getpass.getuser()
 nowdate=datetime.datetime.now()
 timerun=nowdate.strftime("(%D) - %H:%M:%S")
 args = []
-boot_ver = "0.4"
+boot_ver = "0.5"
 auto_upd = False
 clean_db = False
 try:
@@ -29,6 +29,7 @@ except:
 try:
     with open("/usr/share/Terminator/core/logs/logs.log", "a") as uii:
         uii.write(f"\n[{timerun}] CORE: Starting Background Processes...")
+        uii.write(f"\n[{timerun}] BOOT: Loading Terminator Framework Boot System Ver.{boot_ver}")
         uii.write(f"\n[{timerun}] CORE: Loading Database...")
         uii.close()
 except:
@@ -373,6 +374,7 @@ def animate():
                         try:
                             if os.path.exists(comp+'/'+setup):
                                 with open(comp+'/'+setup, "w") as n:
+                                    n.write("import os\n")
                                     n.write("# This is the core component of Terminator for errors, Removing this file does not affects to Terminator")
                                     n.close()
                                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as log:
