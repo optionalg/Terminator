@@ -14,6 +14,7 @@ import socket
 from socket import AF_INET, SOCK_STREAM
 colorama.init()
 # Inside Plugin Database
+plugins_ld = 1
 removable = {
     'cclean': '/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean'
 }
@@ -93,6 +94,7 @@ if pl:
     Setup, etc. : Doesnt Support
     =============================================
     '''
+                    plugins_ld+=1
             else:
                 pass
             if os.path.exists("/usr/share/Terminator/core/logs/plugins.log"):
@@ -130,11 +132,17 @@ except:
     pass
 try:
     result = 0
+    result_pl = 0
     make = os.listdir('/usr/share/Terminator/modules')
     for i in make:
-        ex = os.listdir('/usr/share/Terminator/modules/'+i)
-        for e in ex:
-            result+=1
+        if "payloads" in i:
+            ex_pl = os.listdir('/usr/share/Terminator/modules/'+i)
+            for e_pl in ex_pl:
+                result_pl+=1
+        else:
+            ex = os.listdir('/usr/share/Terminator/modules/'+i)
+            for e in ex:
+                result+=1
 except:
     pass
 try:
@@ -160,7 +168,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.6.2"+Fore.LIGHTBLACK_EX+"#stable"
+version = "1.8.6.3"+Fore.LIGHTBLACK_EX+"#stable"
 build = '123254.2'
 setup_v = '12213.1'
 commands = f'''
@@ -353,10 +361,11 @@ def banner():
   | |  __/ |  | | | | | | | | | | (_| | || (_) | |   
   \_/\___|_|  |_| |_| |_|_|_| |_|\__,_|\__\___/|_| [ HackNET Community ]
 
-+ -- -=[ Terminator Framework             ]
-      <[ Database                      {database_run} ]
-      <[ Version           {version} '''+Fore.RESET+f''']
-      <[ Modules Loaded                {result} ]
++ -- -=[ Terminator Framework             
+      <[ Database                      {database_run} 
+      <[ Version           {version} '''+Fore.RESET+f'''
+      <[ Plugins                       {plugins_ld} 
++ -- -=[ Modules loaded: {result} | Payloads loaded: {result_pl} 
 ''')
 banner()
 print(random.choice(tips))
