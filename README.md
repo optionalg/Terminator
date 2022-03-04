@@ -8,7 +8,7 @@
 * Organization : HackNET-Azerbaijan
 # Installaton:
 - Read <a href="https://github.com/G00Dway/Terminator/wiki/Installation">Installation Wiki</a> For How To Install Terminator!
-# Disclaimer!
+# !!! Disclaimer !!!
 * We Are NOT Responsible For You Actions With This Program! Please Use Terminator At Your OWN Risk!
 # Bugs, Errors
 - Saw a Bug, Error? Report It At: <a href="https://github.com/G00Dway/Terminator/issues">Issues Page</a>
