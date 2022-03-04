@@ -12,3 +12,4 @@
 * We Are NOT Responsible For You Actions With This Program! Please Use Terminator At Your OWN Risk!
 # Bugs, Errors
 - Saw a Bug, Error? Report It At: <a href="https://github.com/G00Dway/Terminator/issues">Issues Page</a>
+- Or Lookup To Error Codes: <a href="https://github.com/G00Dway/Terminator/wiki/error_codes">Error Codes Wiki</a>
