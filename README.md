@@ -1,10 +1,8 @@
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
 # Terminator
-- Terminator Framework
-- Welcome To Terminator Framework Repo!
+- Welcome To Terminator Framework, Advenced Framework For Ethical Hackers And Pentesters.
 # About:
-* Terminator Framework Is a Explotation Framework For Pentesters, Security Researchers!
-* With Terminator Framework You Can Test Your Devices For Any RCE Vulnerabilities!
+* With Terminator Framework You Can Test Your Devices For Any RCE Vulnerabilities And More.
 - - - - - - - - - - - - -  - - - - - - --  - -- - - - - - - - - - - - - -- - -   - - - -
 * Author: G00Dway
 * Organization: HackNET-Azerbaijan
