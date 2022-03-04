@@ -13,4 +13,4 @@
 # Disclaimer!
 * We Are NOT Responsible For You Actions With This Program! Please Use Terminator At Your OWN Risk!
 # Bugs?
-- Saw a Bug? Report It At: https://github.com/G00Dway/Terminator/issues
+- Saw a Bug? Report It At: <a href="https://github.com/G00Dway/Terminator/issues">Issues Page</a>
