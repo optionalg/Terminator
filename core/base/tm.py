@@ -22,6 +22,7 @@ plugins = {
     'cclean': '/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean'
 }
 plg = f'''
+Plugins Loaded: {plugins_ld}
 Plugins Marketplace
 ===================
 
@@ -361,11 +362,10 @@ def banner():
   | |  __/ |  | | | | | | | | | | (_| | || (_) | |   
   \_/\___|_|  |_| |_| |_|_|_| |_|\__,_|\__\___/|_| [ HackNET Community ]
 
-+ -- -=[ Terminator Framework             
-      <[ Database                      {database_run} 
++ -- -=[ Terminator Framework                         
+      <[ Database                     {database_run} 
       <[ Version           {version} '''+Fore.RESET+f'''
-      <[ Plugins                       {plugins_ld} 
-+ -- -=[ Modules loaded: {result} | Payloads loaded: {result_pl} 
+      <[ Modules loaded: {result} | Payloads loaded: {result_pl} 
 ''')
 banner()
 print(random.choice(tips))
