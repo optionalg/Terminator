@@ -38,7 +38,7 @@ Plugins Marketplace
 # Plugin Read
 pl_command = []
 pl_run = {
-    'secret':'/usr/share/Terminator/lib/plugins/global/plugins/lib/secret.py'
+    'test':'test'
 }
 pl = os.listdir('/usr/share/Terminator/lib/plugins/global/plugins')
 if pl:
@@ -730,12 +730,14 @@ Max Jobs. 1
                 except:
                     pass
         else:
-            cmd = tmf[0]
-            if cmd in removable:
-                key = pl_run[cmd]
-                print(Fore.BLUE+'[*]'+Fore.RESET+' Running Plugin '+Fore.GREEN+''+cmd+''+Fore.RESET+'...')
-                time.sleep(0.3)
-                os.system('python3 '+key)
+            if tmf[0] in pl_run:
+                if tmf[0] == 'test':
+                    print('')
+                else:
+                    key = pl_run[tmf[0]]
+                    print(Fore.BLUE+'[*]'+Fore.RESET+' Running Plugin '+Fore.GREEN+''+tmf[0]+''+Fore.RESET+'...')
+                    time.sleep(0.3)
+                    os.system('python3 '+key)
             else:
                 print(Fore.RED+'[-]'+Fore.RESET+' Unknown Command: "'+tmf[0]+'"')
         try:
