@@ -135,7 +135,7 @@ except:
     pass
 try:
     result = 0
-    result_pl = 0
+    result_pl = 2
     make = os.listdir('/usr/share/Terminator/modules')
     for i in make:
         if "payloads" in i:
@@ -374,7 +374,7 @@ def banner():
   \_/\___|_|  |_| |_| |_|_|_| |_|\__,_|\__\___/|_| [ HackNET Community ]
 
 + -- -=[ Terminator Framework                         
-      <[ Database                     {database_run} 
+      <[ Database                      {database_run} 
       <[ Version           {version} '''+Fore.RESET+f'''
       <[ Modules loaded: {result} | Payloads loaded: {result_pl} 
 ''')
