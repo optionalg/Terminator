@@ -164,6 +164,15 @@ def removeses():
             pass
     except:
         pass
+plugin_commands = ''''''
+try:
+    for i in pl_command:
+        if 'clean' in i:
+            plugin_commands+=i+'\n'
+        else:
+            plugin_commands+=i+'\n\t'
+except:
+    pass
 try:
     if os.path.exists("/usr/share/Terminator/lib/plugins/update"):
         updater = Fore.GREEN+"OK"+Fore.RESET
@@ -172,7 +181,7 @@ try:
 except:
     pass
 version = "1.8.6.4"+Fore.LIGHTBLACK_EX+"#stable"
-build = '123255.2'
+build = '123455.2'
 setup_v = '12213.1'
 commands = f'''
 Global Commands
@@ -247,7 +256,7 @@ Plugins Installed
 
     Command                       Description
     -------                       -----------
-    {pl_command}
+    {plugin_commands}
 '''
 showcommands = '''
 Show Commands
