@@ -36,8 +36,10 @@ Plugins Marketplace
     =============================================
 '''
 # Plugin Read
-pl_command = ''''''
-pl_run = {}
+pl_command = []
+pl_run = {
+    'secret':'/usr/share/Terminator/lib/plugins/global/plugins/lib/secret.py'
+}
 pl = os.listdir('/usr/share/Terminator/lib/plugins/global/plugins')
 if pl:
     for i in pl:
@@ -49,7 +51,7 @@ if pl:
                 if desc in pl_command:
                     pass
                 else:
-                    pl_command += desc+'\n'
+                    pl_command.append(desc)
             else:
                 pass
             if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml'):
@@ -169,8 +171,8 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.6.3"+Fore.LIGHTBLACK_EX+"#stable"
-build = '123254.2'
+version = "1.8.6.4"+Fore.LIGHTBLACK_EX+"#stable"
+build = '123255.2'
 setup_v = '12213.1'
 commands = f'''
 Global Commands
@@ -652,6 +654,8 @@ Max Jobs. 1
                 except:
                     pass
         elif tmf[0] == 'plugins':
+            print(Fore.BLUE+'[*]'+Fore.RESET+' Loading Plugins...')
+            time.sleep(0.2)
             print(plg)
         elif tmf[0] == 'setup':
             if len(tmf) < 2:
