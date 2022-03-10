@@ -12,11 +12,26 @@ def db():
         else:
             pass
         if os.path.exists("/usr/share/Terminator"):
+            print(Fore.BLUE+'[*]'+Fore.RESET+' Creating Backup Files...')
+            try:
+                if os.path.exists('/usr/share/Terminator/core/logs/time.log'):
+                    os.system('mv /usr/share/Terminator/core/logs/time.log /usr/var/tmf-meta-inf/time.log > /dev/null 2>&1')
+                else:
+                    pass
+            except:
+                pass
             os.system('mv /usr/share/Terminator /usr/var/tmf-meta-inf/Terminator-old > /dev/null 2>&1')
             os.system("git clone "+url+" /usr/share/Terminator > /dev/null 2>&1")
             print(Fore.BLUE+'[*]'+Fore.RESET+' Installing Update...')
             if os.path.exists("/usr/share/Terminator"):
                 os.mkdir('/usr/share/Terminator/core/logs')
+                try:
+                    if os.path.exists('/usr/var/tmf-meta-inf/time.log'):
+                        os.system("mv /usr/var/tmf-meta-inf/time.log /usr/share/Terminator/core/logs/time.log > /dev/null 2>&1")
+                    else:
+                        pass
+                except:
+                    pass
                 os.system('python3 /usr/share/Terminator/bin/version/ver.py')
             else:
                 print(Fore.RED+'[-]'+Fore.RESET+' Update Failed, Using Old Database Instead New')

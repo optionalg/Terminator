@@ -24,7 +24,7 @@ if os.path.exists('/usr/share/Terminator/core/logs/pip-update.log'):
     pass
 else:
     os.system('touch /usr/share/Terminator/core/logs/pip-update.log > /dev/null 2>&1')
-os.system('bash /usr/share/Terminator/core/setup/pip-install.sh &> /usr/share/Terminator/core/logs/pip-update.log')
+os.system('bash /usr/share/Terminator/core/setup/pip-install.sh > /usr/share/Terminator/core/logs/pip-update.log')
 print(Fore.BLUE+'[*]'+Fore.RESET+' ReEnabling Plugins...')
 try:
     if os.path.exists('/usr/share/Terminator/core/base/scripts/cache/libs'):
