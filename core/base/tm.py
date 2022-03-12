@@ -41,9 +41,11 @@ pl_run = {
     'test':'test'
 }
 pl = os.listdir('/usr/share/Terminator/lib/plugins/global/plugins')
+for i in pl:
+    plugins_ld+=1
+
 if pl:
     for i in pl:
-        plugins_ld+=1
         try:
             if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml'):
                 with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml', 'r') as plugin_desc:
