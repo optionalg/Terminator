@@ -180,7 +180,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.6.4"+Fore.LIGHTBLACK_EX+"#stable"
+version = "1.8.6.5"+Fore.LIGHTBLACK_EX+"#stable"
 build = '123455.2'
 setup_v = '12213.1'
 commands = f'''
@@ -269,20 +269,21 @@ Show Commands
     show logs                     Show database activity (Logs)
 '''
 mdls = '''
-#    Module Name                                     Type             Verify          Description
--    ------------                                    -----            -------         ------------
-1    module/multi/handler                            Handler          yes             Handler For Payloads
-2    module/packet_sniff/http/sniff                  Local            yes             HTTP/HTTPS Packet Sniffer
-3    module/blueman/bluetooth_dos/l2ping             Local            yes             Bluetooth Denial Of Service Module
-4    module/online_food_delivery/rce/webshell        Web/RCE          yes             RCE, WebShell Upload & Execute Command
-5    module/evolution_cms/rce/login_web              Web/RCE          no              CMS RCE, Login & Execute Command
-6    module/citadel_web_kit/cred/log                 Web              yes             Citadel Web kit, Credential Harvester Module
-7    module/patient_appointment/sys/web              Web/RCE          no              RCE, WebShell Uplaod & Command Execute
-8    module/rental_unit/storage/shell                Web/RCE          no              RCE, WebShell Upload & Reverse TCP    
-9    module/online_learn/rce/shell                   Web/RCE          no              RCE, Advanced WebShell Upload & BruteForcer
-10   module/port_scan/local/scan                     Local            yes             Port Scanner, Advanced IPY Port Scanner
-11   module/apache/apache_web/rce                    Web/RCE          no              Apache Web RCE, Advanced Apache Vulnerability Scanner
-12   module/gerapy/log/rce_shell                     Web/RCE          yes             RCE, Login & Upload WebShell
+#    Module Name                                     Type               Verify          Description
+-    ------------                                    -----              -------         ------------
+1    module/multi/handler                            Handler            yes             Handler For Payloads
+2    module/packet_sniff/http/sniff                  Local              yes             HTTP/HTTPS Packet Sniffer
+3    module/blueman/bluetooth_dos/l2ping             Local              yes             Bluetooth Denial Of Service Module
+4    module/online_food_delivery/rce/webshell        Web/RCE            yes             RCE, WebShell Upload & Execute Command
+5    module/evolution_cms/rce/login_web              Web/RCE            no              CMS RCE, Login & Execute Command
+6    module/citadel_web_kit/cred/log                 Web                yes             Citadel Web kit, Credential Harvester Module
+7    module/patient_appointment/sys/web              Web/RCE            no              RCE, WebShell Upload & Command Execute
+8    module/rental_unit/storage/shell                Web/RCE            no              RCE, WebShell Upload & Reverse TCP    
+9    module/online_learn/rce/shell                   Web/RCE            no              RCE, Advanced WebShell Upload & BruteForcer
+10   module/port_scan/local/scan                     Local              yes             Port Scanner, Advanced IPY Port Scanner
+11   module/apache/apache_web/rce                    Web/RCE            no              Apache Web RCE, Advanced Apache Vulnerability Scanner
+12   module/gerapy/log/rce_shell                     Web/RCE            yes             RCE, Login & Upload WebShell
+13   module/slr/120/shell_rce                        Web/RCE/CMD        no              RCE, Execute Commands Without Authentication (Router)
 '''
 pylds = '''
 Payload Name                                    Type             Verify          Description
@@ -646,6 +647,9 @@ Max Jobs. 1
                         elif tmf[1] == 'module/gerapy/log/rce_shell' or tmf[1] == '12':
                             time.sleep(0.5)
                             os.system('python3 /usr/share/Terminator/lib/data/exploits/gr.py')
+                        elif tmf[1] == 'module/slr/120/shell_rce' or tmf[1] == '13':
+                            time.sleep(0.5)
+                            os.system('python3 /usr/share/Terminator/lib/data/exploits/slr-c.py')
                         else:
                             if tmf[1].isdigit():
                                 print(Fore.RED+'[-]'+Fore.RESET+' Unable To Load Module Number: '+tmf[1])
