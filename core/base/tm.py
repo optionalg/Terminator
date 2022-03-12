@@ -295,8 +295,8 @@ payload/apk/android_reverse_shell               Android          yes            
 def search(type, name):
     count = 0
     modules_list = '''
-#    Module Name                                     Type             Verify          Description
--    ------------                                    -----            -------         ------------
+#    Module Name                                     Type               Verify          Description
+-    ------------                                    -----              -------         ------------
 '''
     payloads = '''
 Payload Name                                    Type             Verify          Description
