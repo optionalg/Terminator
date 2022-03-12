@@ -15,7 +15,7 @@ user=getpass.getuser()
 nowdate=datetime.datetime.now()
 timerun=nowdate.strftime("(%D) - %H:%M:%S")
 args = []
-boot_ver = "0.5"
+tmf_boot_ver = "0.6"
 auto_upd = False
 clean_db = False
 try:
@@ -29,7 +29,6 @@ except:
 try:
     with open("/usr/share/Terminator/core/logs/logs.log", "a") as uii:
         uii.write(f"\n[{timerun}] CORE: Starting Background Processes...")
-        uii.write(f"\n[{timerun}] BOOT: Loading Terminator Framework Boot System Ver.{boot_ver}")
         uii.write(f"\n[{timerun}] CORE: Loading Database...")
         uii.close()
 except:
