@@ -14,7 +14,7 @@ import socket
 from socket import AF_INET, SOCK_STREAM
 colorama.init()
 # Inside Plugin Database
-plugins_ld = 1
+plugins_ld = 0
 removable = {
     'cclean': '/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean'
 }
@@ -43,6 +43,7 @@ pl_run = {
 pl = os.listdir('/usr/share/Terminator/lib/plugins/global/plugins')
 if pl:
     for i in pl:
+        plugins_ld+=1
         try:
             if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml'):
                 with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml', 'r') as plugin_desc:
@@ -97,7 +98,6 @@ if pl:
     Setup, etc. : Doesnt Support
     =============================================
     '''
-                    plugins_ld+=1
             else:
                 pass
             if os.path.exists("/usr/share/Terminator/core/logs/plugins.log"):
@@ -168,9 +168,9 @@ plugin_commands = ''''''
 try:
     for i in pl_command:
         if 'clean' in i:
-            plugin_commands+=i+'\n'
+            plugin_commands+=i
         else:
-            plugin_commands+=i+'\n\t'
+            plugin_commands+='\n\t'+i
 except:
     pass
 try:
