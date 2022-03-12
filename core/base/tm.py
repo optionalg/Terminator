@@ -172,7 +172,7 @@ try:
         if 'clean' in i:
             plugin_commands+=i
         else:
-            plugin_commands+='\n\t'+i
+            plugin_commands+='\n    '+i
 except:
     pass
 try:
