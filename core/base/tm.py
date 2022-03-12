@@ -21,6 +21,14 @@ removable = {
 plugins = {
     'cclean': '/usr/share/Terminator/lib/plugins/global/plugins/tmf.cclean'
 }
+# Plugin Read
+pl_command = []
+pl_run = {
+    'test':'test'
+}
+pl = os.listdir('/usr/share/Terminator/lib/plugins/global/plugins')
+for i in pl:
+    plugins_ld+=1
 plg = f'''
 Plugins Loaded: {plugins_ld}
 Plugins Marketplace
@@ -35,14 +43,6 @@ Plugins Marketplace
     Setup, etc. : Support
     =============================================
 '''
-# Plugin Read
-pl_command = []
-pl_run = {
-    'test':'test'
-}
-pl = os.listdir('/usr/share/Terminator/lib/plugins/global/plugins')
-for i in pl:
-    plugins_ld+=1
 
 if pl:
     for i in pl:
