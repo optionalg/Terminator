@@ -59,4 +59,13 @@ try:
             console.close()
 except:
     pass
+try:
+    if os.path.exists("/usr/share/Terminator/core/setup/services/tmf-broker.service"):
+        pass
+    else:
+        print(Fore.RED+'[-]'+Fore.RESET+' File: "/usr/share/Terminator/core/setup/services/tmf-broker.service" Does NOT Exists')
+        print(Fore.RED+'[-]'+Fore.RESET+' Exiting...')
+        sys.exit()
+except:
+    pass
 sys.exit()

@@ -23,9 +23,7 @@ plugins = {
 }
 # Plugin Read
 pl_command = []
-pl_run = {
-    'test':'test'
-}
+pl_run = {}
 pl = os.listdir('/usr/share/Terminator/lib/plugins/global/plugins')
 for i in pl:
     plugins_ld+=1
@@ -43,74 +41,73 @@ Plugins Marketplace
     Setup, etc. : Support
     =============================================
 '''
-
 if pl:
     for i in pl:
-        try:
-            if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml'):
-                with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml', 'r') as plugin_desc:
-                    desc = plugin_desc.read()
-                    plugin_desc.close()
-                if desc in pl_command:
-                    pass
-                else:
-                    pl_command.append(desc)
-            else:
-                pass
-            if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml'):
-                with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml', 'r') as plugin_run:
-                    run = plugin_run.readline()
-                    plugin_run.close()
-                if i == 'tmf.cclean':
-                    pass
-                else:
-                    pl_run[run] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/run.py'
-            else:
-                print(Fore.RED+'[-]'+Fore.RESET+f' Unable To Load Plugin "{i}"')
-            if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/all.yaml'):
-                with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/all.yaml', 'r') as plugin_write:
-                    name = "??"
-                    author = "??"
-                    description = "??"
-                    for line in plugin_write:
-                        if 'name=' in line:
-                            name = line
-                            name = name.split('name=')
-                            name = name[1].split('\n')
-                        elif 'author=' in line:
-                            author = line
-                            author = author.split('author=')
-                            author = author[1].split('\n')
-                        elif 'desc=' in line:
-                            description = line
-                            description = description.split('desc=')
-                            description = description[1].split('\n')
-                        else:
-                            print(Fore.RED+'[-]'+Fore.RESET+f' Error Loading Plugin "{i}" Dependiences...')
-                    removable[name[0]] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i
-                    if name[0] in removable:
+        if i in plugins:
+            pass
+        else:
+            try:
+                if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml'):
+                    with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/desc.yaml', 'r') as plugin_desc:
+                        desc = plugin_desc.read()
+                        plugin_desc.close()
+                    if desc in pl_command:
                         pass
                     else:
-                        removable[run] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i
-                    plg += f'''
-    Name        : {name[0]}
-    Author      : {author[0]}
-    Description : {description[0]}
-    File        : {i}
-    Setup, etc. : Doesnt Support
-    =============================================
-    '''
-            else:
-                pass
-            if os.path.exists("/usr/share/Terminator/core/logs/plugins.log"):
-                with open('/usr/share/Terminator/core/logs/plugins.log', 'w') as load_pl:
-                    load_pl.write(i) 
-                    load_pl.close()
-            else:
-                os.system('touch /usr/share/Terminator/core/logs/plugins.log > /dev/null 2>&1')
+                        pl_command.append(desc)
+                else:
+                    pass
+                if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml'):
+                    with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/cmd.yaml', 'r') as plugin_run:
+                        run = plugin_run.read()
+                        plugin_run.close()
+                else:
+                    print(Fore.RED+'[-]'+Fore.RESET+f' Unable To Load Plugin "{i}"')
+                if os.path.exists('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/all.yaml'):
+                    with open('/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/all.yaml', 'r') as plugin_write:
+                        name = "??"
+                        author = "??"
+                        description = "??"
+                        for line in plugin_write:
+                            if 'name=' in line:
+                                name = line
+                                name = name.split('name=')
+                                name = name[1].split('\n')
+                            elif 'author=' in line:
+                                author = line
+                                author = author.split('author=')
+                                author = author[1].split('\n')
+                            elif 'desc=' in line:
+                                description = line
+                                description = description.split('desc=')
+                                description = description[1].split('\n')
+                            else:
+                                print(Fore.RED+'[-]'+Fore.RESET+f' Error Loading Plugin "{i}" Dependencies...')
+                        removable[name[0]] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i
+                        if name[0] in removable:
+                            pass
+                        else:
+                            removable[run] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i
+                        plg += f'''
+        Name        : {name[0]}
+        Author      : {author[0]}
+        Description : {description[0]}
+        File        : {i}
+        Setup, etc. : Doesnt Support
+        =============================================
+        '''
+                        pl_run[run] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/run.py'
+                else:
+                    pass
+                if os.path.exists("/usr/share/Terminator/core/logs/plugins.log"):
+                    with open('/usr/share/Terminator/core/logs/plugins.log', 'w') as load_pl:
+                        load_pl.write(i) 
+                        load_pl.close()
+                else:
+                    os.system('touch /usr/share/Terminator/core/logs/plugins.log > /dev/null 2>&1')
 
-        except:
-            pass
+            except:
+                pass
 else:
     pass
 
@@ -182,9 +179,9 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.6.5"+Fore.LIGHTBLACK_EX+"#stable"
-build = '123455.2'
-setup_v = '12213.1'
+version = "1.8.6.6"+Fore.LIGHTGREEN_EX+"#dev"
+build = '01.106.2'
+setup_v = '01.96.2'
 commands = f'''
 Global Commands
 ===============

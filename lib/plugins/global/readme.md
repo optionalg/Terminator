@@ -3,9 +3,11 @@ Please read these and add if your making your own plugin!
 cmd.yaml = Command of the plugin
 
 desc.yaml = Command and description of the plugin 
-(E.g =  cmd                            Description)
-           ----------------------------
+(E.g =  cmd                               Description)
+           -------------------------------
                    28 Space 
+
+= 28 space because am lazy to add auto description adder in tmf so better do it yourself :)
 
 all.yaml = Description, file dir, plugin name, etc.
 components to add to all.yaml file:

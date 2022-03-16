@@ -1,0 +1,9 @@
+[Unit]
+Description=Terminator Framework Pre-Configuration Service
+After=network.target
+
+
+[Service]
+Type=simple
+ExecStart=/usr/share/Terminator/bin/services/pre-conf.sh
+WorkingDirectory=/usr/share/Terminator
