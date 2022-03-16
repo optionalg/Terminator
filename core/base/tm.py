@@ -375,7 +375,7 @@ def banner():
 
 + -- -=[ Terminator Framework                         
       <[ Database                      {database_run} 
-      <[ Version           {version} '''+Fore.RESET+f'''
+      <[ Version              {version} '''+Fore.RESET+f'''
       <[ Modules loaded: {result} | Payloads loaded: {result_pl} 
 ''')
 banner()
