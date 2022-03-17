@@ -407,7 +407,6 @@ def main():
         exit()
     tmf = tmf.split()
     while True:
-        cmd = tmf[0]
         if tmf == []:
             pass
         elif tmf[0] == 'help' or tmf[0] == '?':
@@ -750,15 +749,12 @@ Max Jobs. 1
                         print(Fore.RED+'[-]'+Fore.RESET+' Invalid Plugin: "'+name_rem+'"')
                 except:
                     pass
-        elif cmd in pl_run:
-            if cmd == 'test':
-                print('hmm...')
-            else:
-                key = pl_run[cmd]
-                print(Fore.BLUE+'[*]'+Fore.RESET+' Detected Plugin '+Fore.GREEN+''+cmd+''+Fore.RESET+'...')
-                print(Fore.BLUE+'[*]'+Fore.RESET+' Running Plugin '+Fore.GREEN+''+cmd+''+Fore.RESET+'...')
-                time.sleep(0.3)
-                os.system('python3 '+key)
+        elif tmf[0] in pl_run:
+            key = pl_run[tmf[0]]
+            print(Fore.BLUE+'[*]'+Fore.RESET+' Detected Plugin '+Fore.GREEN+''+tmf[0]+''+Fore.RESET+'...')
+            print(Fore.BLUE+'[*]'+Fore.RESET+' Running Plugin '+Fore.GREEN+''+tmf[0]+''+Fore.RESET+'...')
+            time.sleep(0.3)
+            os.system('python3 '+key)
         else:
             print(Fore.RED+'[-]'+Fore.RESET+' Unknown Command: "'+tmf[0]+'"')
         try:
