@@ -23,6 +23,7 @@ plugins = {
 }
 # Plugin Read
 pl_command = []
+pl_run_db = []
 pl_run = {}
 pl = os.listdir('/usr/share/Terminator/lib/plugins/global/plugins')
 for i in pl:
@@ -141,6 +142,8 @@ try:
             ex_pl = os.listdir('/usr/share/Terminator/modules/'+i)
             for e_pl in ex_pl:
                 result_pl+=1
+        elif "readme.md" in i:
+            pass
         else:
             ex = os.listdir('/usr/share/Terminator/modules/'+i)
             for e in ex:
@@ -179,9 +182,9 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.6.6"+Fore.LIGHTGREEN_EX+"#dev"
-build = '01.106.2'
-setup_v = '01.96.2'
+version = "1.8.6.7"+Fore.LIGHTGREEN_EX+"#dev"
+build = '1.16.2'
+setup_v = '1.6.2'
 commands = f'''
 Global Commands
 ===============
@@ -297,7 +300,15 @@ def search(type, name):
 #    Module Name                                     Type               Verify          Description
 -    ------------                                    -----              -------         ------------
 '''
+    inno_mod = '''
+#    Module Name                                     Type               Verify          Description
+-    ------------                                    -----              -------         ------------
+'''
     payloads = '''
+Payload Name                                    Type             Verify          Description
+-------------                                   -----            -------         ------------
+'''
+    inno_plds = '''
 Payload Name                                    Type             Verify          Description
 -------------                                   -----            -------         ------------
 '''
@@ -307,21 +318,25 @@ Payload Name                                    Type             Verify         
                 if name in line:
                     count+=1
                     modules_list+=line+'\n'
-            print(modules_list)
             if count == 0:
+                print(Fore.RED+'[-]'+Fore.RESET+' No Results Found.')
+            elif modules_list == inno_mod:
                 print(Fore.RED+'[-]'+Fore.RESET+' No Results Found.')
             else:
                 print(Fore.BLUE+'[*]'+Fore.RESET+f' Found {count} Results')
+                print(modules_list)
         elif type == 'payload':
             for line2 in pylds.split('\n'):
                 if name in line2:
                     count+=1
                     payloads+=line2+'\n'
-            print(payloads)
             if count == 0:
+                print(Fore.RED+'[-]'+Fore.RESET+' No Results Found.')
+            elif payloads == inno_plds:
                 print(Fore.RED+'[-]'+Fore.RESET+' No Results Found.')
             else:
                 print(Fore.BLUE+'[*]'+Fore.RESET+f' Found {count} Results')
+                print(payloads)
         else:
             pass
     except:
@@ -363,7 +378,7 @@ try:
         database_run = Fore.GREEN+"FATAL"+Fore.RESET
 except:
     pass
-tips = ['INFO: After Updating, Terminator Saves '+Fore.GREEN+'old'+Fore.RESET+' Database At: "/usr/var/tmf-meta-inf"!', 'HINT: Terminator Runs Slow? Why Not Try The '+Fore.GREEN+'clean'+Fore.RESET+' Command!', 'INFO: Always Keep Terminator Up-To-Date!', 'HINT: While in Module, You Can Use '+Fore.GREEN+'back'+Fore.RESET+' Command To Exit from Module use!', 'HINT: To Kill Running Handler Jobs, Use '+Fore.GREEN+'jkill <Job ID>'+Fore.RESET, 'HINT: To Interact With Handler Jobs, Use '+Fore.GREEN+'int <Job ID>'+Fore.RESET, 'HINT: You can Change Settings Under "/usr/share/Terminator/core/base/extra/'+Fore.GREEN+'settings.ini'+Fore.RESET+'"', 'HINT: You Can Add Your Own Plugins At: '+Fore.GREEN+'"/usr/share/Terminator/lib/plugins/global/plugins"'+Fore.RESET+' Directory!']
+tips = ['INFO: After Updating, Terminator Saves '+Fore.GREEN+'old'+Fore.RESET+' Database At: "/usr/var/tmf-meta-inf"!', 'HINT: Terminator Runs Slow? Why Not Try The (Plugin) '+Fore.GREEN+'clean'+Fore.RESET+' Command!', 'INFO: Always Keep Terminator Up-To-Date!', 'HINT: While in Module, You Can Use '+Fore.GREEN+'back'+Fore.RESET+' Command To Exit from Module use!', 'HINT: To Kill Running Handler Jobs, Use '+Fore.GREEN+'jkill <Job ID>'+Fore.RESET, 'HINT: To Interact With Handler Jobs, Use '+Fore.GREEN+'int <Job ID>'+Fore.RESET, 'HINT: You can Change Settings Under "/usr/share/Terminator/core/base/extra/'+Fore.GREEN+'settings.ini'+Fore.RESET+'"', 'HINT: You Can Add Your Own Plugins At: "/usr/share/Terminator/lib/plugins/global/'+Fore.GREEN+'plugins"'+Fore.RESET+' Directory!']
 def banner():
     print(f'''
  _____                   _             _             
@@ -375,7 +390,7 @@ def banner():
 
 + -- -=[ Terminator Framework                         
       <[ Database                      {database_run} 
-      <[ Version              {version} '''+Fore.RESET+f'''
+      <[ Version           {version} '''+Fore.RESET+f'''
       <[ Modules loaded: {result} | Payloads loaded: {result_pl} 
 ''')
 banner()
@@ -392,6 +407,7 @@ def main():
         exit()
     tmf = tmf.split()
     while True:
+        cmd = tmf[0]
         if tmf == []:
             pass
         elif tmf[0] == 'help' or tmf[0] == '?':
@@ -424,19 +440,21 @@ def main():
             about = f'''
               About
 =================================
-Framework          : Terminator
+Framework          : Terminator Framework Build {build}
 Version            : {version}{Fore.RESET}
-Build Version      : {build}
 Setup Version      : {setup_v}
 Last Update Check  : {update_v}
+Modules Loaded     : {result}
+Payloads Loaded    : {result_pl}
+Plugins Loaded     : {plugins_ld}
 Author             : G00Dway
 Organization       : HackNET Community
 Country            : Azerbaijan
 
            Social Links
 ==================================
-Discord            : {Fore.GREEN}https://discord.gg/cKTkTRW48P{Fore.RESET}
-TikTok             : HackNET - Azerbaijan (@hacknet_azerbaijan)
+Discord            : Join HackNET Community! - {Fore.GREEN}https://discord.gg/cKTkTRW48P{Fore.RESET}
+TikTok             : Watch our Latest News! - {Fore.GREEN}HackNET - Azerbaijan (@hacknet_azerbaijan){Fore.RESET}
 '''
             print(about)
         elif tmf[0] == 'banner':
@@ -732,17 +750,17 @@ Max Jobs. 1
                         print(Fore.RED+'[-]'+Fore.RESET+' Invalid Plugin: "'+name_rem+'"')
                 except:
                     pass
-        else:
-            if tmf[0] in pl_run:
-                if tmf[0] == 'test':
-                    print('')
-                else:
-                    key = pl_run[tmf[0]]
-                    print(Fore.BLUE+'[*]'+Fore.RESET+' Running Plugin '+Fore.GREEN+''+tmf[0]+''+Fore.RESET+'...')
-                    time.sleep(0.3)
-                    os.system('python3 '+key)
+        elif cmd in pl_run:
+            if cmd == 'test':
+                print('hmm...')
             else:
-                print(Fore.RED+'[-]'+Fore.RESET+' Unknown Command: "'+tmf[0]+'"')
+                key = pl_run[cmd]
+                print(Fore.BLUE+'[*]'+Fore.RESET+' Detected Plugin '+Fore.GREEN+''+cmd+''+Fore.RESET+'...')
+                print(Fore.BLUE+'[*]'+Fore.RESET+' Running Plugin '+Fore.GREEN+''+cmd+''+Fore.RESET+'...')
+                time.sleep(0.3)
+                os.system('python3 '+key)
+        else:
+            print(Fore.RED+'[-]'+Fore.RESET+' Unknown Command: "'+tmf[0]+'"')
         try:
             tmf = input('\033[4mtmf\033[0m > ').strip(" ")
         except KeyboardInterrupt:
