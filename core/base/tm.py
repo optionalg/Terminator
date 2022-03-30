@@ -182,9 +182,9 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.6.7"+Fore.LIGHTGREEN_EX+"#dev"
-build = '1.16.2'
-setup_v = '1.6.2'
+version = "1.8.6.8"+Fore.LIGHTGREEN_EX+"#stable"
+build = '11654.stable'
+setup_v = '1.6.3'
 commands = f'''
 Global Commands
 ===============
@@ -384,13 +384,12 @@ def banner():
  _____                   _             _             
 |_   _|                 (_)           | |            
   | | ___ _ __ _ __ ___  _ _ __   __ _| |_ ___  _ __ 
-  | |/ _ \ '__| '_ ` _ \| | '_ \ / _` | __/ _ \| '__|
+  | |/ _ \ '__| '_ ` _ \| | '_ \ / _` | __/ _ \| '__| {version}
   | |  __/ |  | | | | | | | | | | (_| | || (_) | |   
-  \_/\___|_|  |_| |_| |_|_|_| |_|\__,_|\__\___/|_| [ HackNET Community ]
+  \_/\___|_|  |_| |_| |_|_|_| |_|\__,_|\__\___/|_|
 
 + -- -=[ Terminator Framework                         
-      <[ Database                      {database_run} 
-      <[ Version              {version} '''+Fore.RESET+f'''
+      <[ Database                      {database_run}
       <[ Modules loaded: {result} | Payloads loaded: {result_pl} 
 ''')
 banner()
