@@ -182,7 +182,7 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.6.8"+Fore.LIGHTGREEN_EX+"#stable"
+version = "1.8.6.8"+Fore.LIGHTGREEN_EX+"#stable"+Fore.RESET
 build = '11654.stable'
 setup_v = '1.6.3'
 commands = f'''
