@@ -182,8 +182,16 @@ try:
         updater = Fore.RED+"FATAL"+Fore.RESET
 except:
     pass
-version = "1.8.6.8"+Fore.LIGHTGREEN_EX+"#stable"+Fore.RESET
-build = '11654.stable'
+try:
+    if os.path.exists("/usr/share/Terminator/VERSION"):
+        with open("/usr/share/Terminator/VERSION", "r") as tmf_ver:
+            version = tmf_ver.read()
+    else:
+        print(Fore.RED+'[-]'+Fore.RESET+" Error: Version Could Not Be Detected")
+        version = "UNKNOWN"
+except:
+    pass
+build = '11654.dev'
 setup_v = '1.6.3'
 commands = f'''
 Global Commands
@@ -287,6 +295,21 @@ mdls = '''
 12   module/gerapy/log/rce_shell                     Web/RCE            yes             RCE, Login & Upload WebShell
 13   module/slr/120/shell_rce                        Web/RCE/CMD        no              RCE, Execute Commands Without Authentication (Router)
 '''
+search_modules = '''
+module/multi/handler
+module/packet_sniff/http/sniff
+module/blueman/bluetooth_dos/l2ping
+module/online_food_delivery/rce/webshell
+module/evolution_cms/rce/login_web
+module/citadel_web_kit/cred/log    
+module/patient_appointment/sys/web             
+module/rental_unit/storage/shell                  
+module/online_learn/rce/shell                   
+module/port_scan/local/scan                     
+module/apache/apache_web/rce                    
+module/gerapy/log/rce_shell 
+module/slr/120/shell_rce
+'''
 pylds = '''
 Payload Name                                    Type             Verify          Description
 -------------                                   -----            -------         ------------
@@ -294,47 +317,46 @@ payload/poc/redragon_mouse/wr                   Windows          no             
 payload/win/win_reverse_shell                   Windows          yes             reverse shell Payload (win32, win64)
 payload/apk/android_reverse_shell               Android          yes             reverse shell Payload (V.3 - 9)
 '''
+search_payloads = '''
+payload/poc/redragon_mouse/wr                   
+payload/win/win_reverse_shell                 
+payload/apk/android_reverse_shell
+'''
 def search(type, name):
     count = 0
     modules_list = '''
-#    Module Name                                     Type               Verify          Description
--    ------------                                    -----              -------         ------------
-'''
-    inno_mod = '''
-#    Module Name                                     Type               Verify          Description
--    ------------                                    -----              -------         ------------
 '''
     payloads = '''
-Payload Name                                    Type             Verify          Description
--------------                                   -----            -------         ------------
-'''
-    inno_plds = '''
-Payload Name                                    Type             Verify          Description
--------------                                   -----            -------         ------------
 '''
     try:
         if type == 'module':
-            for line in mdls.split('\n'):
+            for line in search_modules.split('\n'):
                 if name in line:
                     count+=1
-                    modules_list+=line+'\n'
+                    line4 = line.replace(name, Fore.GREEN+name+Fore.RESET)
+                    modules_list+=line4+'\n'
             if count == 0:
                 print(Fore.RED+'[-]'+Fore.RESET+' No Results Found.')
-            elif modules_list == inno_mod:
-                print(Fore.RED+'[-]'+Fore.RESET+' No Results Found.')
             else:
+                print('''
+Found Modules
+==============
+''')
                 print(Fore.BLUE+'[*]'+Fore.RESET+f' Found {count} Results')
                 print(modules_list)
         elif type == 'payload':
-            for line2 in pylds.split('\n'):
+            for line2 in search_payloads.split('\n'):
                 if name in line2:
                     count+=1
-                    payloads+=line2+'\n'
+                    line3 = line2.replace(name, Fore.GREEN+name+Fore.RESET)
+                    payloads+=line3+'\n'
             if count == 0:
                 print(Fore.RED+'[-]'+Fore.RESET+' No Results Found.')
-            elif payloads == inno_plds:
-                print(Fore.RED+'[-]'+Fore.RESET+' No Results Found.')
             else:
+                print('''
+Found Payloads
+===============
+''')
                 print(Fore.BLUE+'[*]'+Fore.RESET+f' Found {count} Results')
                 print(payloads)
         else:
@@ -373,9 +395,9 @@ system = ""
 usr = "/usr/share/Terminator"
 try:
     if updater == Fore.GREEN+"OK"+Fore.RESET and database == Fore.GREEN+"OK"+Fore.RESET and core == Fore.GREEN+"OK"+Fore.RESET and modules == Fore.GREEN+"OK"+Fore.RESET and console == Fore.GREEN+"OK"+Fore.RESET:
-        database_run = Fore.GREEN+"OK"+Fore.RESET
+        database_run = Fore.GREEN+"RUNNING"+Fore.RESET
     else:
-        database_run = Fore.GREEN+"FATAL"+Fore.RESET
+        database_run = Fore.GREEN+"NOT RUNNING"+Fore.RESET
 except:
     pass
 tips = ['INFO: After Updating, Terminator Saves '+Fore.GREEN+'old'+Fore.RESET+' Database At: "/usr/var/tmf-meta-inf"!', 'HINT: Terminator Runs Slow? Why Not Try The (Plugin) '+Fore.GREEN+'clean'+Fore.RESET+' Command!', 'INFO: Always Keep Terminator Up-To-Date!', 'HINT: While in Module, You Can Use '+Fore.GREEN+'back'+Fore.RESET+' Command To Exit from Module use!', 'HINT: To Kill Running Handler Jobs, Use '+Fore.GREEN+'jkill <Job ID>'+Fore.RESET, 'HINT: To Interact With Handler Jobs, Use '+Fore.GREEN+'int <Job ID>'+Fore.RESET, 'HINT: You can Change Settings Under "/usr/share/Terminator/core/base/extra/'+Fore.GREEN+'settings.ini'+Fore.RESET+'"', 'HINT: You Can Add Your Own Plugins At: "/usr/share/Terminator/lib/plugins/global/'+Fore.GREEN+'plugins"'+Fore.RESET+' Directory!']
