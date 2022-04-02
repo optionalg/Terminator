@@ -12,7 +12,6 @@ def db():
         else:
             pass
         if os.path.exists("/usr/share/Terminator"):
-            print(Fore.BLUE+'[*]'+Fore.RESET+' Creating Backup Files...')
             try:
                 if os.path.exists('/usr/share/Terminator/core/logs/time.log'):
                     os.system('mv /usr/share/Terminator/core/logs/time.log /usr/var/tmf-meta-inf/time.log > /dev/null 2>&1')
@@ -21,6 +20,7 @@ def db():
             except:
                 pass
             os.system('mv /usr/share/Terminator /usr/var/tmf-meta-inf/Terminator-old > /dev/null 2>&1')
+            print(Fore.BLUE+'[*]'+Fore.RESET+' Creating Backup Files...')
             os.system("git clone "+url+" /usr/share/Terminator > /dev/null 2>&1")
             print(Fore.BLUE+'[*]'+Fore.RESET+' Installing Update...')
             if os.path.exists("/usr/share/Terminator"):

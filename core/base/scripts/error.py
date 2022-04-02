@@ -7,17 +7,26 @@ import sys
 from colorama import Fore
 colorama.init()
 def tmf(error):
-    print(Fore.RED+'[-]'+Fore.RESET+' Trying To Fix Corrupted Files...')
+    print(Fore.RED+'[-]'+Fore.RESET+' Trying To Fix Corrupted File...')
     try:
         if os.path.exists(error):
-            fix = True
-        else:
+            directory_name = error
+            def read():
+                with open(error, 'r') as error_var:
+                    _file = error_var.read()
+                print(Fore.BLUE+'[*]'+Fore.RESET+' File Code:')
+                time.sleep(0.5)
+                print(_file)
+            read()
             os.system('rm -rf '+error+' > /dev/null 2>&1')
-            os.mkdir(error)
-        if fix == True:
-            print(Fore.YELLOW+'[+]'+Fore.RESET+' Completed, Please ReRun Terminator.')
+            print(Fore.BLUE+'[*]'+Fore.RESET+' Downloading Clean Version Of The File From GIT...')
+            git_wget = "https://github.com/G00Dway/Terminator/main/"+directory_name
+            os.system("wget "+git_wget+" -O "+directory_name)
+            read()
+            print(Fore.YELLOW+'[+]'+Fore.RESET+" Completed.")
         else:
-            print(Fore.RED+'[-]'+Fore.RESET+' Some Files Of Terminator Are Corrupted, Please ReInstall Terminator.')
+            os.mkdir("touch "+error+" > /dev/null 2>&1")
+        print(Fore.YELLOW+'[+]'+Fore.RESET+' Completed, Please ReRun Terminator.')
     except:
         pass
     sys.exit()
@@ -39,8 +48,6 @@ def fix(dir):
     try:
         if os.path.exists(dir):
             os.system('rm -rf '+dir+' > /dev/null 2>&1')
-        else:
-            pass
     except:
         pass
     os.system('git clone '+url+' /usr/share/Terminator > /dev/null 2>&1')

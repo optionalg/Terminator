@@ -15,7 +15,7 @@ user=getpass.getuser()
 nowdate=datetime.datetime.now()
 timerun=nowdate.strftime("(%D) - %H:%M:%S")
 args = []
-tmf_boot_ver = "0.6"
+tmf_boot_ver = "0.7"
 auto_upd = False
 clean_db = False
 try:
