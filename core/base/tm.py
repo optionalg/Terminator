@@ -403,8 +403,7 @@ tips = ['INFO: After Updating, Terminator Saves '+Fore.GREEN+'old'+Fore.RESET+' 
 def banner():
     print(banner_load)
     print(f"""
-    --=[ Modules loaded: {result} | Payloads loaded: {result_pl}
-""")
+     --=[ Modules loaded: {result} | Payloads loaded: {result_pl}""")
     
 
 banner()
