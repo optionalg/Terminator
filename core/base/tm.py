@@ -339,9 +339,7 @@ def search(type, name):
                 print(Fore.RED+'[-]'+Fore.RESET+' No Results Found.')
             else:
                 print(Fore.BLUE+'[*]'+Fore.RESET+f' Found {count} Results')
-                print('''
-==============
-''')
+                print('---------------------------')
                 print(modules_list)
         elif type == 'payload':
             for line2 in search_payloads.split('\n'):
@@ -353,9 +351,7 @@ def search(type, name):
                 print(Fore.RED+'[-]'+Fore.RESET+' No Results Found.')
             else:
                 print(Fore.BLUE+'[*]'+Fore.RESET+f' Found {count} Results')
-                print('''
-===============
-''')
+                print('---------------------------')
                 print(payloads)
         else:
             pass
@@ -407,8 +403,10 @@ tips = ['INFO: After Updating, Terminator Saves '+Fore.GREEN+'old'+Fore.RESET+' 
 def banner():
     print(banner_load)
     print(f"""
---=[ Modules loaded: {result} | Payloads loaded: {result_pl}
+    --=[ Modules loaded: {result} | Payloads loaded: {result_pl}
 """)
+    
+
 banner()
 print(random.choice(tips))
 print('')
