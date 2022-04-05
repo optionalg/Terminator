@@ -1,14 +1,13 @@
 try:
     import base64, binascii             
     import libs.clib as clib
-    import colorama
-    import sys
-    from colorama import Fore
-    from socket import *
     from PIL import ImageGrab, Image 
 except:                                # if system dose does not have any of this libs throw an error
     print("ERROR: Requirements does not found. exiting...")
-
+import colorama
+import sys
+from colorama import Fore
+from socket import *
 if len(sys.argv) < 3:
     sys.exit()
 
