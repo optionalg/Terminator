@@ -317,7 +317,7 @@ Handler Details:
                 print(Fore.RED+'[-]'+Fore.RESET+' Please Set Options First!')
             else:
                 print(Fore.BLUE+'[*]'+Fore.RESET+' Generating Python Payload...')
-                with open("/usr/share/Terminator/modules/payloads/alien-shell.log", "r+") as alien:
+                with open("/usr/share/Terminator/modules/payloads/alien-shell.log", "r") as alien:
                     for line in alien:
                       data = alien.read()
                       print(Fore.YELLOW+'[+]'+Fore.RESET+' Changing LHOST, LPORT...')
