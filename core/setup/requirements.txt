@@ -1,0 +1,10 @@
+colorama 
+scapy
+pysocks 
+imports
+pyfiglet 
+future 
+paramiko 
+flask 
+bs4 
+nmap
