@@ -18,9 +18,9 @@ Server  = socket(AF_INET,SOCK_STREAM)
 Server.bind((HOST, PORT))               # binding IP and port 
 print(Fore.BLUE+'[*]'+Fore.RESET+f' Started Reverse TCP Connection At {HOST}:{PORT}')
 Server.listen(1)                        # waiting for the user to connect 
-print(Fore.YELLOW+"[+]"+Fore.RESET+f" Got Connection From: {HOST}:{PORT}")  # if we got connection show target IP
 
 Client, Addr = Server.accept()                              # our client and client info module and accepting the connection 
+print(Fore.YELLOW+"[+]"+Fore.RESET+f" Got Connection: {HOST}:{PORT}")
 
 while True:                                                     #start while True 
 
