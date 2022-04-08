@@ -1,4 +1,5 @@
 import os
+import re
 import time
 import subprocess
 import random
@@ -209,6 +210,7 @@ Update Commands
     Command                       Description
     -------                       -----------
     update                        Update Terminator framework
+    changelogs                    Open changelogs of current version
 
 Show Commands
 =============
@@ -246,6 +248,7 @@ Core Commands
     banner                        Show banner
     about                         About framework, etc.
     update                        Update Terminator framework
+    changelogs                    Open changelogs of current version
     show <>                       Show specified command
     use <module>                  Use specified Module
     set <option> <value>          Set specified option to specified value (Module use only)
@@ -396,17 +399,15 @@ try:
         database_run = Fore.GREEN+"FATAL"+Fore.RESET
 except:
     pass
-try:
-    with open("/usr/share/Terminator/core/base/ui/banners/out/banner.txt", "r") as banner_selected:
-        banner_load = banner_selected.read()
-except Exception:
-    pass
 tips = ['INFO: After Updating, Terminator Saves '+Fore.GREEN+'old'+Fore.RESET+' Database At: "/usr/var/tmf-meta-inf"!', 'HINT: Terminator Runs Slow? Why Not Try The (Plugin) '+Fore.GREEN+'clean'+Fore.RESET+' Command!', 'INFO: Always Keep Terminator Up-To-Date!', 'HINT: While in Module, You Can Use '+Fore.GREEN+'back'+Fore.RESET+' Command To Exit from Module use!', 'HINT: To Kill Running Handler Jobs, Use '+Fore.GREEN+'jkill <Job ID>'+Fore.RESET, 'HINT: To Interact With Handler Jobs, Use '+Fore.GREEN+'int <Job ID>'+Fore.RESET, 'HINT: You can Change Settings Under "/usr/share/Terminator/core/base/extra/'+Fore.GREEN+'settings.ini'+Fore.RESET+'"', 'HINT: You Can Add Your Own Plugins At: "/usr/share/Terminator/lib/plugins/global/'+Fore.GREEN+'plugins"'+Fore.RESET+' Directory!']
 def banner():
+    os.system('python3 /usr/share/Terminator/core/base/ui/banners/banner.py')
+    try:
+        with open("/usr/share/Terminator/core/base/ui/banners/out/banner.txt", "r") as banner_selected:
+            banner_load = banner_selected.read()
+    except Exception:
+        pass
     print(banner_load)
-    print(f"""
-     --=[ Modules loaded: {result} | Payloads loaded: {result_pl}
-""")
     
 
 banner()
@@ -496,6 +497,25 @@ TikTok             : Watch our Latest News! - {Fore.GREEN}HackNET - Azerbaijan (
                     os.system('python3 /usr/share/Terminator/lib/plugins/update/install.py')
                 else:
                     print(Fore.RED+'[-]'+Fore.RESET+' Update File Was Removed Or Corrupted!')
+            except:
+                pass
+        elif tmf[0] == 'changelogs':
+            try:
+                def read():
+                    with open('/usr/share/Terminator/changelog', 'r') as changelogs:
+                        changelog = changelogs.read()
+                    if version in changelog:
+                        print(Fore.YELLOW+'[+]'+Fore.RESET+' Changelogs Exists:')
+                        print(changelog)
+                    else:
+                        print(Fore.BLUE+'[*]'+Fore.RESET+' Seems a Update Available:')
+                        print(changelog)
+                if os.path.exists("/usr/share/Terminator/changelog"):
+                    read()
+                else:
+                    print(Fore.BLUE+'[*]'+Fore.RESET+' Retrieving Changelogs From Internet...')
+                    os.system('wget https://raw.githubusercontent.com/G00Dway/Terminator/main/changelog -O /usr/share/Terminator/changelog > /dev/null 2>&1')
+                    read()
             except:
                 pass
         elif tmf[0] == 'jobs':
