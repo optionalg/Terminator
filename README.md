@@ -14,5 +14,5 @@
 - Saw a Bug, Error? Please Dont Forget To Report It At: <a href="https://github.com/G00Dway/Terminator/issues">Issues Page</a>
 - Or Lookup To Error Codes: <a href="https://github.com/G00Dway/Terminator/wiki/error_codes">Error Codes Wiki</a>
 # Join BETA!
-- You Can Always Download BETA Version Of Terminator At Releases! (Updates Disabled)
+- You Can Always Download <a href="https://github.com/G00Dway/Terminator/releases">BETA</a> Version Of Terminator At Releases! (Updates Disabled)
 - Thank You For Supporting Us!
