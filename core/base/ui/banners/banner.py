@@ -18,7 +18,8 @@ banners = [f"""
   | |  __/ |  | | | | | | | | | | (_| | || (_) | |   
   \_/\___|_|  |_| |_| |_|_|_| |_|\__,_|\__\___/|_|
 
-+ -- --=[ {Fore.YELLOW}Terminator Framework{Fore.RESET}""", f"""
++ -- --=[ {Fore.YELLOW}Terminator Framework{Fore.RESET}
+""", f"""
                       ,____
                       |---.\\
               ___     |    `      TERMINATOR
@@ -37,7 +38,8 @@ banners = [f"""
        (_.-.__.__./  /
 
 
-+ -- --=[ {Fore.YELLOW}Terminator Framework{Fore.RESET}""", f'''
++ -- --=[ {Fore.YELLOW}Terminator Framework{Fore.RESET}
+""", f'''
 {Fore.GREEN}Malware load success
 CODE 7X04U8{Fore.RED}
 WRITING...
@@ -64,7 +66,8 @@ WRITING...
                       `$"  `OOOO' `O"Y ' `OOOO'  o             .
     .                  .     OP"          : o     .
 
-+ -- --=[ {Fore.YELLOW}Terminator Framework{Fore.RESET}''', f'''
++ -- --=[ {Fore.YELLOW}Terminator Framework{Fore.RESET}
+''', f'''
 
 \033[92m
           +hydNNNNdyh+
@@ -85,7 +88,8 @@ WRITING...
           MMMMo  oMMMM
           oNMm-  -mMNs
 
-+ -- --=[ {Fore.YELLOW}Terminator Framework{Fore.RESET}''']
++ -- --=[ {Fore.YELLOW}Terminator Framework{Fore.RESET}
+''']
 banner_selected = random.choice(banners)
 try:
     with open("/usr/share/Terminator/core/base/ui/banners/out/banner.txt", "w") as f:
