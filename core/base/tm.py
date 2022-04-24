@@ -511,6 +511,9 @@ TikTok             : Watch our Latest News! - {Fore.GREEN}HackNET - Azerbaijan (
                         print(Fore.BLUE+'[*]'+Fore.RESET+' Seems a Update Available:')
                         print(changelog)
                 if os.path.exists("/usr/share/Terminator/changelog"):
+                    os.system('rm -rf /usr/share/Terminator/changelog > /dev/null 2>&1')
+                    print(Fore.BLUE+'[*]'+Fore.RESET+' Retrieving Changelogs From Internet...')
+                    os.system('wget https://raw.githubusercontent.com/G00Dway/Terminator/main/changelog -O /usr/share/Terminator/changelog > /dev/null 2>&1')
                     read()
                 else:
                     print(Fore.BLUE+'[*]'+Fore.RESET+' Retrieving Changelogs From Internet...')
