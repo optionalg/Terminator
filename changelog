@@ -1,8 +1,6 @@
---- Version: 1.8.2#stable
+--- Version: 1.8.2.1#stable
 
-- Added Changelogs
-- Payload Bugs Fixed:  
-    1 - payload/alien/win_reverse_shell
-
-- Fixed Banner Bug
-- Customized Update
+- Fixed Alien Handler Bugs
+- Fixed payload/alien/win_reverse_shell Payload Bugs
+- Added New Command To payload/alien/win_reverse_shell Payload
+- Fixed Changelogs Command
