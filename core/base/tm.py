@@ -212,6 +212,14 @@ Update Commands
     update                        Update Terminator framework
     changelogs                    Open changelogs of current version
 
+Database Commands
+=================
+    
+    Command                       Description
+    -------                       -----------
+    db_check                      Check database files, directories
+    db_status                     Check database activity, status
+
 Show Commands
 =============
 
@@ -497,6 +505,41 @@ TikTok             : Watch our Latest News! - {Fore.GREEN}HackNET - Azerbaijan (
                     os.system('python3 /usr/share/Terminator/lib/plugins/update/install.py')
                 else:
                     print(Fore.RED+'[-]'+Fore.RESET+' Update File Was Removed Or Corrupted!')
+            except:
+                pass
+        elif tmf[0] == 'db_check':
+            try:
+                if os.path.exists("/usr/share/Terminator/databases"):
+                    if os.path.exists("/usr/share/Terminator/databases/bin") and os.path.exists("/usr/share/Terminator/databases/config"):
+                        print(Fore.GREEN+'[+]'+Fore.RESET+f' Database: {Fore.GREEN}OK{Fore.RESET}')
+                    else:
+                        print(Fore.RED+'[-]'+Fore.RESET+f' Database: {Fore.RED}CORRUPTED{Fore.RESET}')
+                else:
+                    print(Fore.RED+'[-]'+Fore.RESET+f' Database CODE - FATAL: {Fore.RED}NOT FOUND{Fore.RESET}')
+            except:
+                pass
+        elif tmf[0] == 'db_status':
+            def make_check():
+                try:
+                    if os.path.exists("/usr/share/Terminator/databases/config/logs/start"):
+                        with open("/usr/share/Terminator/databases/config/logs/start", "r") as status:
+                            db_st = status.read()
+                        if "load = True" in db_st:
+                            print(Fore.YELLOW+'[+]'+Fore.RESET+' Database Is Running.')
+                        elif "load = False" in db_st:
+                            print(Fore.RED+'[-]'+Fore.RESET+' Database Is NOT Running.')
+                        else:
+                            print(Fore.RED+'[-]'+Fore.RESET+' Cannot Check Database Status.')
+                    else:
+                        print(Fore.RED+'[-]'+Fore.RESET+' Database Is NOT Running.')
+                except:
+                    pass
+            try:
+                if os.path.exists("/usr/share/Terminator/databases/config/logs"):
+                    make_check()
+                else:
+                    os.mkdir("/usr/share/Terminator/databases/config/logs")
+                    make_check()
             except:
                 pass
         elif tmf[0] == 'changelogs':
