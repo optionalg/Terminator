@@ -1,4 +1,4 @@
 --- Version: 1.8.3#stable
 
-- Added Database
+- Added Database - WARNING: You need to run "setup.sh" again to setup database!
 - Fixed "multi/handler" Module bugs
