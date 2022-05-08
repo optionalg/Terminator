@@ -29,7 +29,7 @@ elif cmd == "--stop":
         with open("/usr/share/Terminator/databases/config/run/start", "w") as f2:
             f2.write("load = False")
         print(Fore.BLUE+'[*]'+Fore.RESET+' Using PKILL...')
-        subprocess.call(['pkill', '-e', 'python3 /usr/share/Terminator/databases/config/run/dbload.py --start'])
+        subprocess.call(['pkill', '-e', "'python3 /usr/share/Terminator/databases/config/run/dbload.py --start'"])
         print(Fore.YELLOW+'[+]'+Fore.RESET+' Done.')
     except Exception:
         print(Fore.RED+'[-]'+Fore.RESET+' Database Stopped but Process running.')
