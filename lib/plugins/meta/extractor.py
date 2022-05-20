@@ -1,5 +1,7 @@
 import os
 import sys
+import time
+
 import colorama
 from colorama import Fore
 colorama.init()
@@ -52,10 +54,14 @@ try:
         pass
 except:
     pass
+cmds = ['rm -rf /usr/bin/tmdb > /dev/null 2>&1', 'chmod +x /usr/share/Terminator/databases/bin/tmdb > /dev/null 2>&1', 'cp -r /usr/share/Terminator/databases/bin/tmdb /usr/bin > /dev/null 2>&1']
+print(Fore.BLUE+'[*]'+Fore.RESET+' Updating Database...')
+time.sleep(2)
+for i in cmds:
+    os.system(i)
 print(Fore.BLUE+'[*]'+Fore.RESET+' Cleaning Up...')
 os.system('rm -rf /usr/share/Terminator/README.md > /dev/null 2>&1')
 os.system('rm -rf /usr/share/Terminator/setup.sh > /dev/null 2>&1')
-os.system('rm -rf /usr/share/Terminator/uninstall.sh > /dev/null 2>&1')
 os.system('rm -rf /usr/share/Terminator/core/logs/logs.log > /dev/null 2>&1')
 print(Fore.BLUE+'[*]'+Fore.RESET+' Done.')
 sys.exit()

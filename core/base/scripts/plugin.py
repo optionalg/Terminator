@@ -40,7 +40,8 @@ Extract  : /usr/share/Terminator/lib/plugins/meta/extractor.py
 Exec     : /usr/share/Terminator/bin/tmconsole/exec.sh
 Plugins  : /usr/share/Terminator/lib/plugins
 Tested   : Kali Linux, Parrot OS, Debian x64
-Services : Not Available
+Services : Available, Not Running
+Database : /usr/share/Terminator/databases
 
 
 

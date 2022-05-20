@@ -1,7 +1,5 @@
 import os
-import re
 import time
-import subprocess
 import random
 import sys
 import colorama
@@ -9,10 +7,7 @@ import pickle
 from colorama import Fore, Style, Back
 import datetime
 import getpass
-import future
 from sys import platform
-import socket
-from socket import AF_INET, SOCK_STREAM
 colorama.init()
 # Inside Plugin Database
 plugins_ld = 0
@@ -25,7 +20,7 @@ plugins = {
 # Plugin Read
 pl_command = []
 pl_run_db = []
-pl_run = {}
+pl_run = []
 pl = os.listdir('/usr/share/Terminator/lib/plugins/global/plugins')
 for i in pl:
     plugins_ld+=1
@@ -98,7 +93,7 @@ if pl:
         Setup, etc. : Doesnt Support
         =============================================
         '''
-                        pl_run[run] = '/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/run.py'
+                        pl_run.append("/usr/share/Terminator/lib/plugins/global/plugins/'+i+'/run.py")
                 else:
                     pass
                 if os.path.exists("/usr/share/Terminator/core/logs/plugins.log"):
@@ -831,14 +826,21 @@ Max Jobs. 1
                         print(Fore.RED+'[-]'+Fore.RESET+' Invalid Plugin: "'+name_rem+'"')
                 except:
                     pass
-        elif tmf[0] in pl_run:
-            key = pl_run[tmf[0]]
-            print(Fore.BLUE+'[*]'+Fore.RESET+' Detected Plugin '+Fore.GREEN+''+tmf[0]+''+Fore.RESET+'...')
-            print(Fore.BLUE+'[*]'+Fore.RESET+' Running Plugin '+Fore.GREEN+''+tmf[0]+''+Fore.RESET+'...')
-            time.sleep(0.3)
-            os.system('python3 '+key)
         else:
-            print(Fore.RED+'[-]'+Fore.RESET+' Unknown Command: "'+tmf[0]+'"')
+            n = False
+            for i in pl_run:
+                if tmf[0] in i:
+                    n = True
+                    key = i
+                    print(Fore.BLUE + '[*]' + Fore.RESET + ' Detected Plugin ' + Fore.GREEN + '' + tmf[0] + '' + Fore.RESET + '...')
+                    print(Fore.BLUE + '[*]' + Fore.RESET + ' Running Plugin ' + Fore.GREEN + '' + tmf[0] + '' + Fore.RESET + '...')
+                    time.sleep(0.3)
+                    os.system('python3 ' + key)
+                    break
+            if n:
+                pass
+            else:
+                print(Fore.RED + '[-]' + Fore.RESET + ' Unknown Command: "' + tmf[0] + '"')
         try:
             tmf = input('\033[4mtmf\033[0m > ').strip(" ")
         except KeyboardInterrupt:

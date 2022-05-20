@@ -48,12 +48,18 @@ except:
 def check():
     while done == "false":
         print('\n')
+        date = datetime.datetime.now()
+        now = date.strftime("%H:%M:%S")
         sys.stdout.write(f'\r[{now}] Checking Terminator Files...                '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]')
         time.sleep(0.7)
         try:
             if os.path.exists("core/setup/cp/cp.py"):
+                date = datetime.datetime.now()
+                now = date.strftime("%H:%M:%S")
                 sys.stdout.write(f'\r[{now}] Checking Terminator Files...                      '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']\n')
             else:
+                date = datetime.datetime.now()
+                now = date.strftime("%H:%M:%S")
                 sys.stdout.write(f'\r[{now}] Checking Terminator Files...                      '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.RED+'FAIL'+Fore.RESET+']\n')
                 print(Fore.BLUE+'[*]'+Fore.RESET+' For Error Codes Please Visit: https://github.com/G00Dway/Terminator/wiki/error_codes')
                 print(Fore.RED+'[-]'+Fore.RESET+' ERROR CODE: 0xtmf799')
@@ -61,32 +67,46 @@ def check():
         except:
             pass
         time.sleep(0.1)
+        date = datetime.datetime.now()
+        now = date.strftime("%H:%M:%S")
         sys.stdout.write(f'\r[{now}] Checking Dependiences...                     '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]')
         time.sleep(0.4)
         try:
+            date = datetime.datetime.now()
+            now = date.strftime("%H:%M:%S")
             if os.path.exists("/usr/bin/python") and os.path.exists("/usr/bin/python3") and os.path.exists("/usr/bin/msfvenom") and os.path.exists("/usr/bin/msfconsole") and os.path.exists("/usr/bin/zenity") and os.path.exists("/usr/bin/xterm") and os.path.exists("/usr/bin/npm"):
                 sys.stdout.write(f'\r[{now}] Checking Dependiences...                          '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']\n')
             else:
+                date = datetime.datetime.now()
+                now = date.strftime("%H:%M:%S")
                 sys.stdout.write(f'\r[{now}] Checking Dependiences...                          '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.BLUE+'Installing...'+Fore.RESET+']\n')
                 os.system('bash core/setup/install.sh')
         except:
             pass
         print(Fore.BLUE+'[*]'+Fore.RESET+' Installing PIP Packages...')
         os.system('bash core/setup/pip-install.sh')
+        date = datetime.datetime.now()
+        now = date.strftime("%H:%M:%S")
         sys.stdout.write(f'\r[{now}] Building Database...                         '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' [Working]')
         os.system("python3 core/setup/cp/cp.py")
         os.system('mkdir /usr/var/tmf-meta-inf > /dev/null 2>&1')
         time.sleep(0.3)
         try:
+            date = datetime.datetime.now()
+            now = date.strftime("%H:%M:%S")
             if os.path.exists("/usr/share/Terminator"):
                 sys.stdout.write(f'\r[{now}] Building Database...                              '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']\n')
             else:
+                date = datetime.datetime.now()
+                now = date.strftime("%H:%M:%S")
                 sys.stdout.write(f'\r[{now}] Building Database...                              '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.RED+'FAIL'+Fore.RESET+']\n')
                 print(Fore.RED+'[!]'+Fore.RESET+' Unable To Build Database, Stopping...')
                 time.sleep(0.6)
                 sys.exit()
         except:
             pass
+        date = datetime.datetime.now()
+        now = date.strftime("%H:%M:%S")
         sys.stdout.write(f'\r[{now}] Copying Console Files...                          '+Style.BRIGHT+'STATUS:'+Style.RESET_ALL+' ['+Fore.GREEN+'OK'+Fore.RESET+']')
         time.sleep(1)
         try:
@@ -101,10 +121,12 @@ def check():
         os.system('python3 /usr/share/Terminator/core/setup/console.py')
         time.sleep(0.5)
         print('\n')
+        date = datetime.datetime.now()
+        now = date.strftime("%H:%M:%S")
         print(f'Finished At [{now}]')
         print('')
-        print(f'Installation Completed! Your Can Now Start Terminator By Typing "tmconsole" In Terminal!')
-        print(f"NOTE: Make Sure All Setup Has ["+Fore.GREEN+"OK"+Fore.RESET+"]!")
+        print(f'Installation Completed! Your Can Now Start Terminator By Typing "tmconsole" In Terminal')
+        print(f"NOTE: Make Sure All Setup Has ["+Fore.GREEN+"OK"+Fore.RESET+"] In It")
         break
 
 check()

@@ -248,7 +248,7 @@ def animate():
         sys.stdout.write('\r[*] startIng terminator...\\')
         time.sleep(0.1)
         sys.stdout.write('\r[*] startiNg terminator...|')
-        time.sleep(0.2)
+        time.sleep(0.1)
         sys.stdout.write('\r[*] startinG terminator.../')
         try:
             if os.path.exists("/usr/share/Terminator/modules") and os.path.exists("/usr/share/Terminator/lib/plugins"):
@@ -267,7 +267,7 @@ def animate():
                 os.system('touch /usr/share/Terminator/core/logs/logs.log')
         except:
             pass
-        time.sleep(0.3)
+        time.sleep(0.1)
         try:
             if mod == True:
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as i:
@@ -337,7 +337,7 @@ def animate():
         sys.stdout.write('\r[*] starting terminatOr...-')
         time.sleep(0.1)
         sys.stdout.write('\r[*] starting terminatoR...\\')
-        time.sleep(0.2)
+        time.sleep(0.1)
         try:
             if os.path.exists("/usr/share/Terminator/core/components"):
                 with open("/usr/share/Terminator/core/logs/logs.log", "a") as core:
@@ -355,7 +355,7 @@ def animate():
         sys.stdout.write('\r[*] sTarting terminator.../')
         time.sleep(0.1)
         sys.stdout.write('\r[*] stArting terminator...-')
-        time.sleep(0.2)
+        time.sleep(0.1)
         try:
             if components == True:
                 try:
@@ -436,7 +436,7 @@ def animate():
         sys.stdout.write('\r[*] starting terminatOr...|')
         time.sleep(0.1)
         sys.stdout.write('\r[*] starting terminatoR.../\n')
-        time.sleep(0.2)
+        time.sleep(0.1)
         os.system('python3 /usr/share/Terminator/core/base/tm.py')
         break
 

@@ -1,1 +1,2 @@
 python3 /usr/share/Terminator/databases/config/run/dbrun.py
+python3 /usr/share/Terminator/databases/config/run/dbrun.py "$1"

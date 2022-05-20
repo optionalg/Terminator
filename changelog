@@ -1,4 +1,20 @@
---- Version: 1.8.3#stable
+-------- Version: 1.8.4#stable --------
 
-- Added Database - WARNING: You need to run "setup.sh" again to setup database!
-- Fixed "multi/handler" Module bugs
+--- Bug Fixes In 1.8.4#stable:
+
+- Fixed Database Not Working Or Not Running
+- WARN: (You Can Get Errors If The "socket" And "subprocess" Library Is Broken or Not Found!)
+- Fixed Plugin Cache Leak
+- Fixed Plugin Permissions
+- Fixed Base Menu Commands, Plugin(s) Commands
+- Fixed Update Cleanup Bugs
+- Fixed Update Installation Bugs
+- Fixed Setup Script Bugs, Such As Database Installation
+
+--- Whats New In 1.8.4#stable
+
+- Added Automatically Database Update In Main Update Script
+- Added Database Uninstallation Script To "uninstall.sh"
+- Added Main Database Uninstallation Script To "uninstall.sh"
+- Improved Load Speed
+- Added New Banners ;)

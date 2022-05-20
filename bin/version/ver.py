@@ -13,7 +13,7 @@ except:
 try:
     if os.path.exists("/usr/share/Terminator/lib/plugins/meta/extractor.py"):
         os.system('python3 /usr/share/Terminator/lib/plugins/meta/extractor.py')
-        print(Fore.YELLOW+'[+]'+Fore.RESET+' Please Restart Terminator To Setup Changes!')
+        print(Fore.RED+'[-]'+Fore.RESET+' You Should Restart Framework To Setup Updated Changes')
         sys.exit()
     else:
         print(Fore.RED+'[-]'+Fore.RESET+' Unable To Start Extractor!')
