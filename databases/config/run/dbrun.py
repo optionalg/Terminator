@@ -22,6 +22,12 @@ if len(sys.argv) < 2:
     print(help_menu)
     sys.exit()
 
+
+if sys.argv[1] == "help":
+	print(help_menu)
+elif sys.argv[1] == "":
+	print(help_menu)
+
 cmd = sys.argv[1]
 
 try:
@@ -85,8 +91,6 @@ try:
                 print(Fore.RED+'[-]'+Fore.RESET+' Database Is NOT Running')
         except:
             pass
-	elif cmd == 'help':
-		print(help_menu)
     else:
         print(Fore.RED+'[-]'+Fore.RESET+' Unrecognized Command: "'+cmd+'"')
 except:
