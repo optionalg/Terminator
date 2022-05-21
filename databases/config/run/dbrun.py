@@ -50,7 +50,7 @@ try:
         print(Fore.BLUE+'[*]'+Fore.RESET+' Starting Database')
         time.sleep(2)
         try:
-            subprocess.call(['python3', '/usr/share/Terminator/databases/config/run/dbload.py --start'])
+            subprocess.call(['python3', '/usr/share/Terminator/databases/config/run/dbload.py', '--start'])
         except Exception:
             print(Fore.RED+'[-]'+Fore.RESET+' Unable To Start Database')
             sys.exit()
@@ -72,7 +72,7 @@ try:
             pass
         time.sleep(2)
         try:
-            subprocess.call(['python3', '/usr/share/Terminator/databases/config/run/dbload.py --stop'])
+            subprocess.call(['python3', '/usr/share/Terminator/databases/config/run/dbload.py', '--stop'])
         except Exception:
             print(Fore.RED+'[-]'+Fore.RESET+' Unable To Stop Database')
             sys.exit()
@@ -85,6 +85,8 @@ try:
                 print(Fore.RED+'[-]'+Fore.RESET+' Database Is NOT Running')
         except:
             pass
+	elif cmd == 'help':
+		print(help_menu)
     else:
         print(Fore.RED+'[-]'+Fore.RESET+' Unrecognized Command: "'+cmd+'"')
 except:
