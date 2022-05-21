@@ -116,8 +116,8 @@ TTTTTT  T:::::T  TTTTTTM::::::::::M       M::::::::::M  F:::::F       FFFFFF
                      \//_____/  \/            \/     
                                                  ...and we always find it
 
-+ -- --=[ {Fore.YELLOW}Terminator Framework {version} {Fore.RED}''', f'''
-
++ -- --=[ {Fore.YELLOW}Terminator Framework {version} {Fore.RESET}''', f'''
+{Fore.RED}
                       ..:::::::::..
                   ..:::aad8888888baa:::..
               .::::d:?88888888888?::8b::::.
@@ -151,8 +151,8 @@ TTTTTT  T:::::T  TTTTTTM::::::::::M       M::::::::::M  F:::::F       FFFFFF
      |||||||||||
      `"""""""""`  /recycle/bin/sh
 
-+ -- --=[ {Fore.YELLOW}Terminator Framework {version} {Fore.RED}''', f'''
-
++ -- --=[ {Fore.YELLOW}Terminator Framework {version} {Fore.RESET}''', f'''
+{Fore.RED}
                           `:oDFo:`
                        ./ymM0dayMmy/.
                     -+dHJ5aGFyZGVyIQ==+-
@@ -196,8 +196,8 @@ TTTTTT  T:::::T  TTTTTTM::::::::::M       M::::::::::M  F:::::F       FFFFFF
   P       IIIIIII   N    N
 
       Strike a key when ready ...
-+ -- --=[ {Fore.YELLOW}Terminator Framework {version} {Fore.YELLOW}''', f'''
-
++ -- --=[ {Fore.YELLOW}Terminator Framework {version} {Fore.RESET}''', f'''
+{Fore.YELLOW}
     01011001011011110111010100100000011100
     10011001010110000101101100011011000111
     10010010000001101000011000010111011001
